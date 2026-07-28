@@ -107,7 +107,11 @@ We organize the 12 primary papers into 7 mechanism families. Each family has a *
 
 ### A. Memory stream with retrieval (foundational)
 
-The memory stream, introduced by [1] in the Generative Agents work, is a per-agent append-only list of observations scored by an LLM-judged *importance* (1–10) and retrieved at decision time by a weighted combination of recency, importance, and embedding similarity. The load-bearing choice is the **linear combination of recency × importance × relevance** as the retrieval score, which converts an unbounded observation list into a useful working set.
+The memory stream, introduced by [1] in the Generative Agents work, is a per-agent append-only list of observations scored by an LLM-judged *importance* (1–10) and retrieved at decision time by a weighted combination of recency, importance, and embedding similarity. The load-bearing choice is the **linear combination of recency × importance × relevance** as the retrieval score, which converts an unbounded observation list into a useful working set. Fig. 1 illustrates the end-to-end pipeline.
+
+![Memory stream architecture](../figures/svg/fig1_memory_stream.svg)
+
+**Fig. 1. The memory stream architecture (representative of [1, 4]).** Every agent action and environmental observation is appended to a stream. An LLM-judged *importance* score is attached. At decision time, a retriever combines recency, importance, and embedding relevance to populate the working context. Periodic *reflection* calls synthesize higher-level abstractions, which themselves enter the stream. Arrows labeled in the SVG are documented in the supplementary `figures/scenes/fig1_memory_stream.json`.
 
 [4] extends this family with a fourth retrieval factor: an *Ebbinghaus forgetting-curve strength* `S(t)` that decays in the absence of access and is stabilized on retrieval. [4] also adds a *selective merging* step where an LLM call identifies and merges near-duplicate entries, bounding memory growth. The mechanism family is now well-understood; most production chatbot memory systems are variations of this pattern.
 
@@ -123,7 +127,11 @@ Where the memory stream keeps everything in one tier, [2] (MemGPT) introduces a 
 
 ### C. Verbal reflection as episodic memory (within-session learning)
 
-[3] (Reflexion) introduces an *episodic memory of reflections*: when an agent's trajectory fails, an LLM is prompted to generate a free-text self-reflection ("what went wrong, what to do differently"), and the reflection is stored in a buffer. On the next attempt, the LLM is given (a) the original task and (b) the most recent reflections as additional context. The load-bearing choice is **writing the reflection into the next attempt's context** — without it, the reflection is invisible to the actor.
+[3] (Reflexion) introduces an *episodic memory of reflections*: when an agent's trajectory fails, an LLM is prompted to generate a free-text self-reflection ("what went wrong, what to do differently"), and the reflection is stored in a buffer. On the next attempt, the LLM is given (a) the original task and (b) the most recent reflections as additional context. The load-bearing choice is **writing the reflection into the next attempt's context** — without it, the reflection is invisible to the actor. Fig. 2 shows the loop.
+
+![Reflexion feedback loop](../figures/svg/fig2_reflexion_loop.svg)
+
+**Fig. 2. The Reflexion feedback loop [3].** An Actor (LLM policy) interacts with the environment; the trajectory is scored by an Evaluator (LLM). On failure, a Self-Reflection is generated and stored in an episodic memory buffer; the next attempt is conditioned on the original task plus the most recent reflections. The loop terminates when the Evaluator approves a trajectory.
 
 Reflexion reports substantial gains on HumanEval (91% pass@1 vs 80% baseline) and AlfWorld. Critically, the key ablation — "retry without memory" vs. full Reflexion — is run, and the gap is the load-bearing evidence for the mechanism.
 
@@ -249,6 +257,12 @@ The most fundamental trade-off is between *engineering memory on top of an off-t
 
 [10] argues that the training route dominates at sufficient scale. The empirical evidence at 7B-with-RL vs 7B-with-RAG is not yet strong enough to settle the question; we treat this as a top-priority open problem (Gap 4 in §VII).
 
+Fig. 3 visualizes the two routes side by side.
+
+![Two routes to handling long context: memory engineering vs long-context training](../figures/svg/fig3_two_routes.svg)
+
+**Fig. 3. Two routes to handling long context.** *Route A* (top) is *memory engineering*: any off-the-shelf LLM is paired with an external memory (vector DB, KV cache, paging, skills, or schemas) and assembles a working context at query time. *Route B* (bottom) is *long-context training*: a model is fine-tuned via multi-stage RL (DPO → GRPO/PPO) on long-context data, and at inference time it attends to its own 128K window directly. The two routes share an output (a working context) but differ in *where* memory lives.
+
 ### B. Fixed schema vs. dynamic schema
 
 [13] uses a fixed schema for memory entries (e.g., {user_fact, preference, experience}); [9] lets the LLM generate the schema per-note. Fixed schemas are interpretable, easy to query, and stable; dynamic schemas are flexible and can capture novel facts at the cost of being harder to evaluate. The trade-off depends on the deployment context: a customer-support bot benefits from fixed schemas (queries are predictable), while a research assistant benefits from dynamic schemas (queries are open-ended).
@@ -313,6 +327,12 @@ From the matrix, the comparison table, and the evaluation audit, we extract seve
 ### Reading the gap list
 
 Gaps 1, 4, 5, 6 are *evaluation* and *method* gaps that **could be closed by a single research group in 1–2 papers each**. Gaps 2, 3, 7 are *theory* and *population* gaps that require more substantial work. We expect the next 12–18 months of the field to produce action on Gaps 1, 4, 5, 6 first.
+
+The seven gaps are visualized on a feasibility × value map in Fig. 4. Four of them (G1, G3, G4, G5) sit in the high-feasibility, high-value quadrant and form the natural next-paper agenda; G6 is high-feasibility but lower-value (incremental re-run); G2 sits in the middle (cautious); G7 is in the low-feasibility, high-value quadrant (risky but important). Fig. 5 (in the supplementary material, Mermaid format) shows the gap-type taxonomy that produced this list.
+
+![Gap map: 7 candidate research gaps on feasibility x value](../figures/svg/fig4_gap_map.svg)
+
+**Fig. 4. Seven candidate research gaps on a feasibility × value map.** Quadrant colors: green = doable & important, yellow = doable & incremental, red = risky & important, gray = speculative. The four green-quadrant gaps (G1, G3, G4, G5) are the most actionable.
 
 ---
 

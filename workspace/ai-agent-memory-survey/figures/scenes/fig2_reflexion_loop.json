@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {"id": "task", "label": "Original Task", "x": 320, "y": 0, "color": "#a5d8ff", "shape": "rectangle"},
+    {"id": "actor", "label": "Actor (LLM)\npolicy pi", "x": 80, "y": 200, "color": "#b2f2bb", "shape": "rectangle"},
+    {"id": "env", "label": "Environment /\nTools", "x": 80, "y": 400, "color": "#ffe066", "shape": "rectangle"},
+    {"id": "traj", "label": "Trajectory\ns_0, a_0, s_1, a_1, ...", "x": 360, "y": 400, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "evaluator", "label": "Evaluator (LLM)\nscoring function", "x": 360, "y": 200, "color": "#fcc2d7", "shape": "diamond"},
+    {"id": "decision", "label": "Success?", "x": 560, "y": 200, "color": "#ffffff", "shape": "diamond"},
+    {"id": "reflector", "label": "Self-Reflection\n\"what went wrong\"", "x": 760, "y": 80, "color": "#fcc2d7", "shape": "ellipse"},
+    {"id": "memory", "label": "Episodic Memory Buffer\n(sliding window of reflections)", "x": 760, "y": 320, "color": "#d0bfff", "shape": "rectangle"},
+    {"id": "next", "label": "Next Attempt\n(conditioned on memory)", "x": 560, "y": 480, "color": "#a5d8ff", "shape": "rectangle"}
+  ],
+  "edges": [
+    {"from": "task", "label": "initial prompt", "to": "actor"},
+    {"from": "memory", "label": "k recent reflections", "to": "actor"},
+    {"from": "actor", "label": "action a_t", "to": "env"},
+    {"from": "env", "label": "obs s_{t+1}", "to": "actor"},
+    {"from": "actor", "label": "trajectory", "to": "traj"},
+    {"from": "traj", "label": "rollout", "to": "evaluator"},
+    {"from": "evaluator", "label": "score", "to": "decision"},
+    {"from": "decision", "label": "yes", "to": "next"},
+    {"from": "decision", "label": "no", "to": "reflector"},
+    {"from": "reflector", "label": "free-text reflection", "to": "memory"},
+    {"from": "memory", "label": "retry loop", "to": "next"},
+    {"from": "next", "label": "augmented prompt", "to": "actor"}
+  ]
+}

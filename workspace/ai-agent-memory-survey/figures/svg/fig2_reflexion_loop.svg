@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="810" viewBox="0 0 1300 810" font-family="sans-serif">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e1e1e"/></marker></defs>
+<rect x="320.0" y="0.0" width="160.0" height="60.0" rx="6" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="30.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Original Task</text>
+<rect x="80.0" y="200.0" width="160.0" height="60.0" rx="6" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="160.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Actor (LLM)
+policy pi</text>
+<rect x="80.0" y="400.0" width="160.0" height="60.0" rx="6" fill="#ffe066" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="160.0" y="430.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Environment /
+Tools</text>
+<rect x="360.0" y="400.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="440.0" y="430.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Trajectory
+s_0, a_0, s_1, a_1, ...</text>
+<text x="440.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Evaluator (LLM)
+scoring function</text>
+<text x="640.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Success?</text>
+<ellipse cx="840.0" cy="110.0" rx="80.0" ry="30.0" fill="white" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="840.0" y="110.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Self-Reflection
+"what went wrong"</text>
+<rect x="760.0" y="320.0" width="160.0" height="60.0" rx="6" fill="#d0bfff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="840.0" y="350.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Episodic Memory Buffer
+(sliding window of reflections)</text>
+<rect x="560.0" y="480.0" width="160.0" height="60.0" rx="6" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="640.0" y="510.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Next Attempt
+(conditioned on memory)</text>
+<line x1="320.0" y1="30.0" x2="240.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="280.0" y="124.0" font-size="16" text-anchor="middle" dominant-baseline="middle">initial prompt</text>
+<line x1="760.0" y1="350.0" x2="240.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="500.0" y="284.0" font-size="16" text-anchor="middle" dominant-baseline="middle">k recent reflections</text>
+<line x1="80.0" y1="230.0" x2="240.0" y2="430.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="160.0" y="324.0" font-size="16" text-anchor="middle" dominant-baseline="middle">action a_t</text>
+<line x1="80.0" y1="430.0" x2="240.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="160.0" y="324.0" font-size="16" text-anchor="middle" dominant-baseline="middle">obs s_{t+1}</text>
+<line x1="240.0" y1="230.0" x2="360.0" y2="430.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="300.0" y="324.0" font-size="16" text-anchor="middle" dominant-baseline="middle">trajectory</text>
+<line x1="360.0" y1="430.0" x2="520.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="440.0" y="324.0" font-size="16" text-anchor="middle" dominant-baseline="middle">rollout</text>
+<line x1="520.0" y1="230.0" x2="560.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="540.0" y="224.0" font-size="16" text-anchor="middle" dominant-baseline="middle">score</text>
+<line x1="560.0" y1="230.0" x2="720.0" y2="510.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="640.0" y="364.0" font-size="16" text-anchor="middle" dominant-baseline="middle">yes</text>
+<line x1="720.0" y1="230.0" x2="760.0" y2="110.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="740.0" y="164.0" font-size="16" text-anchor="middle" dominant-baseline="middle">no</text>
+<line x1="760.0" y1="110.0" x2="920.0" y2="350.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="840.0" y="224.0" font-size="16" text-anchor="middle" dominant-baseline="middle">free-text reflection</text>
+<line x1="760.0" y1="350.0" x2="720.0" y2="510.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="740.0" y="424.0" font-size="16" text-anchor="middle" dominant-baseline="middle">retry loop</text>
+<line x1="560.0" y1="510.0" x2="240.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="400.0" y="364.0" font-size="16" text-anchor="middle" dominant-baseline="middle">augmented prompt</text>
+</svg>

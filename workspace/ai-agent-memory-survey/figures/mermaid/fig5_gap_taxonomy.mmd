@@ -1,0 +1,32 @@
+flowchart TD
+    Start([Survey of 12 papers]) --> CompareMatrix[Comparison Matrix<br/>12 rows x 11 columns]
+    CompareMatrix --> Patterns{Column-wide<br/>patterns?}
+    Patterns -->|yes| GapScan[Dimension scan<br/>7 gap-type classes]
+    Patterns -->|no| EndSurvey[No gaps to report]
+
+    GapScan --> TypeClass{Gap<br/>type?}
+    TypeClass --> M[Method gap<br/>G4: engineering vs training]
+    TypeClass --> D[Data gap<br/>e.g. multi-modal long memory]
+    TypeClass --> P[Population gap<br/>G2: multi-user memory]
+    TypeClass --> S[Setting-transfer gap<br/>e.g. cross-domain transfer]
+    TypeClass --> T[Theory gap<br/>G3: stability-plasticity<br/>G7: soft attention budget]
+    TypeClass --> E[Evaluation gap<br/>G1: compute cost<br/>G5: schema quality]
+    TypeClass --> N[Negative-result gap<br/>G6: reflection on strong bases]
+
+    M --> Feas[Feasibility<br/>4-axis verdict]
+    D --> Feas
+    P --> Feas
+    S --> Feas
+    T --> Feas
+    E --> Feas
+    N --> Feas
+
+    Feas -->|doable| Doable[Single-paper<br/>opportunities<br/>G1, G3, G4, G5, G6]
+    Feas -->|cautious| Cautious[Longer-horizon<br/>G2, G7, multi-modal]
+    Feas -->|not advised| Drop[Drop with reason]
+
+    Doable --> Output[Section VII:<br/>7 research gaps in survey]
+    Cautious --> Output
+    Drop --> Output
+
+    Output --> Survey[Survey paper:<br/>taxonomy + design map<br/>+ evaluation audit + gap list]

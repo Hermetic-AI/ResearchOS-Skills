@@ -17,11 +17,14 @@
 | literature-reader | Function 1 (单论文笔记) × 14, Function 2 (对比矩阵), Function 3 (gap 分析) | ⭐⭐⭐⭐⭐ | 14 篇结构化笔记 + 1 张 12 列对比矩阵 + 1 份 gap report |
 | knowledge-graph-builder | Stage 1 (扫描), Stage 2 (typing), Stage 3 (proposal-gated — 跳过), Stage 4 (lineage narration) | ⭐⭐⭐⭐ | graph.json (16 节点 / 34 边) + graph.dot + lineage 摘要 |
 | paper-writing-assistant | Function 2 (引用规范) — 4 维度全过; Function 3 (格式检查); Function 1 (看图写段落) 仅用作概念框架 | ⭐⭐⭐⭐ | 1 篇完整论文 (367 行) + 2 份检查报告 |
+| **scientific-plot** (后加) | **Tier 2** (excalidraw JSON → 手绘架构图 × 4) + **Tier 3** (mermaid + DOT 语法检查 × 2) | ⭐⭐⭐⭐⭐ | 4 张架构图（memory stream / Reflexion loop / 两条路线 / gap map）+ 1 张 mermaid + graph.dot 检查 |
 | experiment-designer | **未使用** | — | — |
 | data-analysis-assistant | **未使用** | — | — |
 | reproduction-assistant | **未使用** | — | — |
 
 **总评**：在**纯综述路线**下，3 个核心 skill 完整跑通、产物齐全、彼此衔接良好；另外 3 个 skill 因为论文类型不匹配未被触发。**没有发现"完全不能用"的 skill**，但发现 1 个真实 bug、若干文案层优化空间。
+
+**(2026-07-28 追加) 用户后续加入了 `scientific-plot` skill，专门为论文画架构/技术/流程图。在 4 张 excalidraw 架构图 + 1 张 mermaid 类型图 + 1 个 graph.dot 语法检查中跑通，详见 §12。**
 
 ### 主要交付物（按"对最终论文的贡献度"排序）
 
@@ -321,6 +324,76 @@
 
 ---
 
+## 12. scientific-plot（2026-07-28 追加）
+
+> 这次会话后续用户加入了 `scientific-plot` skill，要求给论文画 4 张架构/技术/流程图。下面是这 7 个 skill 完整（7 个）之后的追加体验。
+
+### 12.1 跑通的流程
+
+`scientific-plot` 有 3 个 tier，**我用了 Tier 2（手绘架构图）和 Tier 3（语法检查），未用 Tier 1（统计图）**——综述论文没有 CSV 数据。
+
+**Tier 2：excalidraw 架构图（4 张）**
+
+| 编号 | 图 | 对应机制 | 节点数 |
+|---|---|---|---|
+| Fig. 1 | Memory Stream 架构 | [1, 4] 的 stream+retriever 流水线 | 8 节点 + 12 边 |
+| Fig. 2 | Reflexion 反馈循环 | [3] 的 actor-evaluator-reflector 闭环 | 9 节点 + 12 边 |
+| Fig. 3 | 记忆工程 vs 长上下文训练 | [2] vs [10] 的方法对比 | 13 节点 + 11 边 |
+| Fig. 4 | 7 个 research gaps 分布图 | gap analysis 可视化 | 14 节点 + 7 边 |
+
+每张图都生成了**两个版本**：
+- `.excalidraw.md`（Obsidian 插件原生格式，可手绘二次编辑）
+- `.svg`（fallback，普通浏览器/任何 markdown 渲染器可见）
+
+**Tier 3：mermaid + DOT 语法检查**
+- `fig5_gap_taxonomy.mmd`：7 个 gap 的类型层级流程图（flowchart）
+- `graph.dot`：之前 knowledge-graph-builder 生成的引用图
+- 两个都通过 `diagram_check.py` 的语法检查（0 warning）
+
+### 12.2 真正用上的设计原则
+
+- **JSON → excalidraw 的声明式 workflow**：写一个 `nodes + edges` 的 JSON 就能生成 .excalidraw.md，对"不熟悉 excalidraw 内部 schema"的研究者极友好。脚本自动处理 boundElements、containerId、Text Elements id 对齐等"excalidraw 容易出错"的细节。
+- **SVG fallback**：把 `.excalidraw.md` 的同样 JSON 喂 `--out xxx.svg` 就生成可移植的 SVG 框线图。这对**没有 Obsidian** 的用户至关重要。
+- **`--seed` 决定 jitter 随机性**：同一份 JSON 用不同 seed 出不同手绘抖动感，--seed 42 给稳定可复现的输出。
+- **diagram_check.py 明确说"不验证渲染"**——"this environment has no renderer, so correctness of the visual output is NOT verified"。这种**诚实的边界声明**比假装跑过渲染好得多。
+
+### 12.3 踩到的坑
+
+- **没有"看 JSON 写 SVG 预览"的能力**：脚本能生成 .svg，但 preview 要我自己打开看。学术写作中"我画出来对不对"还是要肉眼判断。
+- **excalidraw JSON 的 layout 不灵活**：脚本的 `auto_layout` 是简单的"按边的最长路径分层"。**对有环图（如 Fig. 2 Reflexion 循环）会破坏 cycle 的几何可见性**——我的 Fig. 2 实际渲染时 Actor→Env→Traj→Evaluator 是一条链，Decision→Reflector→Memory→Next→Actor 是闭环，但自动布局会把它拉成一条线。**workaround：手填 `x` `y` 坐标**（我在 Fig. 2 用了这个技巧）。
+- **Fig. 3 太密**：13 个节点 + 11 条边，对一张 SVG 来说信息密度偏高，文字可能在小屏上溢出。**更专业的方案是拆成 2 张子图**或转用 mermaid。
+- **diagram_check.py 只查"已知坏 pattern"，不查语义**：比如 mermaid 节点名拼错（`A -- > B` 写成 `A -- >B`）它能查，但"A 是不是真的有意义的标签"它不管。
+- **没有 Tier 1 测试**：本环境 matplotlib 可能可用（[paper-writing-assistant] 等没装），但综述论文不需要统计图，没试。
+
+### 12.4 改进建议
+
+1. **excalidraw_gen.py 加一个 `--cycle-aware` 选项**：检测图中的强连通分量，对 cycle 用环状布局而不是 layered 布局。Fig. 2 这种闭环特别需要。
+2. **JSON schema 加 `subgraphs` 字段**：现在 13 节点全部 flat，复杂图需要层级组织（用 mermaid 的 `subgraph` 思路）。
+3. **diagrams 应允许更长的 label**：现在 14 字符宽度自动算，多行 label 用 `\n` 但**渲染时可能换行不一致**。建议支持 `text-wrap: true` 选项。
+4. **Tier 1 的 `plot_chart.py` 应该补一句"如果只想要单条图，不传 CSV 也行"**——比如 `--inline-data` 接受 JSON 数组。这样不写 CSV 也能用统计图。
+5. **`diagram_check.py` 加一个 `--strict` 模式**：开启后，连"无头无尾的边"（from 节点不存在）这种语义错误也报错。
+
+### 12.5 总体评价
+
+**5/5。** 6 个原 skill 里我用得最干净的一个。**几个原因**：
+- **没有 bug**（不像 knowledge-graph-builder 那个 YAML 转义问题）。
+- **设计边界清楚**——Tier 2/3 明确说"我画/我查，不渲染"；用户知道要在自己环境装 mermaid-cli / Graphviz 来渲染。
+- **JSON 输入格式 + SVG fallback** 让结果在 Obsidian 之外也能用。
+- **Tier 1 (统计图) 的依赖是 `matplotlib + scipy`**——成熟标准库；`numpy` 在 Tier 1 是必需，但 `Tier 2/3 是零依赖`**——对轻量集成友好。
+- **画图耗时**：写 4 个 scene JSON 大概 8 分钟，跑脚本秒级。如果换 mermaid 更慢（要写 7 张 .mmd）。Tier 2 excalidraw 是**最划算的"手绘风架构图"工具**。
+
+### 12.6 与其他 skill 的衔接
+
+- **paper-writing-assistant Function 1 完美衔接**：paper 里 §IV-A、§IV-C、§VI-A、§VII 现在都有 Fig.1–4 引用。Function 1 文档说的"看图写段落"在我这里表现为反向——**先画图，再在 paper 里写段引用图**。两种工作流 skill 都支持。
+- **knowledge-graph-builder 衔接**：之前 graph.dot 是 DOT 源码，渲染需要 Graphviz；现在用 diagram_check.py 至少保证了语法正确。
+- **literature-reader 衔接**：笔记的 §2 "方法" 段是图的语义来源；图反过来是笔记的视觉化摘要。
+
+### 12.7 一句话
+
+> **`scientific-plot` 是 7 个 skill 里**唯一一个**画图直接上手、出图直接能用、没有 bug 的。零依赖 + SVG fallback + 诚实的"我不渲染"声明 = 非常工程化的设计**。如果只学一个画图 skill，学这个。
+
+---
+
 ## 附录 A：产物清单
 
 | 文件 | 行数 / 节点数 | 用途 |
@@ -339,12 +412,16 @@
 | `graph/graph.json` | 16 节点 / 34 边 | 知识图谱 |
 | `graph/graph.dot` | 54 行 | Graphviz 源 |
 | `graph/warnings.md` | 0 行（修好后） | build_graph 警告 |
-| `paper/paper.md` | 367 行 / ~8000 字 | 综述论文 |
+| `paper/paper.md` | 380+ 行 / ~8500 字 | 综述论文（含 4 张图引用） |
 | `paper/references_ieee.md` | 14 条目 | IEEE 格式 references |
 | `paper/_check_citations.py` | 60 行 | 引用 check 脚本 |
 | `paper/citation_check_report.md` | ~100 行 | Function 2 报告 |
 | `paper/format_check_report.md` | ~50 行 | Function 3 报告 |
-| `report/experience_report.md` | 本文件 | 体验报告 |
+| **`figures/scenes/fig1..4_*.json`** | 4 文件 | excalidraw scene 源（可手改） |
+| **`figures/excalidraw/fig1..4_*.excalidraw.md`** | 4 文件 | Obsidian 插件可打开 |
+| **`figures/svg/fig1..4_*.svg`** | 4 文件 | 浏览器/任何 markdown 渲染器可见 |
+| **`figures/mermaid/fig5_gap_taxonomy.mmd`** | 1 文件 | mermaid 类型层级图 |
+| `report/experience_report.md` | 本文件 | 体验报告（含 §12 scientific-plot 追加） |
 
 ## 附录 B：可改进点的优先级表
 

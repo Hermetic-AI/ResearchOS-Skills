@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1310" height="1020" viewBox="0 0 1310 1020" font-family="sans-serif">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e1e1e"/></marker></defs>
+<rect x="0.0" y="240.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="80.0" y="270.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Long input /
+large history</text>
+<rect x="0.0" y="720.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="80.0" y="750.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Long input /
+large history</text>
+<rect x="320.0" y="0.0" width="160.0" height="60.0" rx="6" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="30.0" font-size="16" text-anchor="middle" dominant-baseline="middle">ROUTE A: Memory Engineering</text>
+<rect x="320.0" y="480.0" width="160.0" height="60.0" rx="6" fill="#ffc9c9" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="510.0" font-size="16" text-anchor="middle" dominant-baseline="middle">ROUTE B: Long-Context Training</text>
+<rect x="320.0" y="120.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="150.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Pretrained LLM
+(any off-the-shelf)</text>
+<rect x="640.0" y="120.0" width="160.0" height="60.0" rx="6" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="720.0" y="150.0" font-size="16" text-anchor="middle" dominant-baseline="middle">External Memory
+(vector DB / KV cache /
+paging / skills / schemas)</text>
+<rect x="640.0" y="320.0" width="160.0" height="60.0" rx="6" fill="#d0bfff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="720.0" y="350.0" font-size="16" text-anchor="middle" dominant-baseline="middle">function-call paging
+[MemGPT, Packer 2023]</text>
+<rect x="320.0" y="320.0" width="160.0" height="60.0" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="350.0" font-size="16" text-anchor="middle" dominant-baseline="middle">retrieve / read /
+manage cycle</text>
+<text x="1040.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Working Context
+(retrieved snippets +
+system prompt)</text>
+<rect x="320.0" y="600.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="400.0" y="630.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Long-context data
+(millions of tokens)</text>
+<rect x="640.0" y="600.0" width="160.0" height="60.0" rx="6" fill="#ffc9c9" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="720.0" y="630.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Multi-stage RL
+DPO -&gt; GRPO/PPO
+[LongAgent, Hu 2024]</text>
+<rect x="640.0" y="800.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="720.0" y="830.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Trained 7B LLM
+(uses 128K directly)</text>
+<text x="1040.0" y="730.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Working Context
+(model attends to
+its own 128K)</text>
+<rect x="640.0" y="940.0" width="160.0" height="60.0" rx="6" fill="#fff3bf" stroke="#1e1e1e" stroke-width="1.5"/>
+<text x="720.0" y="970.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Trade-off:
+A: flexible schema, slow paging
+B: fast inference, no flexibility</text>
+<line x1="160.0" y1="270.0" x2="320.0" y2="150.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="240.0" y="204.0" font-size="16" text-anchor="middle" dominant-baseline="middle">feeds</text>
+<line x1="160.0" y1="270.0" x2="640.0" y2="150.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="400.0" y="204.0" font-size="16" text-anchor="middle" dominant-baseline="middle">offloaded to</text>
+<line x1="480.0" y1="150.0" x2="640.0" y2="350.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="560.0" y="244.0" font-size="16" text-anchor="middle" dominant-baseline="middle">queries</text>
+<line x1="640.0" y1="350.0" x2="800.0" y2="150.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="720.0" y="244.0" font-size="16" text-anchor="middle" dominant-baseline="middle">page-in</text>
+<line x1="640.0" y1="150.0" x2="480.0" y2="350.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="560.0" y="244.0" font-size="16" text-anchor="middle" dominant-baseline="middle">top-k</text>
+<line x1="480.0" y1="350.0" x2="960.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="720.0" y="284.0" font-size="16" text-anchor="middle" dominant-baseline="middle">assemble</text>
+<line x1="160.0" y1="750.0" x2="320.0" y2="630.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="240.0" y="684.0" font-size="16" text-anchor="middle" dominant-baseline="middle">training corpus</text>
+<line x1="480.0" y1="630.0" x2="640.0" y2="630.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="560.0" y="624.0" font-size="16" text-anchor="middle" dominant-baseline="middle">fine-tune</text>
+<line x1="640.0" y1="630.0" x2="800.0" y2="830.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="720.0" y="724.0" font-size="16" text-anchor="middle" dominant-baseline="middle">yields</text>
+<line x1="800.0" y1="830.0" x2="960.0" y2="730.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="880.0" y="774.0" font-size="16" text-anchor="middle" dominant-baseline="middle">one-pass</text>
+<line x1="960.0" y1="230.0" x2="800.0" y2="970.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="880.0" y="594.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Route A</text>
+<line x1="960.0" y1="730.0" x2="800.0" y2="970.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="880.0" y="844.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Route B</text>
+</svg>
