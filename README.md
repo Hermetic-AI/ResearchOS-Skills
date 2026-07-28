@@ -12,6 +12,7 @@ A collection of research-oriented agent skills (Anthropic `SKILL.md` format), di
 | `data-analysis-assistant` | 数据处理分析 | CSV data profiling & outlier detection, statistical-test selection with effect sizes, conclusion drafting. |
 | `paper-writing-assistant` | 论文写作辅助 | 看图写正文分析段落、引用规范检查（GB/T 7714/IEEE/APA/ACM）、论文格式检查（Word/LaTeX）。 |
 | `reproduction-assistant` | 代码与实验复现 | Paper-code reproduction pipeline discipline, dependency parsing, result comparison with tolerance, failure diagnosis taxonomy. |
+| `scientific-plot` | 科研绘图 | Publication-grade statistical charts (6 templates, journal themes, significance stars), Excalidraw/SVG schematics, Mermaid/Graphviz/PlantUML diagram-as-code. |
 
 ## Conventions
 
