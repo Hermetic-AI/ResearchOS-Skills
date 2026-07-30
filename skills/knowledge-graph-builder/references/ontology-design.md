@@ -31,7 +31,7 @@ Node ids are normalized (`concept:lower-case-hyphenated`), but the *label* is wh
 - **Singular, no version suffix in the concept name**: `bert` the concept vs. `bert-base-uncased` the specific artifact. If versions matter scientifically (BERT vs. BERT-large ablations), make them separate nodes linked by `extends`, not one node with a changelog in the label.
 - **No year in labels**: year belongs in paper metadata, not in `transformer-2017`. The graph-rag temporal narration reads years from paper nodes.
 - **Datasets keep their canonical capitalization** (`ImageNet`, not `imagenet`); wikilink resolution is case-insensitive on stems, but labels feed DOT/Mermaid rendering.
-- **One language per vault for concept labels.** Mixed Chinese/English labels for the same concept (`注意力机制` + `attention`) create duplicate nodes that alias-merge cannot reliably fix. Pick the language of the majority of notes; keep the other in `aliases:`.
+- **One language per vault for concept labels.** Mixed-language labels for the same concept (`attention mechanism` + `attention`) create duplicate nodes that alias-merge cannot reliably fix. Pick the language of the majority of notes; keep the other in `aliases:`.
 
 ## 3. Granularity decisions: one concept or several?
 

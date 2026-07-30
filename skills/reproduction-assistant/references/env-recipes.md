@@ -106,7 +106,7 @@ A CPU run is a **smoke test, not a reproduction**. Risks to state explicitly:
 - **Non-determinism changes direction**: some ops differ numerically between
   CUDA and CPU kernels; results can shift beyond tolerance.
 - **Throughput**: training that took 8 GPU-hours may take weeks on CPU.
-  Reduce epochs/steps and label the run "非原配置，数值不可与论文直接对标".
+  Reduce epochs/steps and label the run "non-original configuration, values cannot be directly compared with the paper".
 - **OOM shape changes**: CUDA OOM errors disappear; RAM OOM may appear instead.
 - **Code paths**: repos often have `if cuda:` branches — the CPU path is usually
   the *less tested* one (e.g. missing `.cpu()` moves, `pin_memory` hangs).

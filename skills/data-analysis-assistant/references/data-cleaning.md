@@ -28,7 +28,7 @@ The choice of method depends on *why* data are missing, not how much is missing.
 - **MNAR or > 40% missing** → imputation cannot rescue the column. Options: drop the column, restrict the analysis population, or model the missingness (selection/pattern-mixture models). Escalate to the user — this is a design decision, not a cleaning decision.
 - **Never**: impute before train/test split in predictive work (leakage); impute group labels; silently treat `0`/`999`/`-1` as real values when they are sentinel codes (recode to missing first).
 
-**Report wording**: 「共 N 条记录，其中 k 条因 X 变量缺失被剔除（占比 x%），缺失机制经检验与 MCAR 一致/存在 MAR 迹象……」
+**Report wording**: "A total of N records, of which k were excluded due to missing X variable (x% of total); the missingness mechanism was tested and is consistent with MCAR / shows signs of MAR..."
 
 ## 2. Duplicate records
 

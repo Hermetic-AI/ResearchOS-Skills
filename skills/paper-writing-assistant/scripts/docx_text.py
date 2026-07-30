@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
 """
-docx_text.py — 零依赖抽取 .docx 全文，定位参考文献表，提取正文引用标记（供功能二引用检查）。
+docx_text.py — Zero-dependency extractor of full .docx text, locates the reference list, and extracts in-text citation markers (for citation checking).
 
-只用 Python 标准库。用法:
-    python3 docx_text.py thesis.docx                 # 概览：段数/参考文献条数/引用编号核对
-    python3 docx_text.py thesis.docx --refs           # 只输出参考文献表（带序号）
-    python3 docx_text.py thesis.docx --cites          # 只输出正文引用编号核对
-    python3 docx_text.py thesis.docx --dump out.txt [--force] # 全文文字存到 out.txt；默认不覆盖
-    python3 docx_text.py thesis.docx --json           # 结构化 JSON
+Uses only the Python standard library. Usage:
+    python3 docx_text.py thesis.docx                 # overview: paragraph count / reference count / citation number check
+    python3 docx_text.py thesis.docx --refs           # output only the reference list (with numbering)
+    python3 docx_text.py thesis.docx --cites          # output only the in-text citation number check
+    python3 docx_text.py thesis.docx --dump out.txt [--force] # save full text to out.txt; no overwrite by default
+    python3 docx_text.py thesis.docx --json           # structured JSON
 
-关键设计（针对功能二实测踩坑）：
-  1. 正文 [n] 引用会混入张量维度等噪声（如 [4096]）。本脚本在拿到参考文献条数 R 后，
-     把 1..R 视为有效引用编号，> R 的标记单列为"疑似噪声/悬空引用"，不污染对应核对。
-  2. EndNote/域引用：域的显示文本有时能抽到（本脚本尽力抽），有时是纯域代码抽不到——
-     若正文几乎抽不到 [n] 但文献表有很多条，脚本会明确提示"疑似域引用，需转纯文本后再核"。
-  3. 同时抓上标(superscript) run 里的数字，作为引用标记的补充来源。
+Key design (lessons from real-world citation checking):
+  1. In-text [n] citations can be mixed with noise such as tensor dimensions (e.g. [4096]).
+     After obtaining the reference count R, numbers 1..R are treated as valid citation
+     numbers; markers > R are listed separately as "suspected noise / dangling citations"
+     so they don't pollute the correspondence check.
+  2. EndNote/field citations: the display text of fields is sometimes extractable (this
+     script tries its best), but sometimes only the field code is present and nothing is
+     extractable — if almost no [n] markers are found in the text but the reference list
+     has many entries, the script explicitly warns "suspected field citations; convert to
+     plain text and re-run".
+  3. Superscript runs containing digits are also captured as a supplementary source of
+     citation markers.
 """
 import sys
 import os
@@ -27,7 +33,7 @@ W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 REF_HEAD_RE = re.compile(r"^\s*参\s*考\s*文\s*献\s*$")
 STOP_HEAD_RE = re.compile(r"^\s*(致\s*谢|攻读|在读期间|读期间|附录|作者简介|个人简历|个人简介)")
-# 引用标记：[1] [1-3] [1,2] [1，2] [1-3,5]，允许中英文逗号
+# Citation markers: [1] [1-3] [1,2] [1，2] [1-3,5], allowing both English and Chinese commas
 CITE_RE = re.compile(r"\[(\d[\d,，\-\s]*)\]")
 
 
@@ -36,7 +42,7 @@ def q(el, path):
 
 
 def paragraphs(root):
-    """返回 [(text, is_any_run_superscript), ...]，同时收集上标 run 里的文本。"""
+    """Return [(text, superscript_run_text), ...], also collecting text from superscript runs."""
     out = []
     for p in root.iter(W + "p"):
         text = "".join(t.text or "" for t in p.iter(W + "t"))
@@ -51,14 +57,14 @@ def paragraphs(root):
 
 
 def expand_nums(inner):
-    """把 '1-3,5' 展开成 [1,2,3,5]"""
+    """Expand '1-3,5' into [1,2,3,5]."""
     nums = set()
     for part in re.split(r"[,，]", inner):
         part = part.strip()
         m = re.match(r"^(\d+)\s*-\s*(\d+)$", part)
         if m:
             a, b = int(m.group(1)), int(m.group(2))
-            if b - a < 500:  # 防御异常大区间
+            if b - a < 500:  # guard against abnormally large ranges
                 nums.update(range(a, b + 1))
         elif part.isdigit():
             nums.add(int(part))
@@ -72,11 +78,11 @@ def analyze(path):
     texts = [t for t, _ in paras]
     full = "\n".join(texts)
 
-    # ---- 定位参考文献表 ----
+    # ---- Locate the reference list ----
     ref_idx = None
     for i, t in enumerate(texts):
         if REF_HEAD_RE.match(t.strip()) and len(t.strip()) <= 8:
-            ref_idx = i  # 取最后一个匹配（正文可能提到"参考文献"字样）
+            ref_idx = i  # take the last match (body text may mention "参考文献")
     refs = []
     if ref_idx is not None:
         for t in texts[ref_idx + 1:]:
@@ -88,7 +94,7 @@ def analyze(path):
             refs.append(s)
     R = len(refs)
 
-    # ---- 正文引用标记（排除参考文献表自身区域）----
+    # ---- In-text citation markers (excluding the reference list region itself) ----
     body_end = ref_idx if ref_idx is not None else len(texts)
     cited = set()
     sup_hits = 0
@@ -101,7 +107,7 @@ def analyze(path):
     noise = sorted(n for n in cited if R and n > R)
     uncited = [n for n in range(1, R + 1) if n not in cited] if R else []
 
-    # 域引用启发式：文献表很多但正文几乎抽不到编号
+    # Field citation heuristic: many references but almost no numbers extracted from body
     field_suspected = R >= 10 and len(valid) < max(3, R * 0.2)
 
     return {
@@ -114,22 +120,24 @@ def analyze(path):
 
 
 def overview(r):
-    L = [f"# 引用抽取概览：{r['file']}",
-         f"- 总段数: {r['paragraphs']}",
-         f"- 参考文献表: {'第%d段起' % r['ref_index'] if r['ref_index'] is not None else '未定位到'}，共 {r['ref_count']} 条",
-         f"- 正文有效引用编号(1..{r['ref_count']}): 命中 {len(r['cited_valid'])} 个",
-         f"- 疑似噪声/悬空引用(编号 > {r['ref_count']}): {r['cited_noise'] or '无'}",
-         f"- 文献表中从未被引用(孤立条目): {r['uncited'] or '无'}",
-         f"- 含上标数字的段落数: {r['superscript_paras']}"]
+    L = [f"# Citation extraction overview: {r['file']}",
+         f"- Total paragraphs: {r['paragraphs']}",
+         f"- Reference list: {'starting at paragraph %d' % r['ref_index'] if r['ref_index'] is not None else 'not located'}, {r['ref_count']} entries total",
+         f"- Valid in-text citation numbers (1..{r['ref_count']}): {len(r['cited_valid'])} found",
+         f"- Suspected noise / dangling citations (number > {r['ref_count']}): {r['cited_noise'] or 'none'}",
+         f"- Never-cited entries in reference list (orphans): {r['uncited'] or 'none'}",
+         f"- Paragraphs containing superscript digits: {r['superscript_paras']}"]
     if r["field_citation_suspected"]:
-        L.append("\n⚠️ 疑似 EndNote/域引用：正文抽到的引用编号远少于文献条数。"
-                 "维度①（正文↔文献表一一对应）不可靠，请在 Word 中"
-                 "「更新域→全选→Ctrl+Shift+F9 转为纯文本副本」后重新运行本脚本。")
+        L.append("\n⚠️ Suspected EndNote/field citations: far fewer citation numbers "
+                 "extracted from the body than reference entries. Dimension 1 "
+                 "(body↔reference one-to-one correspondence) is unreliable; in Word, "
+                 "please \"update fields → select all → Ctrl+Shift+F9 to convert to a "
+                 "plain-text copy\" and re-run this script.")
     return "\n".join(L)
 
 
 def main():
-    # Windows GBK 控制台打印 ⚠️ 等字符会崩，强制 UTF-8
+    # Windows GBK console would crash printing ⚠️ etc.; force UTF-8
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
@@ -141,40 +149,40 @@ def main():
         print(__doc__.strip())
         return 0
     if len(sys.argv) < 2:
-        print("错误：请提供输入 .docx；使用 --help 查看用法", file=sys.stderr)
+        print("error: provide an input .docx; use --help for usage", file=sys.stderr)
         return 2
     path = sys.argv[1]
     flags = sys.argv[2:]
     if not os.path.isfile(path):
-        sys.exit(f"错误：文件不存在：{path}")
+        sys.exit(f"error: file not found: {path}")
     r = analyze(path)
 
     if "--dump" in flags:
         i = flags.index("--dump")
         if i + 1 >= len(flags):
-            sys.exit("错误：--dump 需要一个输出文件路径参数")
+            sys.exit("error: --dump requires an output file path argument")
         out = flags[i + 1]
         if os.path.abspath(out) == os.path.abspath(path):
-            sys.exit("错误：--dump 不能覆盖输入 .docx")
+            sys.exit("error: --dump cannot overwrite the input .docx")
         if os.path.exists(out) and "--force" not in flags:
-            sys.exit(f"错误：输出已存在：{out}；如需覆盖请添加 --force")
+            sys.exit(f"error: output already exists: {out}; add --force to overwrite")
         open(out, "w", encoding="utf-8").write(r["full_text"])
-        print(f"全文已写入 {out}（{len(r['full_text'])} 字）")
+        print(f"Full text written to {out} ({len(r['full_text'])} chars)")
         return 0
     if "--json" in flags:
         r2 = {k: v for k, v in r.items() if k != "full_text"}
         print(json.dumps(r2, ensure_ascii=False, indent=2))
         return 0
     if "--refs" in flags:
-        # 条目可能自带 [N]/1. 前缀，strip 掉再统一编号，避免双重编号
+        # Entries may carry their own [N]/1. prefix; strip it before renumbering to avoid double numbering
         for i, ref in enumerate(r["references"], 1):
             ref = re.sub(r"^\s*(?:\[\d+\]|\d+[.)、])\s*", "", ref)
             print(f"[{i}] {ref}")
         return 0
     if "--cites" in flags:
-        print("正文有效引用编号:", r["cited_valid"])
-        print("疑似噪声/悬空:", r["cited_noise"])
-        print("孤立(未被引用)条目:", r["uncited"])
+        print("Valid in-text citation numbers:", r["cited_valid"])
+        print("Suspected noise / dangling:", r["cited_noise"])
+        print("Orphan (never cited) entries:", r["uncited"])
         return 0
     print(overview(r))
     return 0

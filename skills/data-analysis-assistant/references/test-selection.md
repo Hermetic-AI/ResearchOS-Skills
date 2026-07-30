@@ -49,13 +49,13 @@ python scripts/effect_size_ci.py data.csv --metric cohens-d --value score --grou
 
 Supported metrics are `cohens-d`, `rank-biserial`, `eta-squared`, `cramers-v`, `pearson`, and `spearman`. The output is a `stat-results` artifact with an effect-size interval; resample clusters, pairs, or time blocks only with a design-aware method instead of this row-wise helper.
 
-## Reporting wording rules (报告话术规范)
+## Reporting wording rules
 
 These rules are mandatory in every conclusion.
 
-1. **Significant (p < 0.05)**: 「差异具有统计学意义（检验名, 统计量 = X.XX, p = 0.XXX, 效应量 d = 0.XX）」 — include the direction of the difference (which group is higher).
-2. **Not significant (p ≥ 0.05)**: 「未发现统计学显著差异（p = 0.XXX）」 — **immediately add the disclaimer**: 「注意：不显著不等于无差异，可能是样本量不足导致统计功效（power）不够，或效应本身较小。」Never write 「两组无差异」 or 「证明了没有区别」.
-3. **Multiple comparisons**: whenever more than one test is run on the same dataset (multiple metrics, pairwise follow-ups, subgroup analyses), remind the user to apply a correction — Bonferroni (conservative) or Benjamini-Hochberg FDR (common). Even if no correction was applied this time, state it as a limitation: 「本次未进行多重比较校正，结果应视为探索性结论。」
-4. **Non-parametric fallback**: when normality fails and you switch to Mann-Whitney/Kruskal/Spearman, state why in one sentence: 「因数据不满足正态性假设（Shapiro-Wilk p = 0.XXX），改用非参数检验 …」
-5. **Effect size framing**: report magnitude using the thresholds above, e.g. 「效应量为中等（Cohen's d = 0.55）」.
+1. **Significant (p < 0.05)**: "The difference is statistically significant (test name, statistic = X.XX, p = 0.XXX, effect size d = 0.XX)" — include the direction of the difference (which group is higher).
+2. **Not significant (p ≥ 0.05)**: "No statistically significant difference was found (p = 0.XXX)" — **immediately add the disclaimer**: "Note: not significant does not mean no difference; it may be due to insufficient sample size leading to inadequate statistical power, or the effect itself is small." Never write "the two groups have no difference" or "proves there is no difference".
+3. **Multiple comparisons**: whenever more than one test is run on the same dataset (multiple metrics, pairwise follow-ups, subgroup analyses), remind the user to apply a correction — Bonferroni (conservative) or Benjamini-Hochberg FDR (common). Even if no correction was applied this time, state it as a limitation: "No multiple-comparison correction was applied this time; results should be treated as exploratory conclusions."
+4. **Non-parametric fallback**: when normality fails and you switch to Mann-Whitney/Kruskal/Spearman, state why in one sentence: "Because the data do not meet the normality assumption (Shapiro-Wilk p = 0.XXX), a non-parametric test was used instead ..."
+5. **Effect size framing**: report magnitude using the thresholds above, e.g. "The effect size is medium (Cohen's d = 0.55)".
 6. Alpha defaults to 0.05; if the user specified a different alpha or a one-sided test, record it explicitly.

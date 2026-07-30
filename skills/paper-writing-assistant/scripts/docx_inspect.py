@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 """
-docx_inspect.py — 零依赖提取 .docx 的真实排版属性，供论文格式检查比对。
+docx_inspect.py — Zero-dependency extractor of real formatting properties from .docx files, for paper format checking.
 
-只用 Python 标准库（zipfile + xml.etree），不需要 python-docx / pandoc。
-用法:
+Uses only the Python standard library (zipfile + xml.etree), no python-docx / pandoc required.
+Usage:
     python3 docx_inspect.py path/to/thesis.docx [--json]
 
-输出（默认人类可读，加 --json 输出结构化 JSON）：
-  - 默认正文字体 / 字号 / 行距（docDefaults 解析）
-  - 每个 section 的页边距、纸张、页码
-  - 各级标题样式（字体/字号/加粗/对齐/大纲级别）
-  - 正文段落抽样（字体/字号/行距/对齐/首行缩进）出现频次统计
-  - 图表题注（caption）段落抽样
-  - 最终有效样式（effective_styles）：沿 basedOn 链合并父样式属性
+Output (default human-readable; add --json for structured JSON):
+  - Default body font / size / line spacing (docDefaults parsing)
+  - Page margins, paper size, page numbers per section
+  - Heading styles (font/size/bold/alignment/outline level)
+  - Body paragraph sampling (font/size/line spacing/alignment/first-line indent) frequency counts
+  - Figure/table caption paragraph sampling
+  - Effective styles (effective_styles): merge parent style properties along the basedOn chain
 
-字号换算：Word 内部 w:sz 单位是「半磅」，值/2 = 磅(pt)。
-常见中文字号对照：初号42 小初36 一号26 小一24 二号22 小二18 三号16 小三15
-四号14 小四12 五号10.5 小五9 六号7.5。EMU/twips：页边距 w:pgMar 单位是 twip(1/1440 英寸)。
+Point size conversion: Word's internal w:sz unit is "half-points"; value/2 = points (pt).
+EMU/twips: page margin w:pgMar unit is twips (1/1440 inch).
 """
 import sys
 import re
@@ -25,18 +24,20 @@ import zipfile
 import xml.etree.ElementTree as ET
 from collections import Counter
 
-# 题注模式：图/表/附图/附表/Fig./Figure/Table 后必须紧跟编号（1、1.1、1-1），
-# 才算题注——避免把"图注意力机制""表示…"这类正文误判成题注。
+# Caption pattern: 图/表/附图/附表/Fig./Figure/Table must be immediately followed by a number
+# (1, 1.1, 1-1) to count as a caption — avoids misclassifying body text like
+# "图注意力机制" or "表示…" as captions.
 CAPTION_RE = re.compile(r"^\s*(图|表|附图|附表|Fig\.?|Figure|Table|Tab\.?)\s?\d+([.\-]\d+)*",
                         re.IGNORECASE)
 
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
-# 磅 -> 中文字号名（近似）
+# pt -> Chinese type-size name (approximate)
 PT_TO_CN = {
-    42: "初号", 36: "小初", 26: "一号", 24: "小一", 22: "二号", 18: "小二",
-    16: "三号", 15: "小三", 14: "四号", 12: "小四", 10.5: "五号", 9: "小五",
-    7.5: "六号", 6.5: "小六",
+    42: "Primary", 36: "Small Primary", 26: "1st size", 24: "Small 1st",
+    22: "2nd size", 18: "Small 2nd", 16: "3rd size", 15: "Small 3rd",
+    14: "4th size", 12: "Small 4th", 10.5: "5th size", 9: "Small 5th",
+    7.5: "6th size", 6.5: "Small 6th",
 }
 
 
@@ -44,7 +45,7 @@ def cn_size(pt):
     if pt is None:
         return None
     name = PT_TO_CN.get(pt)
-    return f"{pt}pt" + (f"（{name}）" if name else "")
+    return f"{pt}pt" + (f" ({name})" if name else "")
 
 
 def half_to_pt(v):
@@ -83,7 +84,7 @@ def read_xml(z, name):
 
 
 def rpr_font(rpr):
-    """从 rPr 提取字体名（东亚/西文）、字号pt、加粗、斜体"""
+    """Extract font name (East Asian / Western), size in pt, bold, italic from rPr."""
     if rpr is None:
         return {}
     out = {}
@@ -107,7 +108,7 @@ def rpr_font(rpr):
 
 
 def ppr_para(ppr):
-    """从 pPr 提取行距、对齐、首行缩进、大纲级别、样式引用"""
+    """Extract line spacing, alignment, first-line indent, outline level, style reference from pPr."""
     if ppr is None:
         return {}
     out = {}
@@ -117,9 +118,9 @@ def ppr_para(ppr):
         rule = attr(spacing, "lineRule")
         if line is not None:
             if rule in ("auto", None):
-                # 240 = 单倍行距
-                out["line_spacing"] = f"{round(int(line) / 240, 2)}倍"
-            else:  # atLeast / exact，单位 twip
+                # 240 = single spacing
+                out["line_spacing"] = f"{round(int(line) / 240, 2)}x"
+            else:  # atLeast / exact, unit twips
                 out["line_spacing"] = f"{round(int(line) / 20, 1)}pt({rule})"
     jc = q(ppr, "w:jc")
     if jc is not None:
@@ -297,7 +298,7 @@ def inspect(path):
             raise ValueError("DOCX has no word/document.xml")
         document = read_xml(z, "word/document.xml")
 
-        # ---- 默认字体/字号/行距 ----
+        # ---- Default font/size/line spacing ----
         if styles is not None:
             dd = q(styles, "w:docDefaults")
             if dd is not None:
@@ -306,7 +307,7 @@ def inspect(path):
                 pprd = q(dd, "w:pPrDefault/w:pPr")
                 result["defaults"].update(ppr_para(pprd))
 
-            # ---- 标题样式 ----
+            # ---- Heading styles ----
             for st in qa(styles, "w:style"):
                 sid = attr(st, "styleId") or ""
                 name_el = q(st, "w:name")
@@ -318,13 +319,13 @@ def inspect(path):
                     info.update(ppr_para(q(st, "w:pPr")))
                     result["heading_styles"][sname] = info
 
-            # ---- 最终有效样式（沿 basedOn 链合并）----
+            # ---- Effective styles (merged along basedOn chain) ----
             default_run, default_para = _doc_defaults(styles)
             result["default_run_properties"] = default_run
             result["default_paragraph_properties"] = default_para
             result["effective_styles"] = _effective_styles(styles)
 
-        # ---- section 页面设置 ----
+        # ---- Section page setup ----
         if document is not None:
             for sect in qa(document, ".//w:sectPr"):
                 s = {}
@@ -342,25 +343,27 @@ def inspect(path):
                     }
                 result["sections"].append(s)
 
-            # ---- 正文段落抽样 + 题注 ----
+            # ---- Body paragraph sampling + captions ----
             body_combo = Counter()
             for p in qa(document, ".//w:p"):
                 ppr = q(p, "w:pPr")
                 pinfo = ppr_para(ppr)
-                # 段内首个 run 的字体作代表
+                # Use the first run's font in the paragraph as representative
                 run = q(p, "w:r")
                 rinfo = rpr_font(q(run, "w:rPr")) if run is not None else {}
                 text = "".join(t.text or "" for t in qa(p, ".//w:t"))
                 style = (pinfo.get("style") or "").lower()
 
-                # 题注判定：样式名标了 caption/题注，或文本以"图/表/Fig/Table+编号"开头；
-                # 且整段较短（题注通常不长），避免把以"图"开头的长正文段误判。
+                # Caption detection: style name contains caption/题注, or text starts with
+                # "图/表/Fig/Table + number"; and the whole paragraph is short (captions are
+                # usually brief), to avoid misclassifying long body paragraphs starting with "图".
                 is_caption = (("caption" in style or "题注" in (pinfo.get("style") or ""))
                               or (CAPTION_RE.match(text) and len(text.strip()) <= 60))
                 if is_caption and text.strip():
                     result["captions"].append({
                         "text": text.strip()[:80],
-                        # 中英文字体分开报，避免中英混排时用西文字体覆盖中文判定
+                        # Report Chinese and Western fonts separately, to avoid Western font
+                        # overriding Chinese detection in mixed-language paragraphs
                         "font_cn": rinfo.get("font_eastasia"),
                         "font_en": rinfo.get("font_ascii"),
                         "size": rinfo.get("size_pt"),
@@ -372,8 +375,8 @@ def inspect(path):
                 if not text.strip() or pinfo.get("outline_level") is not None:
                     continue
                 key = (
-                    rinfo.get("font_eastasia") or "默认",   # 中文(东亚)字体
-                    rinfo.get("font_ascii") or "默认",       # 西文字体
+                    rinfo.get("font_eastasia") or "default",   # Chinese (East Asian) font
+                    rinfo.get("font_ascii") or "default",       # Western font
                     rinfo.get("size_pt"),
                     pinfo.get("line_spacing"),
                     pinfo.get("align"),
@@ -391,72 +394,72 @@ def inspect(path):
 
 def human(r):
     L = []
-    L.append(f"# 文档实际排版：{r['file']}\n")
+    L.append(f"# Document actual formatting: {r['file']}\n")
     d = r["defaults"]
-    L.append("## 默认正文")
-    L.append(f"- 西文字体: {d.get('font_ascii', '—')}  东亚字体: {d.get('font_eastasia', '—')}")
-    L.append(f"- 默认字号: {cn_size(d.get('size_pt')) or '—'}")
-    L.append(f"- 默认行距: {d.get('line_spacing', '—')}\n")
+    L.append("## Default body text")
+    L.append(f"- Western font: {d.get('font_ascii', '—')}  East Asian font: {d.get('font_eastasia', '—')}")
+    L.append(f"- Default size: {cn_size(d.get('size_pt')) or '—'}")
+    L.append(f"- Default line spacing: {d.get('line_spacing', '—')}\n")
 
     drp = r.get("default_run_properties") or {}
     dpp = r.get("default_paragraph_properties") or {}
     if drp or dpp:
-        L.append("## 文档默认属性（docDefaults 解析）")
+        L.append("## Document default properties (docDefaults parsing)")
         if drp:
-            L.append(f"- 默认字体(西文): {drp.get('font_ascii', '—')}  "
-                     f"默认字体(东亚): {drp.get('font_eastasia', '—')}  "
-                     f"默认字号: {cn_size(drp.get('size_pt')) or '—'}")
+            L.append(f"- Default font (Western): {drp.get('font_ascii', '—')}  "
+                     f"Default font (East Asian): {drp.get('font_eastasia', '—')}  "
+                     f"Default size: {cn_size(drp.get('size_pt')) or '—'}")
         if dpp:
             ls = dpp.get("line_spacing")
-            L.append(f"- 默认行距: {ls if ls is not None else '—'}  "
-                     f"默认对齐: {dpp.get('align', '—')}")
+            L.append(f"- Default line spacing: {ls if ls is not None else '—'}  "
+                     f"Default alignment: {dpp.get('align', '—')}")
         L.append("")
 
-    L.append("## 页面 / 页边距")
+    L.append("## Page / Margins")
     for i, s in enumerate(r["sections"], 1):
         m = s.get("margin_cm", {})
-        L.append(f"- 节{i}: 纸张 {s.get('page_w_cm')}×{s.get('page_h_cm')} cm; "
-                 f"边距 上{m.get('top')} 下{m.get('bottom')} 左{m.get('left')} 右{m.get('right')} cm")
+        L.append(f"- Section {i}: paper {s.get('page_w_cm')}×{s.get('page_h_cm')} cm; "
+                 f"margins top {m.get('top')} bottom {m.get('bottom')} left {m.get('left')} right {m.get('right')} cm")
     L.append("")
 
-    L.append("## 标题样式")
+    L.append("## Heading styles")
     for name, h in r["heading_styles"].items():
-        L.append(f"- {name}: 字号{cn_size(h.get('size_pt')) or '—'}, "
-                 f"东亚字体{h.get('font_eastasia', '—')}, 加粗{h.get('bold', '—')}, "
-                 f"对齐{h.get('align', '—')}, 大纲级别{h.get('outline_level', '—')}")
+        L.append(f"- {name}: size {cn_size(h.get('size_pt')) or '—'}, "
+                 f"East Asian font {h.get('font_eastasia', '—')}, bold {h.get('bold', '—')}, "
+                 f"alignment {h.get('align', '—')}, outline level {h.get('outline_level', '—')}")
     L.append("")
 
     eff = r.get("effective_styles") or {}
     if eff:
-        L.append("## 最终有效样式（沿 basedOn 链合并）")
+        L.append("## Effective styles (merged along basedOn chain)")
         for sid, info in eff.items():
             rp = info.get("run_properties", {})
             pp = info.get("paragraph_properties", {})
             L.append(f"- {sid} ({info.get('name', '')})"
-                     f"{' ← ' + info['based_on'] if info.get('based_on') else ''}: "
-                     f"字号{cn_size(rp.get('size_pt')) or '—'}, "
-                     f"东亚字体{rp.get('font_eastasia', '—')}, "
-                     f"加粗{rp.get('bold', '—')}, 行距{pp.get('line_spacing', '—')}")
+                     f"{' <- ' + info['based_on'] if info.get('based_on') else ''}: "
+                     f"size {cn_size(rp.get('size_pt')) or '—'}, "
+                     f"East Asian font {rp.get('font_eastasia', '—')}, "
+                     f"bold {rp.get('bold', '—')}, line spacing {pp.get('line_spacing', '—')}")
         L.append("")
 
-    L.append("## 正文段落抽样（按段数排序）")
+    L.append("## Body paragraph sampling (sorted by paragraph count)")
     for b in r["body_sample"]:
-        L.append(f"- {b['paragraphs']}段: 中文字体{b['font_cn']}, 西文字体{b['font_en']}, "
-                 f"字号{cn_size(b['size_pt']) or '—'}, 行距{b['line_spacing'] or '—'}, "
-                 f"对齐{b['align'] or '默认'}, 首行缩进{b['first_line_indent'] or '无'}")
+        L.append(f"- {b['paragraphs']} paragraphs: CN font {b['font_cn']}, EN font {b['font_en']}, "
+                 f"size {cn_size(b['size_pt']) or '—'}, line spacing {b['line_spacing'] or '—'}, "
+                 f"alignment {b['align'] or 'default'}, first-line indent {b['first_line_indent'] or 'none'}")
     L.append("")
 
     if r["captions"]:
-        L.append("## 图表题注抽样")
+        L.append("## Figure/table caption sampling")
         for c in r["captions"][:10]:
-            L.append(f"- 「{c['text']}」字号{cn_size(c['size']) or '—'}, "
-                     f"中文字体{c['font_cn'] or '—'}, 西文字体{c['font_en'] or '—'}, "
-                     f"加粗{c['bold'] if c['bold'] is not None else '—'}, 对齐{c['align'] or '默认'}")
+            L.append(f"- \"{c['text']}\" size {cn_size(c['size']) or '—'}, "
+                     f"CN font {c['font_cn'] or '—'}, EN font {c['font_en'] or '—'}, "
+                     f"bold {c['bold'] if c['bold'] is not None else '—'}, alignment {c['align'] or 'default'}")
     return "\n".join(L)
 
 
 def main():
-    # Windows GBK 控制台打印 ⚠️ 等字符会崩，强制 UTF-8
+    # Windows GBK console would crash printing ⚠️ etc.; force UTF-8
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:

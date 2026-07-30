@@ -10,7 +10,7 @@ depth you are operating at so the user can correct it.
 
 ---
 
-## 1. Triage (速读筛选) — 3–8 minutes per paper
+## 1. Triage (rapid screening) — 3–8 minutes per paper
 
 **Goal**: a keep / skim-later / drop verdict plus a two-line justification.
 Output is a decision, not a note.
@@ -22,7 +22,7 @@ Output is a decision, not a note.
 3. First and last paragraph of the conclusion (limitations often hide in the
    last one).
 4. Verdict against the user's current question:
-   - **Keep (精读候选)**: directly addresses the user's question, or is a
+   - **Keep (deep-read candidate)**: directly addresses the user's question, or is a
      baseline/foundation the user's work must cite and beat.
    - **Skim-later**: same area, useful for related-work padding, no deep read
      needed now.
@@ -47,7 +47,7 @@ Output is a decision, not a note.
 
 ---
 
-## 2. Deep read (精读) — 1–3 hours per paper
+## 2. Deep read — 1–3 hours per paper
 
 **Goal**: a structured note (per `note-template.md`) good enough that the user
 can defend the paper in a group meeting without reopening the PDF.
@@ -82,7 +82,7 @@ can defend the paper in a group meeting without reopening the PDF.
 
 ---
 
-## 3. Critical review (批判性阅读) — for papers the thesis depends on
+## 3. Critical review — for papers the thesis depends on
 
 **Goal**: a verdict on whether the paper's claims can bear the weight the user
 plans to put on them (as foundation, baseline, or target of critique).
@@ -137,11 +137,11 @@ common failure point — check it even when the paper looks strong.
   setting.
 
 ### Verdict scale
-- **可信可依赖 (load-bearing)**: audits pass; safe to build on.
-- **可信但需验证 (trust but verify)**: minor gaps (missing seeds, no code);
+- **Trustworthy and dependable (load-bearing)**: audits pass; safe to build on.
+- **Trustworthy but needs verification (trust but verify)**: minor gaps (missing seeds, no code);
   usable as a baseline, but the user should reproduce the headline number
   before betting a chapter on it.
-- **存疑 (suspect)**: any of — unfair baselines, leakage signal, n clearly
+- **Suspect / questionable**: any of — unfair baselines, leakage signal, n clearly
   underpowered, claims beyond evidence. Cite it if you must, never build on it.
 
 ### Time traps
