@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Designer"
+  short_description: "Design studies, power, DOE, preregistration, and adaptations"
+  default_prompt: "Use $experiment-designer to create and validate a rigorous study design with sample size, DOE or randomization as needed, preregistration, and prespecified analysis rules."

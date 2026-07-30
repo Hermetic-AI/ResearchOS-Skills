@@ -1,0 +1,4 @@
+interface:
+  display_name: "Systematic Review and Meta Analysis"
+  short_description: "Plan auditable systematic reviews and evidence synthesis"
+  default_prompt: "Use $systematic-review-meta-analysis to create a PICOS protocol and track transparent screening decisions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Integrity and Ethics"
+  short_description: "Audit research ethics, privacy, authorship, and AI disclosures"
+  default_prompt: "Use $research-integrity-and-ethics to prepare an auditable research ethics and integrity checklist."

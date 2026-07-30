@@ -1,0 +1,543 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearchOS artifact contracts",
+  "description": "Versioned interchange contracts between ResearchOS skills.",
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["kind", "locator"],
+      "properties": {
+        "kind": {"type": "string", "enum": ["file", "doi", "url", "paper", "dataset", "command", "user"]},
+        "locator": {"type": "string", "minLength": 1},
+        "checksum": {"type": "string"},
+        "note": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "evidence_anchor": {
+      "type": "object",
+      "required": ["source", "quote"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "page": {"type": ["integer", "string"], "minimum": 1},
+        "section": {"type": "string"},
+        "line": {"type": "integer", "minimum": 1},
+        "quote": {"type": "string", "minLength": 1, "maxLength": 500},
+        "extraction_method": {"type": "string", "enum": ["native-text", "ocr", "human-transcription", "visual"]},
+        "verification": {"type": "string", "enum": ["exact-match", "human-verified", "unverified"]}
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["created_by", "sources"],
+      "properties": {
+        "created_by": {"type": "string", "minLength": 1},
+        "created_at": {"type": "string", "format": "date-time"},
+        "tool_version": {"type": "string"},
+        "command": {"type": "string"},
+        "seed": {"type": ["integer", "null"]},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "artifact_header": {
+      "type": "object",
+      "required": ["schema_version", "artifact_type", "provenance"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "artifact_type": {"type": "string"},
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "paper_note": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "paper", "research_question", "method", "contributions", "limitations", "claims"],
+          "properties": {
+            "artifact_type": {"const": "paper-note"},
+            "paper": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {"title": {"type": "string"}, "doi": {"type": ["string", "null"]}, "year": {"type": ["integer", "null"]}, "authors": {"type": "array", "items": {"type": "string"}}}
+            },
+            "research_question": {"type": "string"},
+            "method": {"type": "string"},
+            "contributions": {"type": "array", "items": {"type": "string"}},
+            "limitations": {"type": "array", "items": {"type": "string"}},
+            "claims": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["id", "claim_type", "text", "support_level", "evidence"],
+                "properties": {
+                  "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+                  "claim_type": {"type": "string", "enum": ["research-question", "method", "finding", "contribution", "limitation", "interpretation"]},
+                  "text": {"type": "string", "minLength": 1},
+                  "support_level": {"type": "string", "enum": ["direct", "partial", "context-only"]},
+                  "evidence": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "allOf": [
+                        {"$ref": "#/$defs/evidence_anchor"},
+                        {"required": ["source", "quote", "extraction_method", "verification"]},
+                        {"anyOf": [{"required": ["page"]}, {"required": ["section"]}]}
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence_anchor"}}
+          }
+        }
+      ]
+    },
+    "literature_matrix": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "dimensions", "papers", "rows"], "properties": {
+          "artifact_type": {"const": "literature-matrix"},
+          "dimensions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "papers": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "rows": {"type": "array", "items": {"type": "object"}}
+        }}
+      ]
+    },
+    "research_gap": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "candidates"], "properties": {
+          "artifact_type": {"const": "research-gap"},
+          "candidates": {"type": "array", "items": {"type": "object", "required": ["statement", "gap_type", "feasibility"], "properties": {
+            "statement": {"type": "string"}, "gap_type": {"type": "string"}, "feasibility": {"type": "string", "enum": ["recommended", "caution", "not-recommended"]}, "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence_anchor"}}
+          }}}
+        }}
+      ]
+    },
+    "design_brief": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "hypothesis", "variables", "treatments", "experimental_unit"], "properties": {
+          "artifact_type": {"const": "design-brief"}, "study_id": {"type": "string"}, "title": {"type": "string"}, "hypothesis": {"type": "string"}, "variables": {"type": "array", "items": {"type": "object"}}, "treatments": {"type": "array", "items": {"type": "object"}}, "experimental_unit": {"type": "string"}, "design_type": {"type": ["string", "null"]}, "controls": {"type": "array", "items": {"type": "object"}}, "sampling": {}, "randomization": {}, "blinding": {}, "measurements": {}, "sample_size_rationale": {}, "open_questions": {"type": "array", "items": {"type": "string"}}
+        }}
+      ]
+    },
+    "analysis_plan": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "outcomes", "comparisons", "planned_models", "alpha"], "properties": {
+          "artifact_type": {"const": "analysis-plan"}, "study_id": {"type": "string"}, "title": {"type": "string"}, "estimands": {"type": "array"}, "outcomes": {"type": "array", "items": {"anyOf": [{"type": "string"}, {"type": "object"}]}}, "comparisons": {"type": "array", "items": {"type": "object"}}, "planned_models": {"type": "array", "items": {"type": "string"}}, "alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}, "multiplicity": {"type": ["string", "null"]}, "covariates": {"type": "array"}, "transformations": {"type": "array"}, "analysis_populations": {"type": "array"}, "exclusion_criteria": {"type": "array"}, "missing_data": {}, "diagnostics": {"type": "array"}, "sensitivity_analyses": {"type": "array"}, "interim_and_stopping": {}, "reporting": {}, "open_questions": {"type": "array", "items": {"type": "string"}}
+        }}
+      ]
+    },
+    "preregistration_manifest": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "study_id", "title", "protocol_version", "registration_status", "frozen_at", "source_spec", "files", "unresolved"],
+          "properties": {
+            "artifact_type": {"const": "preregistration-manifest"},
+            "study_id": {"type": "string", "minLength": 1},
+            "title": {"type": "string", "minLength": 1},
+            "protocol_version": {"type": "string", "minLength": 1},
+            "registration_status": {"type": "string", "enum": ["draft", "frozen", "amended"]},
+            "frozen_at": {"type": ["string", "null"], "format": "date-time"},
+            "source_spec": {"$ref": "#/$defs/source"},
+            "files": {
+              "type": "array", "minItems": 4,
+              "items": {
+                "type": "object", "required": ["path", "sha256", "bytes"],
+                "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "bytes": {"type": "integer", "minimum": 0}},
+                "additionalProperties": false
+              }
+            },
+            "unresolved": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "sequential_design_plan": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "study_id", "family_alpha", "sidedness", "multiplicity", "endpoints", "sequential", "stopping_rules", "adaptations", "simulation_plan", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "sequential-design-plan"},
+            "study_id": {"type": ["string", "null"]},
+            "family_alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+            "sidedness": {"type": "string", "enum": ["one-sided", "two-sided"]},
+            "multiplicity": {"type": "object", "required": ["method"]},
+            "endpoints": {
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object", "required": ["id", "local_alpha", "looks"],
+                "properties": {
+                  "id": {"type": "string", "minLength": 1},
+                  "local_alpha": {"type": ["number", "null"], "minimum": 0, "exclusiveMaximum": 1},
+                  "looks": {"type": "array", "items": {"type": "object", "required": ["look", "information_fraction", "cumulative_alpha_budget", "incremental_alpha_budget"]}},
+                  "holm_rank_thresholds": {"type": "array", "items": {"type": "number"}}
+                }
+              }
+            },
+            "sequential": {"type": "object", "required": ["spending", "information_fractions"]},
+            "stopping_rules": {"type": "object"},
+            "adaptations": {"type": "array", "items": {"type": "object"}},
+            "simulation_plan": {"type": ["string", "object", "null"]},
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "cleaning_manifest": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "input", "output", "steps"], "properties": {
+          "artifact_type": {"const": "cleaning-manifest"}, "input": {"$ref": "#/$defs/source"}, "output": {"$ref": "#/$defs/source"}, "steps": {"type": "array", "items": {"type": "object", "required": ["action", "rationale", "affected"], "properties": {"action": {"type": "string"}, "rationale": {"type": "string"}, "affected": {"type": "integer", "minimum": 0}}}}
+        }}
+      ]
+    },
+    "stat_results": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "alpha", "results"], "properties": {
+          "artifact_type": {"const": "stat-results"}, "alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}, "results": {"type": "array", "items": {"type": "object", "required": ["id", "test", "statistic", "p_value"], "properties": {"id": {"type": "string"}, "test": {"type": "string"}, "statistic": {"type": ["number", "null"]}, "p_value": {"type": "number", "minimum": 0, "maximum": 1}, "effect_size": {"type": ["number", "null"]}, "confidence_interval": {"type": ["array", "null"], "prefixItems": [{"type": "number"}, {"type": "number"}], "minItems": 2, "maxItems": 2}, "adjusted_p_value": {"type": ["number", "null"], "minimum": 0, "maximum": 1}}}}
+        }}
+      ]
+    },
+    "competing_risk_estimate": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "time_column", "status_column", "group_column", "causes", "groups", "warnings"], "properties": {
+          "artifact_type": {"const": "competing-risk-estimate"},
+          "time_column": {"type": "string"}, "status_column": {"type": "string"}, "group_column": {"type": ["string", "null"]},
+          "causes": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+          "groups": {"type": "array", "items": {"type": "object", "required": ["group", "cause", "n", "events", "estimates"], "properties": {
+            "group": {"type": "string"}, "cause": {"type": "integer", "minimum": 1}, "n": {"type": "integer", "minimum": 1}, "events": {"type": "integer", "minimum": 0},
+            "estimates": {"type": "array", "items": {"type": "object", "required": ["time", "cumulative_incidence", "standard_error"], "properties": {"time": {"type": "number"}, "cumulative_incidence": {"type": "number", "minimum": 0, "maximum": 1}, "standard_error": {"type": "number", "minimum": 0}}}}
+          }}},
+          "warnings": {"type": "array", "items": {"type": "string"}}
+        }}
+      ]
+    },
+    "time_series_forecast": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "date_column", "value_column", "frequency", "order", "seasonal_order", "trend", "nobs", "missing", "converged", "aic", "bic", "coefficients", "forecast", "warnings"], "properties": {
+          "artifact_type": {"const": "time-series-forecast"}, "date_column": {"type": "string"}, "value_column": {"type": "string"}, "frequency": {"type": "string"},
+          "order": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "integer", "minimum": 0}}, "seasonal_order": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "integer", "minimum": 0}},
+          "trend": {"type": "string"}, "nobs": {"type": "integer", "minimum": 1}, "missing": {"type": "integer", "minimum": 0}, "converged": {"type": "boolean"}, "aic": {"type": "number"}, "bic": {"type": "number"},
+          "coefficients": {"type": "array", "items": {"type": "object"}}, "forecast": {"type": "array", "items": {"type": "object", "required": ["time", "mean", "lower", "upper"]}}, "warnings": {"type": "array", "items": {"type": "string"}}
+        }}
+      ]
+    },
+    "resampling_estimate": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "method", "statistic", "point_estimate", "confidence_interval", "p_value", "n_resamples", "seed", "warnings"], "properties": {"artifact_type": {"const": "resampling-estimate"}, "method": {"type": "string"}, "statistic": {"type": "string"}, "point_estimate": {"type": "number"}, "confidence_interval": {"type": ["array", "null"]}, "p_value": {"type": ["number", "null"]}, "n_resamples": {"type": "integer", "minimum": 100}, "seed": {"type": "integer"}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "bayesian_estimate": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "model", "prior", "arms", "contrast", "posterior_mean", "credible_interval", "probability_greater_than_zero", "n_draws", "seed", "warnings"], "properties": {"artifact_type": {"const": "bayesian-estimate"}, "model": {"type": "string"}, "prior": {"type": "object"}, "arms": {"type": "object"}, "contrast": {"type": "string"}, "posterior_mean": {"type": "number"}, "credible_interval": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}, "probability_greater_than_zero": {"type": "number", "minimum": 0, "maximum": 1}, "n_draws": {"type": "integer", "minimum": 100}, "seed": {"type": "integer"}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "model_diagnostics": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "formula", "family", "nobs", "vif", "influence", "warnings"], "properties": {"artifact_type": {"const": "model-diagnostics"}, "formula": {"type": "string"}, "family": {"type": "string"}, "nobs": {"type": "integer", "minimum": 1}, "vif": {"type": "array"}, "influence": {"type": "array"}, "residuals": {"type": "object"}, "dispersion": {"type": "object"}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "sensitivity_analysis": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "estimand", "observed_effect", "observed_standard_error", "missing_fraction", "scenarios", "warnings"], "properties": {"artifact_type": {"const": "sensitivity-analysis"}, "estimand": {"type": "string"}, "observed_effect": {"type": "number"}, "observed_standard_error": {"type": "number", "minimum": 0}, "missing_fraction": {"type": "number", "minimum": 0, "maximum": 1}, "scenarios": {"type": "array", "minItems": 2, "items": {"type": "object"}}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "imputation_manifest": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "input", "output", "method", "iterations", "columns", "missing_before", "missing_after", "warnings"], "properties": {"artifact_type": {"const": "imputation-manifest"}, "input": {"$ref": "#/$defs/source"}, "output": {"$ref": "#/$defs/source"}, "method": {"type": "string"}, "iterations": {"type": "integer", "minimum": 1}, "columns": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string"}}, "missing_before": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}, "missing_after": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "data_dictionary": {"allOf": [{"$ref": "#/$defs/artifact_header"}, {"type": "object", "required": ["artifact_type", "input", "input_format", "rows", "columns", "warnings"], "properties": {"artifact_type": {"const": "data-dictionary"}, "input": {"$ref": "#/$defs/source"}, "output": {"$ref": "#/$defs/source"}, "input_format": {"type": "string", "enum": ["csv", "tsv", "json", "xlsx", "parquet"]}, "rows": {"type": "integer", "minimum": 0}, "columns": {"type": "array", "items": {"type": "object", "required": ["name", "dtype", "missing", "nonmissing", "unique", "example_values"], "properties": {"name": {"type": "string"}, "dtype": {"type": "string"}, "missing": {"type": "integer", "minimum": 0}, "nonmissing": {"type": "integer", "minimum": 0}, "unique": {"type": "integer", "minimum": 0}, "example_values": {"type": "array", "items": {"type": "string"}}}}}, "warnings": {"type": "array", "items": {"type": "string"}}}}]},
+    "figure_manifest": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "figure_id", "outputs", "data_sources"], "properties": {
+          "artifact_type": {"const": "figure-manifest"}, "figure_id": {"type": "string"}, "outputs": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "data_sources": {"type": "array", "items": {"$ref": "#/$defs/source"}}, "statistics_source": {"type": ["string", "null"]}, "theme": {"type": ["string", "null"]}
+        }}
+      ]
+    },
+    "pdf_extraction": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "input", "page_count", "selected_pages", "pages", "tables", "captions", "supplementary_mentions", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "pdf-extraction"},
+            "input": {"$ref": "#/$defs/source"},
+            "page_count": {"type": "integer", "minimum": 1},
+            "selected_pages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+            "pages": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["page_number", "extraction_method", "layout", "character_count", "text"],
+                "properties": {
+                  "page_number": {"type": "integer", "minimum": 1},
+                  "extraction_method": {"type": "string", "enum": ["native-text", "ocr"]},
+                  "layout": {"type": "string", "enum": ["single", "two-column", "ocr-reading-order"]},
+                  "character_count": {"type": "integer", "minimum": 0},
+                  "text": {"type": "string"}
+                },
+                "additionalProperties": false
+              }
+            },
+            "tables": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["page", "table_index", "rows"],
+                "properties": {
+                  "page": {"type": "integer", "minimum": 1},
+                  "table_index": {"type": "integer", "minimum": 1},
+                  "rows": {"type": "array", "items": {"type": "array", "items": {"type": ["string", "null"]}}}
+                },
+                "additionalProperties": false
+              }
+            },
+            "captions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["page", "label", "kind", "text"],
+                "properties": {
+                  "page": {"type": "integer", "minimum": 1},
+                  "label": {"type": "string", "minLength": 1},
+                  "kind": {"type": "string", "enum": ["figure", "table"]},
+                  "text": {"type": "string", "minLength": 1}
+                },
+                "additionalProperties": false
+              }
+            },
+            "supplementary_mentions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["page", "line", "text"],
+                "properties": {
+                  "page": {"type": "integer", "minimum": 1},
+                  "line": {"type": "integer", "minimum": 1},
+                  "text": {"type": "string"}
+                },
+                "additionalProperties": false
+              }
+            },
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "bibliography_audit": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "entries", "clusters", "integrity_alerts", "summary", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "bibliography-audit"},
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["entry", "metadata", "identifier_audit"],
+                "properties": {
+                  "entry": {"type": "integer", "minimum": 0},
+                  "metadata": {"type": "object"},
+                  "identifier_audit": {
+                    "type": "object",
+                    "required": ["doi", "arxiv", "pmid"],
+                    "properties": {
+                      "doi": {"type": "object"},
+                      "arxiv": {"type": "object"},
+                      "pmid": {"type": "object"},
+                      "online": {"type": "object"}
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "clusters": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["cluster_id", "members", "canonical_entry", "classification", "evidence", "action"],
+                "properties": {
+                  "cluster_id": {"type": "string", "minLength": 1},
+                  "members": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+                  "canonical_entry": {"type": "integer", "minimum": 0},
+                  "classification": {"type": "string", "enum": ["probable-duplicate", "version-family"]},
+                  "evidence": {"type": "array", "items": {"type": "object"}},
+                  "action": {"const": "review-and-merge-metadata; do-not-delete-automatically"}
+                },
+                "additionalProperties": false
+              }
+            },
+            "integrity_alerts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["entry", "severity", "nature", "source"],
+                "properties": {
+                  "entry": {"type": "integer", "minimum": 0},
+                  "severity": {"type": "string", "enum": ["critical", "warning", "notice"]},
+                  "nature": {"type": "string"},
+                  "source": {"type": "string"},
+                  "date": {"type": ["string", "null"]},
+                  "record_id": {"type": ["string", "integer", "null"]}
+                }
+              }
+            },
+            "summary": {
+              "type": "object",
+              "required": ["entry_count", "invalid_identifier_count", "cluster_count", "integrity_alert_count", "online_checked"],
+              "properties": {
+                "entry_count": {"type": "integer", "minimum": 0},
+                "invalid_identifier_count": {"type": "integer", "minimum": 0},
+                "cluster_count": {"type": "integer", "minimum": 0},
+                "integrity_alert_count": {"type": "integer", "minimum": 0},
+                "online_checked": {"type": "boolean"}
+              },
+              "additionalProperties": false
+            },
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "bibliography_library": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "items", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "bibliography-library"},
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "type", "title", "authors", "year", "container_title", "volume", "issue", "pages", "doi", "pmid", "arxiv_id", "url", "abstract", "keywords", "citation_key"],
+                "properties": {
+                  "id": {"type": "string", "minLength": 1},
+                  "type": {"type": "string", "minLength": 1},
+                  "title": {"type": ["string", "null"]},
+                  "authors": {"type": "array", "items": {"type": "object"}},
+                  "year": {"type": ["integer", "null"], "minimum": 1500, "maximum": 2100},
+                  "container_title": {"type": ["string", "null"]},
+                  "volume": {"type": ["string", "null"]},
+                  "issue": {"type": ["string", "null"]},
+                  "pages": {"type": ["string", "null"]},
+                  "doi": {"type": ["string", "null"]},
+                  "pmid": {"type": ["string", "null"]},
+                  "arxiv_id": {"type": ["string", "null"]},
+                  "url": {"type": ["string", "null"]},
+                  "abstract": {"type": ["string", "null"]},
+                  "keywords": {"type": "array", "items": {"type": "string"}},
+                  "citation_key": {"type": "string", "minLength": 1}
+                },
+                "additionalProperties": false
+              }
+            },
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "bibliography_conversion": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "source_format", "target_format", "record_count", "input", "output", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "bibliography-conversion"},
+            "source_format": {"type": "string", "enum": ["researchos-json", "csl-json", "bibtex", "ris", "endnote-xml"]},
+            "target_format": {"type": "string", "enum": ["researchos-json", "csl-json", "bibtex", "ris", "endnote-xml"]},
+            "record_count": {"type": "integer", "minimum": 0},
+            "input": {"$ref": "#/$defs/source"},
+            "output": {"$ref": "#/$defs/source"},
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "evidence_audit": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "note", "extraction", "claim_count", "anchored_claim_count", "exact_match_count", "status", "findings", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "evidence-audit"},
+            "note": {"$ref": "#/$defs/source"},
+            "extraction": {"anyOf": [{"$ref": "#/$defs/source"}, {"type": "null"}]},
+            "claim_count": {"type": "integer", "minimum": 0},
+            "anchored_claim_count": {"type": "integer", "minimum": 0},
+            "exact_match_count": {"type": "integer", "minimum": 0},
+            "status": {"type": "string", "enum": ["pass", "warning", "fail"]},
+            "findings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["severity", "code", "claim_id", "message"],
+                "properties": {
+                  "severity": {"type": "string", "enum": ["error", "warning", "notice"]},
+                  "code": {"type": "string"},
+                  "claim_id": {"type": ["string", "null"]},
+                  "message": {"type": "string"}
+                },
+                "additionalProperties": false
+              }
+            },
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "literature_batch": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {
+          "type": "object",
+          "required": ["artifact_type", "source_root", "output_root", "checkpoint", "items", "summary", "warnings"],
+          "properties": {
+            "artifact_type": {"const": "literature-batch"},
+            "source_root": {"type": "string", "minLength": 1},
+            "output_root": {"type": "string", "minLength": 1},
+            "checkpoint": {"type": "string", "minLength": 1},
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["relative_path", "sha256", "size", "kind", "output", "status"],
+                "properties": {
+                  "relative_path": {"type": "string", "minLength": 1},
+                  "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+                  "size": {"type": "integer", "minimum": 0},
+                  "kind": {"type": "string", "enum": ["pdf-extraction", "metadata-extraction", "bibliography-library", "unsupported"]},
+                  "output": {"type": "string", "minLength": 1},
+                  "status": {"type": "string", "enum": ["success", "failed", "pending", "unchanged", "removed", "skipped-large"]},
+                  "command": {"type": ["array", "null"], "items": {"type": "string"}},
+                  "stdout": {"type": "string"},
+                  "stderr": {"type": "string"},
+                  "error": {"type": "string"}
+                },
+                "additionalProperties": false
+              }
+            },
+            "summary": {"type": "object"},
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "reproduction_card": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact_header"},
+        {"type": "object", "required": ["artifact_type", "repository_commit", "environment", "comparisons"], "properties": {
+          "artifact_type": {"const": "reproduction-card"}, "repository_commit": {"type": "string"}, "environment": {"type": "object"}, "comparisons": {"type": "array", "items": {"type": "object", "required": ["metric", "verdict"], "properties": {"metric": {"type": "string"}, "paper_value": {"type": ["number", "null"]}, "reproduced_value": {"type": ["number", "null"]}, "verdict": {"type": "string", "enum": ["match", "mismatch", "missing-repro", "missing-paper", "non-comparable"]}}}}
+        }}
+      ]
+    }
+  }
+}

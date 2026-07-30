@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "researchos-skills"
+version = "0.1.0"
+description = "Open-source, evidence-oriented agent skills for research workflows"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = []
+
+[project.optional-dependencies]
+analysis = [
+  "numpy>=1.26",
+  "scipy>=1.12",
+]
+plot = [
+  "matplotlib>=3.8",
+  "numpy>=1.26",
+  "scipy>=1.12",
+]
+pdf = [
+  "pdfplumber>=0.11,<1",
+]
+validation = [
+  "scipy>=1.12,<2",
+  "statsmodels>=0.14.6,<1",
+]
+models = [
+  "pandas>=2.2,<4",
+  "statsmodels>=0.14.6,<1",
+]
+dev = [
+  "jsonschema>=4,<5",
+  "pytest>=8,<10",
+  "PyYAML>=6,<7",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Data Management"
+  short_description: "Create auditable DMP and data governance planning artifacts"
+  default_prompt: "Use $research-data-management to create a DMP with data classification, metadata, access, retention, and sharing decisions."

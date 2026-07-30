@@ -1,0 +1,4 @@
+interface:
+  display_name: "Biomedical Research"
+  short_description: "Plan auditable biomedical research workflows"
+  default_prompt: "Use $biomedical-research to create an auditable biomedical study plan with endpoints, specimens, safety, registration, and evidence boundaries."

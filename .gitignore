@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Local research runs and large artifacts
+workspace/
+patches/
+checkpoints/
+*.ckpt
+*.safetensors
+*.pth
+*.pt
+
+# Temporary and generated test output
+.tmp/
+tmp/
+test-output/
+
+# Local source material retained for research, not redistribution
+*.mhtml
+/docs/{pageTitle}/
+/docs/colors/articles/
+/docs/*知乎*.md
+/docs/*LetPub*.md
+/docs/跟顶刊学*.md
+.tmp_*/
+docs/colors/

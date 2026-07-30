@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Graph Builder"
+  short_description: "Graph Markdown and evidence-anchored paper-note JSON"
+  default_prompt: "Use $knowledge-graph-builder to connect these notes and paper-note claims into an evidence-anchored graph."

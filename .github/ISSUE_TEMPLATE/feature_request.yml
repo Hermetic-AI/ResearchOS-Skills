@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a research workflow or skill improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Research use case
+      description: Give a concrete user request that should trigger this capability.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Scope and routing boundary
+      description: Explain whether this belongs in an existing skill or a new skill and what it must not do.
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Inputs, outputs, and reusable resources
+      description: Describe expected artifacts, scripts, references, dependencies, evidence, and provenance.
+  - type: textarea
+    id: validation
+    attributes:
+      label: Acceptance tests
+      description: List normal, boundary, and failure examples.
+

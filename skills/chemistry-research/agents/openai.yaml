@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chemistry Research"
+  short_description: "Plan auditable chemistry research workflows"
+  default_prompt: "Use $chemistry-research to create an auditable chemistry experiment plan with reaction conditions, analytical evidence, safety, waste, and sample provenance."

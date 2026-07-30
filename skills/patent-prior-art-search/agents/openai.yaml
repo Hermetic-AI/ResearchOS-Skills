@@ -1,0 +1,4 @@
+interface:
+  display_name: "Patent Prior Art Search"
+  short_description: "Plan auditable prior-art search evidence and queries"
+  default_prompt: "Use $patent-prior-art-search to create an auditable prior-art search plan and evidence ledger; do not give legal conclusions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qualitative Research Assistant"
+  short_description: "Plan auditable qualitative coding and thematic analysis"
+  default_prompt: "Use $qualitative-research-assistant to create a qualitative codebook and audit trail plan."

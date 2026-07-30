@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Project Orchestrator"
+  short_description: "Route research work and track auditable artifacts"
+  default_prompt: "Use $research-project-orchestrator to initialize an auditable research project and route its next artifact."

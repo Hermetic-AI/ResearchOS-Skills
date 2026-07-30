@@ -1,0 +1,4 @@
+interface:
+  display_name: "Materials Research"
+  short_description: "Plan auditable materials research workflows"
+  default_prompt: "Use $materials-research to create an auditable materials experiment plan with composition, process, characterization, test conditions, and sample lineage."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Social Science Research"
+  short_description: "Plan auditable social science research workflows"
+  default_prompt: "Use $social-science-research to create an auditable social science study plan with sampling, measurement, fieldwork, ethics, analysis, and reporting decisions."

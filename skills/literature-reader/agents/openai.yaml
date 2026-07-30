@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Reader"
+  short_description: "Extract, read, compare, and audit research papers"
+  default_prompt: "Use $literature-reader to extract this PDF with evidence anchors, then critically summarize its claims."

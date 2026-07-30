@@ -1,0 +1,2966 @@
+{
+ "_comment": "Discrete color palettes for publication figures, converted from docs/colors/@palettes.csv (github.com/lcpmgh/colors, MIT). zhihu-* entries are curated schemes from top-journal figure articles (see references/color-palettes.md).",
+ "palettes": {
+  "zhihu-1": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#000080",
+    "#B22222"
+   ]
+  },
+  "zhihu-2": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#ACD6EC",
+    "#F5A889"
+   ]
+  },
+  "zhihu-3": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#148F28",
+    "#EA71AE"
+   ]
+  },
+  "zhihu-4": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#91CAE8",
+    "#F48892"
+   ]
+  },
+  "zhihu-5": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#BDB9B8",
+    "#DFEBD5"
+   ]
+  },
+  "zhihu-6": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#BEBAB9",
+    "#C47070"
+   ]
+  },
+  "zhihu-7": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#629433",
+    "#FEFF99"
+   ]
+  },
+  "zhihu-8": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#BFBBBA",
+    "#CFDAEC"
+   ]
+  },
+  "zhihu-9": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#050507",
+    "#1399B2"
+   ]
+  },
+  "zhihu-10": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#BEBAB9",
+    "#DBB8B2"
+   ]
+  },
+  "zhihu-11": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#8E7FB8",
+    "#A2C9AE"
+   ]
+  },
+  "zhihu-12": {
+   "source": "zhihu",
+   "n": 2,
+   "colors": [
+    "#6888F5",
+    "#D77071"
+   ]
+  },
+  "zhihu-13": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#000000",
+    "#2C939A",
+    "#A6A3A4"
+   ]
+  },
+  "zhihu-14": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#9ACE87",
+    "#D2D2D2",
+    "#EE634B"
+   ]
+  },
+  "zhihu-15": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#38C1F3",
+    "#8048AA",
+    "#FF0000"
+   ]
+  },
+  "zhihu-16": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#009E73",
+    "#B02226",
+    "#F0A12C"
+   ]
+  },
+  "zhihu-17": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#A9CA70",
+    "#C5D6F0",
+    "#F18C54"
+   ]
+  },
+  "zhihu-18": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#0E986F",
+    "#796CAD",
+    "#D65813"
+   ]
+  },
+  "zhihu-19": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#377EB9",
+    "#4DAE48",
+    "#974F9F"
+   ]
+  },
+  "zhihu-20": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#D0DD97",
+    "#DDDDDD",
+    "#E6B745"
+   ]
+  },
+  "zhihu-21": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#5BB5AC",
+    "#D8B365",
+    "#DE526C"
+   ]
+  },
+  "zhihu-22": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#7EA6D9",
+    "#D4E6BC",
+    "#F8F2A4"
+   ]
+  },
+  "zhihu-23": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#2B5863",
+    "#6A8078",
+    "#9D9D9D"
+   ]
+  },
+  "zhihu-24": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#23BAC5",
+    "#EECA40",
+    "#FD763F"
+   ]
+  },
+  "zhihu-25": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#00A14E",
+    "#688CC8",
+    "#ECE70F"
+   ]
+  },
+  "zhihu-26": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#91BFFA",
+    "#F2F2F2",
+    "#FFFEDF"
+   ]
+  },
+  "zhihu-27": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#43A3EF",
+    "#EF767B",
+    "#F9E7A7"
+   ]
+  },
+  "zhihu-28": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#1C3C63",
+    "#93C8C0",
+    "#D3D5D4"
+   ]
+  },
+  "zhihu-29": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#7998AD",
+    "#F07673",
+    "#FFF1CF"
+   ]
+  },
+  "zhihu-30": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#8583A9",
+    "#A0BDD5",
+    "#CA8BA8"
+   ]
+  },
+  "zhihu-31": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#85D0FF",
+    "#C2C48D",
+    "#FFDC8E"
+   ]
+  },
+  "zhihu-32": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#E0EBEB",
+    "#F7BDA9",
+    "#FBDED4"
+   ]
+  },
+  "zhihu-33": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#000000",
+    "#81B8DA",
+    "#EFC57F"
+   ]
+  },
+  "zhihu-34": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#4370B4",
+    "#549F9A",
+    "#C30078"
+   ]
+  },
+  "zhihu-35": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#2472A3",
+    "#A5B55D",
+    "#F4F3EE"
+   ]
+  },
+  "zhihu-36": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#94B5D8",
+    "#ACD2C7",
+    "#D57B70"
+   ]
+  },
+  "zhihu-37": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#4C4D4F",
+    "#97A9B7",
+    "#A5CCC7"
+   ]
+  },
+  "zhihu-38": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#688660",
+    "#9A5747",
+    "#F5F6BA"
+   ]
+  },
+  "zhihu-39": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#5CB3BA",
+    "#F3D707",
+    "#FF5E00"
+   ]
+  },
+  "zhihu-40": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#262626",
+    "#293890",
+    "#BF1D2D"
+   ]
+  },
+  "zhihu-41": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#040676",
+    "#397FC7",
+    "#F1B656"
+   ]
+  },
+  "zhihu-42": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#6D65A3",
+    "#6F6F6F",
+    "#F6631C"
+   ]
+  },
+  "zhihu-43": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#9998FF",
+    "#C99BFF",
+    "#FF9A9B"
+   ]
+  },
+  "zhihu-44": {
+   "source": "zhihu",
+   "n": 3,
+   "colors": [
+    "#2C91E0",
+    "#3ABF99",
+    "#F0A73A"
+   ]
+  },
+  "zhihu-45": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#C2DACF",
+    "#C2DCE9",
+    "#EAE1EF",
+    "#F8F3EB"
+   ]
+  },
+  "zhihu-46": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#85C3DC",
+    "#8DAFAB",
+    "#DAC6CF",
+    "#E2C098"
+   ]
+  },
+  "zhihu-47": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#383838",
+    "#5CA7C7",
+    "#D4352D",
+    "#FBCE6A"
+   ]
+  },
+  "zhihu-48": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#98C897",
+    "#9C6BA3",
+    "#9DBAD2",
+    "#FE9C9D"
+   ]
+  },
+  "zhihu-49": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#D3D2D2",
+    "#D6E6F2",
+    "#D7F0D0",
+    "#FAC4CC"
+   ]
+  },
+  "zhihu-50": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#EAF3FC",
+    "#F4F4F4",
+    "#F4F9F2",
+    "#FFE7E7"
+   ]
+  },
+  "zhihu-51": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#8FA2CD",
+    "#CC976B",
+    "#E07F86",
+    "#F8BC7E"
+   ]
+  },
+  "zhihu-52": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#5EA0C7",
+    "#6BC179",
+    "#B4D7E5",
+    "#BEDEAB"
+   ]
+  },
+  "zhihu-53": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#6F8A91",
+    "#93AC93",
+    "#DEAA87",
+    "#E9DDAF"
+   ]
+  },
+  "zhihu-54": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#1999B2",
+    "#95BCE5",
+    "#E84445",
+    "#F39DA0"
+   ]
+  },
+  "zhihu-55": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#9BDCFC",
+    "#C9EFBE",
+    "#CAC8EF",
+    "#F0CFEA"
+   ]
+  },
+  "zhihu-56": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#91BFFA",
+    "#EAEAEA",
+    "#FF7F00",
+    "#FFE0C1"
+   ]
+  },
+  "zhihu-57": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#074166",
+    "#8CC5BE",
+    "#CC011F",
+    "#FADADD"
+   ]
+  },
+  "zhihu-58": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#59B78F",
+    "#6A8EC9",
+    "#7A378A",
+    "#E84446"
+   ]
+  },
+  "zhihu-59": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#75C298",
+    "#A0ADD0",
+    "#E47178",
+    "#F5DC75"
+   ]
+  },
+  "zhihu-60": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#8EC8ED",
+    "#AED594",
+    "#D693BE",
+    "#F5B3A5"
+   ]
+  },
+  "zhihu-61": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#0B0B09",
+    "#223474",
+    "#9CC7F1",
+    "#EED26E"
+   ]
+  },
+  "zhihu-62": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#1CC3C9",
+    "#70A0AA",
+    "#8194A0",
+    "#89909E"
+   ]
+  },
+  "zhihu-63": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#3D89A3",
+    "#5EC7D0",
+    "#838482",
+    "#F1D756"
+   ]
+  },
+  "zhihu-64": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#018A67",
+    "#1868B2",
+    "#DE582B",
+    "#F3A332"
+   ]
+  },
+  "zhihu-65": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#010101",
+    "#069DFF",
+    "#808080",
+    "#A4E048"
+   ]
+  },
+  "zhihu-66": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#0001A1",
+    "#037F77",
+    "#BABABA",
+    "#C5272D"
+   ]
+  },
+  "zhihu-67": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#32037D",
+    "#7C1A97",
+    "#C94E65",
+    "#D9995B"
+   ]
+  },
+  "zhihu-68": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#015493",
+    "#019092",
+    "#999999",
+    "#F4A99B"
+   ]
+  },
+  "zhihu-69": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#0095FF",
+    "#019092",
+    "#6FDCB5",
+    "#909090"
+   ]
+  },
+  "zhihu-70": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#2F2D54",
+    "#9193B4",
+    "#BD9AAD",
+    "#E8D2B3"
+   ]
+  },
+  "zhihu-71": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#7C9D97",
+    "#9CB0C3",
+    "#D6D6D6",
+    "#EAB080"
+   ]
+  },
+  "zhihu-72": {
+   "source": "zhihu",
+   "n": 4,
+   "colors": [
+    "#4FBD81",
+    "#5DBFE9",
+    "#ADE0B4",
+    "#E7E6D4"
+   ]
+  },
+  "zhihu-73": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#237B9F",
+    "#71BFB2",
+    "#AD0B08",
+    "#EC817E",
+    "#FEE066"
+   ]
+  },
+  "zhihu-74": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#7399F4",
+    "#7AB656",
+    "#925EB0",
+    "#A5AEB7",
+    "#CC7C71"
+   ]
+  },
+  "zhihu-75": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#9BBBE1",
+    "#9D9EA3",
+    "#B7B7EB",
+    "#EAB883",
+    "#F09BA0"
+   ]
+  },
+  "zhihu-76": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#3E4F94",
+    "#3E90BF",
+    "#A6C0E3",
+    "#D8D3E7",
+    "#FAF9CB"
+   ]
+  },
+  "zhihu-77": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#000000",
+    "#0071BD",
+    "#C2272B",
+    "#DAE9E4",
+    "#FFF2D8"
+   ]
+  },
+  "zhihu-78": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#4C4D4F",
+    "#7A9590",
+    "#97A9B7",
+    "#AED6D5",
+    "#B86078"
+   ]
+  },
+  "zhihu-79": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#2673EF",
+    "#CD5257",
+    "#E8E8E8",
+    "#F2BA2F",
+    "#FAEADF"
+   ]
+  },
+  "zhihu-80": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#4F7D78",
+    "#CC141E",
+    "#D2D699",
+    "#FFD153",
+    "#FFECC2"
+   ]
+  },
+  "zhihu-81": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#95B6EC",
+    "#D3D3D3",
+    "#E98D83",
+    "#FFCBAA",
+    "#FFFBED"
+   ]
+  },
+  "zhihu-82": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#80D0C3",
+    "#9EAAC4",
+    "#A6DDEA",
+    "#F3A59A",
+    "#F9CDBF"
+   ]
+  },
+  "zhihu-83": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#000084",
+    "#870A4C",
+    "#95A8D2",
+    "#C3EAB5",
+    "#C5767B"
+   ]
+  },
+  "zhihu-84": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#0A87D7",
+    "#6F5B9B",
+    "#81AA2A",
+    "#AEA3CD",
+    "#B5711E"
+   ]
+  },
+  "zhihu-85": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#9BBBE1",
+    "#BABABC",
+    "#C8C2E4",
+    "#E0B77F",
+    "#F09BA0"
+   ]
+  },
+  "zhihu-86": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#074C9B",
+    "#4292C6",
+    "#BD0026",
+    "#FD8D3C",
+    "#FFFFB2"
+   ]
+  },
+  "zhihu-87": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#37AB78",
+    "#589FF3",
+    "#808080",
+    "#F3B169",
+    "#F94141"
+   ]
+  },
+  "zhihu-88": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#5B3660",
+    "#60966D",
+    "#63ADEE",
+    "#E90F44",
+    "#FFC839"
+   ]
+  },
+  "zhihu-89": {
+   "source": "zhihu",
+   "n": 5,
+   "colors": [
+    "#A7D2BA",
+    "#ABC6E4",
+    "#C39398",
+    "#D0CADE",
+    "#FCDABA"
+   ]
+  },
+  "zhihu-90": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#4A4F7E",
+    "#719AAC",
+    "#72B063",
+    "#94C6CD",
+    "#B8DBB3",
+    "#E29135"
+   ]
+  },
+  "zhihu-91": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3E608D",
+    "#4E1945",
+    "#8CBF87",
+    "#8D2F25",
+    "#909291",
+    "#CB9475"
+   ]
+  },
+  "zhihu-92": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#A0D0D0",
+    "#A7C0DF",
+    "#B7F5DE",
+    "#D5AABE",
+    "#DCA7EB",
+    "#EAE936"
+   ]
+  },
+  "zhihu-93": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#547BB4",
+    "#629C35",
+    "#6C61AF",
+    "#6F6F6F",
+    "#C0321A",
+    "#DD7C4F"
+   ]
+  },
+  "zhihu-94": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#257D8B",
+    "#68BED9",
+    "#BFDFD2",
+    "#EAA558",
+    "#ED8D5A",
+    "#EFCE87"
+   ]
+  },
+  "zhihu-95": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#156434",
+    "#218D42",
+    "#4583B6",
+    "#4DB748",
+    "#B02425",
+    "#FAA419"
+   ]
+  },
+  "zhihu-96": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#156434",
+    "#1F8E42",
+    "#4583B6",
+    "#4DB748",
+    "#B02425",
+    "#FAA419"
+   ]
+  },
+  "zhihu-97": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#79438E",
+    "#7EA4D1",
+    "#807C7D",
+    "#82AD7F",
+    "#C1565E",
+    "#DCA96A"
+   ]
+  },
+  "zhihu-98": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#000000",
+    "#32183C",
+    "#36659E",
+    "#40B7AD",
+    "#A21A54",
+    "#E7724F"
+   ]
+  },
+  "zhihu-99": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#B6B3D6",
+    "#CFCFD0",
+    "#DAD7E9",
+    "#E9687A",
+    "#F58F7A",
+    "#FDE2D8"
+   ]
+  },
+  "zhihu-100": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#1F77B4",
+    "#282973",
+    "#47A1A2",
+    "#708090",
+    "#DAA628",
+    "#F9BFCB"
+   ]
+  },
+  "zhihu-101": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#B2DBB9",
+    "#B8E5FA",
+    "#EEC186",
+    "#EEF0A7",
+    "#F7A6AC",
+    "#F7B7D2"
+   ]
+  },
+  "zhihu-102": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#099A63",
+    "#55A0FB",
+    "#91BFFA",
+    "#A09FA4",
+    "#AD07E3",
+    "#FEA0A0"
+   ]
+  },
+  "zhihu-103": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3AB5B3",
+    "#5567B1",
+    "#80C66D",
+    "#954F97",
+    "#B3D5F1",
+    "#F0686C"
+   ]
+  },
+  "zhihu-104": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3C9BC9",
+    "#76CBB4",
+    "#F88455",
+    "#FC757B",
+    "#FDCA93",
+    "#FFE59B"
+   ]
+  },
+  "zhihu-105": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#669A38",
+    "#6897CF",
+    "#EDEDEF",
+    "#F3ED99",
+    "#F58C86",
+    "#F6D586"
+   ]
+  },
+  "zhihu-106": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3B5BA8",
+    "#73ABE4",
+    "#751A29",
+    "#759D3A",
+    "#AC4828",
+    "#CFA72D"
+   ]
+  },
+  "zhihu-107": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#45546A",
+    "#4770B5",
+    "#71AD48",
+    "#A3A3A3",
+    "#ED7D31",
+    "#FBBE0A"
+   ]
+  },
+  "zhihu-108": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#6AD1A3",
+    "#84ADDC",
+    "#88B6F1",
+    "#989898",
+    "#FF988B",
+    "#FFDE7B"
+   ]
+  },
+  "zhihu-109": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#8BABD3",
+    "#A58BD4",
+    "#ADDEAD",
+    "#D7B0B0",
+    "#DDAF70",
+    "#DE767C"
+   ]
+  },
+  "zhihu-110": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#377EB8",
+    "#BFBFBF",
+    "#D2EBD2",
+    "#E1F3FA",
+    "#E41A1C",
+    "#FFF0B1"
+   ]
+  },
+  "zhihu-111": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#36A9E1",
+    "#5C6572",
+    "#ADB2B9",
+    "#C2E5F6",
+    "#EB5B25",
+    "#F5AD92"
+   ]
+  },
+  "zhihu-112": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#80A3D5",
+    "#AA8873",
+    "#BF91D5",
+    "#D4C140",
+    "#FF8080",
+    "#FFBB80"
+   ]
+  },
+  "zhihu-113": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#478AC1",
+    "#8A9B6D",
+    "#98C9D5",
+    "#C198B3",
+    "#E4B78A",
+    "#FFEEC0"
+   ]
+  },
+  "zhihu-114": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#178642",
+    "#2356A7",
+    "#83B6E1",
+    "#A0D293",
+    "#ED342F",
+    "#F69A9B"
+   ]
+  },
+  "zhihu-115": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#000000",
+    "#345684",
+    "#878787",
+    "#A21549",
+    "#C3752B",
+    "#DAC1A2"
+   ]
+  },
+  "zhihu-116": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#496648",
+    "#8D8988",
+    "#9DBF83",
+    "#AC151C",
+    "#D2878C",
+    "#F5F291"
+   ]
+  },
+  "zhihu-117": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#391A53",
+    "#3B4293",
+    "#828387",
+    "#8F1B26",
+    "#91C6F2",
+    "#974F91"
+   ]
+  },
+  "zhihu-118": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#2481C4",
+    "#8A8A88",
+    "#C4C2DA",
+    "#C7C7C5",
+    "#DE061E",
+    "#F7D8D6"
+   ]
+  },
+  "zhihu-119": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#0C4E9B",
+    "#6B98C4",
+    "#C72228",
+    "#F5867F",
+    "#F98F34",
+    "#FFBC80"
+   ]
+  },
+  "zhihu-120": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3B549D",
+    "#6BBC46",
+    "#9EAAD1",
+    "#B4DEA2",
+    "#D3272B",
+    "#F29091"
+   ]
+  },
+  "zhihu-121": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#000000",
+    "#23B2E0",
+    "#A5CC5B",
+    "#C2C2C2",
+    "#EEBEC0",
+    "#EF2C2B"
+   ]
+  },
+  "zhihu-122": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#000000",
+    "#338FEB",
+    "#5CA400",
+    "#8BCF02",
+    "#B31761",
+    "#E7308B"
+   ]
+  },
+  "zhihu-123": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#354898",
+    "#6B6B6B",
+    "#972D36",
+    "#C55645",
+    "#FAAE5F",
+    "#T3ABCF"
+   ]
+  },
+  "zhihu-124": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#168676",
+    "#27447C",
+    "#4871B3",
+    "#991F22",
+    "#B88640",
+    "#E73C36"
+   ]
+  },
+  "zhihu-125": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#3E6790",
+    "#646774",
+    "#6483A4",
+    "#858892",
+    "#AF873E",
+    "#BD9E64"
+   ]
+  },
+  "zhihu-126": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#324C63",
+    "#386195",
+    "#3981AF",
+    "#5499BD",
+    "#6FB9D0",
+    "#91CDC8"
+   ]
+  },
+  "zhihu-127": {
+   "source": "zhihu",
+   "n": 6,
+   "colors": [
+    "#80B1D3",
+    "#8DD1C6",
+    "#BDBADB",
+    "#F47F72",
+    "#FBB463",
+    "#FBF8B4"
+   ]
+  },
+  "zhihu-128": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#4485C7",
+    "#682487",
+    "#7ABBDB",
+    "#84BA42",
+    "#A51C36",
+    "#D4562E",
+    "#DBB428"
+   ]
+  },
+  "zhihu-129": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#979998",
+    "#C69287",
+    "#DDDDDF",
+    "#E4CD87",
+    "#E79A90",
+    "#EFBC91",
+    "#FAE5B8"
+   ]
+  },
+  "zhihu-130": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#004600",
+    "#18BECF",
+    "#78B428",
+    "#7F7F7F",
+    "#BCBD23",
+    "#C8E63C",
+    "#FFE494"
+   ]
+  },
+  "zhihu-131": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#000000",
+    "#098036",
+    "#4B57A2",
+    "#D3D3D3",
+    "#EE7D80",
+    "#F9BE80",
+    "#FCDFC0"
+   ]
+  },
+  "zhihu-132": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#349F2B",
+    "#666666",
+    "#66A61E",
+    "#A5761C",
+    "#B2DF8A",
+    "#CCCCCC",
+    "#E5AB02"
+   ]
+  },
+  "zhihu-133": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#00ADEF",
+    "#63BA45",
+    "#D7DCBE",
+    "#D9DDBA",
+    "#E69C81",
+    "#E6BA9D",
+    "#E7CEA5"
+   ]
+  },
+  "zhihu-134": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#9DD3AF",
+    "#C0E2CA",
+    "#D1B494",
+    "#D9EEDF",
+    "#E0C79F",
+    "#F1DEBD",
+    "#FFFBD5"
+   ]
+  },
+  "zhihu-135": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#581036",
+    "#6E8E9D",
+    "#777777",
+    "#97A4AA",
+    "#A65655",
+    "#B98E95",
+    "#F3EAE1"
+   ]
+  },
+  "zhihu-136": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#6295D7",
+    "#67AFD5",
+    "#6AB3A2",
+    "#7488C5",
+    "#95A938",
+    "#AD3688",
+    "#CA645F"
+   ]
+  },
+  "zhihu-137": {
+   "source": "zhihu",
+   "n": 7,
+   "colors": [
+    "#87A4EA",
+    "#898CF3",
+    "#9881F3",
+    "#A1C6E0",
+    "#B6D3CF",
+    "#D0BEB0",
+    "#D7D1C5"
+   ]
+  },
+  "zhihu-138": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#34183E",
+    "#4D779B",
+    "#585D5E",
+    "#606060",
+    "#82093B",
+    "#C45C69",
+    "#CD3B42",
+    "#FFC04D"
+   ]
+  },
+  "zhihu-139": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#38917E",
+    "#3C518F",
+    "#4D0085",
+    "#989ED9",
+    "#A1D4A2",
+    "#A47DC0",
+    "#C6A550",
+    "#DB7272"
+   ]
+  },
+  "zhihu-140": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#92B9BE",
+    "#949B93",
+    "#A9D3AD",
+    "#CDE3A5",
+    "#E7F5F6",
+    "#F4F7FE",
+    "#F5DF4D",
+    "#F6F8F7"
+   ]
+  },
+  "zhihu-141": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#7DC69B",
+    "#9BD7F3",
+    "#D5EAD9",
+    "#D8EEFB",
+    "#DCD7EB",
+    "#F2A1A7",
+    "#FBDDDD",
+    "#FCE6CF"
+   ]
+  },
+  "zhihu-142": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#000000",
+    "#283D7E",
+    "#467D80",
+    "#4F8B57",
+    "#5291B2",
+    "#7347BA",
+    "#91CC7A",
+    "#D8A266"
+   ]
+  },
+  "zhihu-143": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#6C85F9",
+    "#939DE4",
+    "#A2C6D6",
+    "#BDD69F",
+    "#D9503D",
+    "#DEA441",
+    "#E9B9E1",
+    "#EBC98A"
+   ]
+  },
+  "zhihu-144": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#0000FF",
+    "#5E8FC5",
+    "#79C5CE",
+    "#B9DBF4",
+    "#CE6090",
+    "#EEF4FB",
+    "#F15A22",
+    "#F9A31A"
+   ]
+  },
+  "zhihu-145": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#8DAD95",
+    "#9DA190",
+    "#A6BA89",
+    "#C2D794",
+    "#C4A880",
+    "#D0FFB1",
+    "#DAD184",
+    "#EBA782"
+   ]
+  },
+  "zhihu-146": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#000000",
+    "#1D71B9",
+    "#5AAE61",
+    "#6BAFD6",
+    "#878787",
+    "#9970AC",
+    "#A5761C",
+    "#CBBBA1"
+   ]
+  },
+  "zhihu-147": {
+   "source": "zhihu",
+   "n": 8,
+   "colors": [
+    "#4E606E",
+    "#6A8864",
+    "#9E5648",
+    "#A56B45",
+    "#B5BCC2",
+    "#B7C685",
+    "#BD8A99",
+    "#CDBB71"
+   ]
+  },
+  "zhihu-148": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#ABD1BC",
+    "#BED0F9",
+    "#CCCC99",
+    "#DBE4FB",
+    "#E3BBED",
+    "#EDC3A5",
+    "#F1F1F1",
+    "#FCB6A5",
+    "#FDEBAA"
+   ]
+  },
+  "zhihu-149": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#7789B7",
+    "#89AA7B",
+    "#9DACCB",
+    "#ACBF9F",
+    "#C6CCBC",
+    "#CBD7C3",
+    "#D6D6D6",
+    "#EB6969",
+    "#F0EEEF"
+   ]
+  },
+  "zhihu-150": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#008A45",
+    "#468BCA",
+    "#5F5F5E",
+    "#7DD2F6",
+    "#80C5A2",
+    "#B384BA",
+    "#D9C2DD",
+    "#F27873",
+    "#FFD373"
+   ]
+  },
+  "zhihu-151": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#666666",
+    "#808080",
+    "#9BADB2",
+    "#A02C2C",
+    "#CCBCBC",
+    "#CCCCCC",
+    "#E5DEDE",
+    "#F4E3D7",
+    "#FFB889"
+   ]
+  },
+  "zhihu-152": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#389AB3",
+    "#5CA9BB",
+    "#858786",
+    "#87BBAF",
+    "#CAC658",
+    "#E1B224",
+    "#E7C21C",
+    "#E97123",
+    "#ED2225"
+   ]
+  },
+  "zhihu-153": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#1D91C2",
+    "#205EA7",
+    "#205EA7",
+    "#38B6C4",
+    "#3BB6C5",
+    "#7ECBB9",
+    "#965478",
+    "#C8E2B2",
+    "#EAF0B2"
+   ]
+  },
+  "zhihu-154": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#008E8A",
+    "#176A7A",
+    "#2E4857",
+    "#39B086",
+    "#88CF73",
+    "#DDE554",
+    "#DFE662",
+    "#E00200",
+    "#F8AF62"
+   ]
+  },
+  "zhihu-155": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#5BA9BD",
+    "#95BE54",
+    "#9D6067",
+    "#A93935",
+    "#B0783D",
+    "#D5A6A0",
+    "#DBCC57",
+    "#DCDE8B",
+    "#E0BB6D"
+   ]
+  },
+  "zhihu-156": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#508D40",
+    "#65A8EC",
+    "#8C4E29",
+    "#96A4C7",
+    "#A9B233",
+    "#B7C6E5",
+    "#D38386",
+    "#DB9C4D",
+    "#DDA5C8"
+   ]
+  },
+  "zhihu-157": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#75B0B4",
+    "#806CAB",
+    "#869C76",
+    "#AD4641",
+    "#AFAFAD",
+    "#AFC9A6",
+    "#B4C4E5",
+    "#D19692",
+    "#DED0A1"
+   ]
+  },
+  "zhihu-158": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#00BBF9",
+    "#1E90FF",
+    "#22A884",
+    "#22A884",
+    "#2A788E",
+    "#4AAC44",
+    "#7AD151",
+    "#EB1C4A",
+    "#FF8C00"
+   ]
+  },
+  "zhihu-159": {
+   "source": "zhihu",
+   "n": 9,
+   "colors": [
+    "#3D5DA8",
+    "#694F98",
+    "#B2B0D7",
+    "#B90978",
+    "#C2DCAF",
+    "#CE7A5E",
+    "#D6E1F5",
+    "#DBA43F",
+    "#ECDE93"
+   ]
+  },
+  "zhihu-160": {
+   "source": "zhihu",
+   "n": 10,
+   "colors": [
+    "#291173",
+    "#356529",
+    "#611A44",
+    "#629586",
+    "#832F87",
+    "#858A2E",
+    "#95BEEC",
+    "#A75265",
+    "#CBC46A",
+    "#D5D5D5"
+   ]
+  },
+  "zhihu-161": {
+   "source": "zhihu",
+   "n": 10,
+   "colors": [
+    "#40B0A6",
+    "#6D8EF7",
+    "#6E579A",
+    "#A38E89",
+    "#A5C8DD",
+    "#CD5582",
+    "#E1BE6A",
+    "#E1BE6A",
+    "#E89A7A",
+    "#EC6B2D"
+   ]
+  },
+  "zhihu-162": {
+   "source": "zhihu",
+   "n": 10,
+   "colors": [
+    "#016450",
+    "#237B7A",
+    "#4592A5",
+    "#67A9CF",
+    "#7D4C99",
+    "#8AB6D7",
+    "#9FAAD1",
+    "#ADC4DE",
+    "#D0D1E6",
+    "#D0DAEB"
+   ]
+  },
+  "zhihu-163": {
+   "source": "zhihu",
+   "n": 11,
+   "colors": [
+    "#2900F2",
+    "#75AAB8",
+    "#8985B7",
+    "#A04646",
+    "#A3C98E",
+    "#AE3019",
+    "#B3C4D4",
+    "#B58C9A",
+    "#CFC580",
+    "#DCCB59",
+    "#E8DF92"
+   ]
+  },
+  "zhihu-164": {
+   "source": "zhihu",
+   "n": 11,
+   "colors": [
+    "#484848",
+    "#666666",
+    "#999999",
+    "#99D1D0",
+    "#9F6BBF",
+    "#A0B3DC",
+    "#BEA4BD",
+    "#CCCCCC",
+    "#CF66A5",
+    "#FAC5C6",
+    "#FCDFC7"
+   ]
+  },
+  "zhihu-165": {
+   "source": "zhihu",
+   "n": 11,
+   "colors": [
+    "#858585",
+    "#93B190",
+    "#B6E2FB",
+    "#B9BB8E",
+    "#D1D1D1",
+    "#DB6A5D",
+    "#DFDEE1",
+    "#E1E3FF",
+    "#E4CAD1",
+    "#FCCFE7",
+    "#FF8901"
+   ]
+  },
+  "zhihu-166": {
+   "source": "zhihu",
+   "n": 11,
+   "colors": [
+    "#596AAF",
+    "#75A6DE",
+    "#75AD8A",
+    "#7EB1A0",
+    "#A4C962",
+    "#B0CBE6",
+    "#B3D250",
+    "#C8795A",
+    "#D0813C",
+    "#D4C649",
+    "#DEBB5D"
+   ]
+  },
+  "zhihu-167": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#7895C1",
+    "#8074C8",
+    "#992224",
+    "#A8CBDF",
+    "#B54764",
+    "#D6EFF4",
+    "#E3625D",
+    "#EF8B67",
+    "#F0C284",
+    "#F2FAFC",
+    "#F5EBAE",
+    "#F7FBC9"
+   ]
+  },
+  "zhihu-168": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#0072BD",
+    "#08306B",
+    "#08519C",
+    "#2171B5",
+    "#6BAED6",
+    "#77AC30",
+    "#969696",
+    "#C6DBEF",
+    "#D95319",
+    "#EDB120",
+    "#FED976",
+    "#FFFFCC"
+   ]
+  },
+  "zhihu-169": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#5861AC",
+    "#6AB4C1",
+    "#6B7EB9",
+    "#70B48F",
+    "#72C3A3",
+    "#A5C2E2",
+    "#F28080",
+    "#FEA040",
+    "#FF6100",
+    "#FF7F00",
+    "#FFC080",
+    "#FFE0C1"
+   ]
+  },
+  "zhihu-170": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#2C6344",
+    "#308192",
+    "#5EA7B8",
+    "#5F9C61",
+    "#61496D",
+    "#A4C97C",
+    "#AED2E2",
+    "#B092B6",
+    "#C74D26",
+    "#CAC1D4",
+    "#E38D26",
+    "#F1CC74"
+   ]
+  },
+  "zhihu-171": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#4626F6",
+    "#6C0E0F",
+    "#7B1415",
+    "#8479F9",
+    "#9CAD8B",
+    "#CB181C",
+    "#CE403F",
+    "#D3D0FD",
+    "#DB8382",
+    "#DFE8D5",
+    "#EBCEC0",
+    "#ECD2D3"
+   ]
+  },
+  "zhihu-172": {
+   "source": "zhihu",
+   "n": 12,
+   "colors": [
+    "#654E5E",
+    "#78828B",
+    "#A49193",
+    "#B5C9BE",
+    "#C89D94",
+    "#D3DCE3",
+    "#D6E3D2",
+    "#DECCA6",
+    "#E0DEDF",
+    "#EDE7D9",
+    "#EFE1D6",
+    "#F3E3E3"
+   ]
+  },
+  "zhihu-173": {
+   "source": "zhihu",
+   "n": 14,
+   "colors": [
+    "#26445E",
+    "#474769",
+    "#4C7780",
+    "#73A5A2",
+    "#7C4D77",
+    "#B2B6C1",
+    "#B55384",
+    "#C76B60",
+    "#D68438",
+    "#D6E2E2",
+    "#E4A031",
+    "#F0EFED",
+    "#F3DBC1",
+    "#F6E2C1"
+   ]
+  },
+  "zhihu-174": {
+   "source": "zhihu",
+   "n": 14,
+   "colors": [
+    "#0000FE",
+    "#00688B",
+    "#01008A",
+    "#1E90FF",
+    "#228B22",
+    "#566B30",
+    "#698B6A",
+    "#8370FE",
+    "#8B8378",
+    "#8B864E",
+    "#A020EF",
+    "#FE0000",
+    "#FF7F00",
+    "#FFB90F"
+   ]
+  },
+  "zhihu-175": {
+   "source": "zhihu",
+   "n": 14,
+   "colors": [
+    "#000000",
+    "#262A85",
+    "#4C9140",
+    "#519475",
+    "#5B99E6",
+    "#5D2B84",
+    "#6A4C30",
+    "#ACCBE8",
+    "#BE3731",
+    "#C65537",
+    "#DDA43D",
+    "#EDDB31",
+    "#EDF4FA",
+    "#F1EBED"
+   ]
+  },
+  "zhihu-176": {
+   "source": "zhihu",
+   "n": 16,
+   "colors": [
+    "#2D8875",
+    "#52AADC",
+    "#7C7979",
+    "#7FABD1",
+    "#91CCC0",
+    "#963B79",
+    "#97D0C5",
+    "#B5CE4E",
+    "#BD7795",
+    "#C7C1DE",
+    "#C89736",
+    "#D75B4E",
+    "#EC6E66",
+    "#EEB6D4",
+    "#F39865",
+    "#F7AC53"
+   ]
+  },
+  "zhihu-177": {
+   "source": "zhihu",
+   "n": 16,
+   "colors": [
+    "#00A664",
+    "#3FA0C0",
+    "#4C6C43",
+    "#5086C4",
+    "#7C7CBA",
+    "#B55489",
+    "#C7B8BD",
+    "#D5D9E5",
+    "#D5D9E5",
+    "#D6E0C8",
+    "#D6E0C8",
+    "#DCE125",
+    "#F0A19A",
+    "#F9ED1D",
+    "#FEDEC5",
+    "#FFF0BC"
+   ]
+  },
+  "aaas": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#3B4992",
+    "#EE0000",
+    "#008B45",
+    "#631879",
+    "#008280",
+    "#BB0021",
+    "#5F559B",
+    "#A20056",
+    "#808180",
+    "#1B1919"
+   ]
+  },
+  "atlassian": {
+   "source": "ggsci",
+   "n": 8,
+   "colors": [
+    "#4688EC",
+    "#94C748",
+    "#C97CF4",
+    "#FCA700",
+    "#1558BC",
+    "#964AC0",
+    "#42B2D7",
+    "#E06C00"
+   ]
+  },
+  "bmj": {
+   "source": "ggsci",
+   "n": 9,
+   "colors": [
+    "#2A6EBB",
+    "#F0AB00",
+    "#C50084",
+    "#7D5CC6",
+    "#E37222",
+    "#69BE28",
+    "#00B2A9",
+    "#CD202C",
+    "#747678"
+   ]
+  },
+  "bs5": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#CEE1FF",
+    "#A3C8FD",
+    "#78AEFE",
+    "#4C94FC",
+    "#237AFF",
+    "#0363EA",
+    "#0A50B8",
+    "#073D8C",
+    "#04295F",
+    "#021533"
+   ]
+  },
+  "cosmic": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#2E2A2B",
+    "#CF4E9C",
+    "#8C57A2",
+    "#358DB9",
+    "#82581F",
+    "#2F509E",
+    "#E5614C",
+    "#97A1A7",
+    "#3DA873",
+    "#DC9445"
+   ]
+  },
+  "d3": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#1F77B4",
+    "#FF7F0E",
+    "#2CA02C",
+    "#D62728",
+    "#9467BD",
+    "#8C564B",
+    "#E377C2",
+    "#7F7F7F",
+    "#BCBD22",
+    "#17BECF"
+   ]
+  },
+  "flatui": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#C0392B",
+    "#D35400",
+    "#F39C12",
+    "#27AE60",
+    "#16A085",
+    "#2980B9",
+    "#8E44AD",
+    "#2C3E50",
+    "#7F8C8D",
+    "#BDC3C7"
+   ]
+  },
+  "frontiers": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#D51317",
+    "#F39200",
+    "#EFD500",
+    "#95C11F",
+    "#007B3D",
+    "#31B7BC",
+    "#0094CD",
+    "#164194",
+    "#6F286A",
+    "#706F6F"
+   ]
+  },
+  "futurama": {
+   "source": "ggsci",
+   "n": 12,
+   "colors": [
+    "#FF6F00",
+    "#C71000",
+    "#008EA0",
+    "#8A4198",
+    "#5A9599",
+    "#FF6348",
+    "#84D7E1",
+    "#FF95A8",
+    "#3D3B25",
+    "#ADE2D0",
+    "#1A5354",
+    "#3F4041"
+   ]
+  },
+  "gsea": {
+   "source": "ggsci",
+   "n": 12,
+   "colors": [
+    "#4500AC",
+    "#2600D1",
+    "#6B58EE",
+    "#8787FF",
+    "#C6C0FF",
+    "#D4D4FF",
+    "#FFBFE5",
+    "#FF8888",
+    "#FF707F",
+    "#FF5959",
+    "#EE3F3F",
+    "#D60C00"
+   ]
+  },
+  "igv": {
+   "source": "ggsci",
+   "n": 51,
+   "colors": [
+    "#5050FF",
+    "#CE3D32",
+    "#749B58",
+    "#F0E685",
+    "#466983",
+    "#BA6338",
+    "#5DB1DD",
+    "#802268",
+    "#6BD76B",
+    "#D595A7",
+    "#924822",
+    "#837B8D",
+    "#C75127",
+    "#D58F5C",
+    "#7A65A5",
+    "#E4AF69",
+    "#3B1B53",
+    "#CDDEB7",
+    "#612A79",
+    "#AE1F63",
+    "#E7C76F",
+    "#5A655E",
+    "#CC9900",
+    "#99CC00",
+    "#A9A9A9",
+    "#CC9900",
+    "#99CC00",
+    "#33CC00",
+    "#00CC33",
+    "#00CC99",
+    "#0099CC",
+    "#0A47FF",
+    "#4775FF",
+    "#FFC20A",
+    "#FFD147",
+    "#990033",
+    "#991A00",
+    "#996600",
+    "#809900",
+    "#339900",
+    "#00991A",
+    "#009966",
+    "#008099",
+    "#003399",
+    "#1A0099",
+    "#660099",
+    "#990080",
+    "#D60047",
+    "#FF1463",
+    "#00D68F",
+    "#14FFB1"
+   ]
+  },
+  "iterm": {
+   "source": "ggsci",
+   "n": 6,
+   "colors": [
+    "#00CDE8",
+    "#FFC739",
+    "#FF666D",
+    "#9DEAF6",
+    "#B3E03A",
+    "#A392E8"
+   ]
+  },
+  "jama": {
+   "source": "ggsci",
+   "n": 7,
+   "colors": [
+    "#374E55",
+    "#DF8F44",
+    "#00A1D5",
+    "#B24745",
+    "#79AF97",
+    "#6A6599",
+    "#80796B"
+   ]
+  },
+  "jco": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#0073C2",
+    "#EFC000",
+    "#868686",
+    "#CD534C",
+    "#7AA6DC",
+    "#003C67",
+    "#8F7700",
+    "#3B3B3B",
+    "#A73030",
+    "#4A6990"
+   ]
+  },
+  "lancet": {
+   "source": "ggsci",
+   "n": 9,
+   "colors": [
+    "#00468B",
+    "#ED0000",
+    "#42B540",
+    "#0099B4",
+    "#925E9F",
+    "#FDAF91",
+    "#AD002A",
+    "#ADB6B6",
+    "#1B1919"
+   ]
+  },
+  "locuszoom": {
+   "source": "ggsci",
+   "n": 7,
+   "colors": [
+    "#D43F3A",
+    "#EEA236",
+    "#5CB85C",
+    "#46B8DA",
+    "#357EBD",
+    "#9632B8",
+    "#B8B8B8"
+   ]
+  },
+  "material": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#FFEBED",
+    "#FFCCD2",
+    "#EE9999",
+    "#E57272",
+    "#EE5250",
+    "#F34335",
+    "#E53934",
+    "#D22E2E",
+    "#C52727",
+    "#B71B1B"
+   ]
+  },
+  "nejm": {
+   "source": "ggsci",
+   "n": 8,
+   "colors": [
+    "#BC3C29",
+    "#0072B5",
+    "#E18727",
+    "#20854E",
+    "#7876B1",
+    "#6F99AD",
+    "#FFDC91",
+    "#EE4C97"
+   ]
+  },
+  "npg": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#E64B35",
+    "#4DBBD5",
+    "#00A087",
+    "#3C5488",
+    "#F39B7F",
+    "#8491B4",
+    "#91D1C2",
+    "#DC0000",
+    "#7E6148",
+    "#B09C85"
+   ]
+  },
+  "observable": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#4269D0",
+    "#EFB118",
+    "#FF725C",
+    "#6CC5B0",
+    "#3CA951",
+    "#FF8AB7",
+    "#A463F2",
+    "#97BBF5",
+    "#9C6B4E",
+    "#9498A0"
+   ]
+  },
+  "primer": {
+   "source": "ggsci",
+   "n": 17,
+   "colors": [
+    "#006EDB",
+    "#EB670F",
+    "#DF0C24",
+    "#179B9B",
+    "#30A147",
+    "#894CEB",
+    "#B88700",
+    "#CE2C85",
+    "#856D4C",
+    "#527A29",
+    "#D43511",
+    "#167E53",
+    "#9D615C",
+    "#64762D",
+    "#A830E8",
+    "#866E04",
+    "#808FA3"
+   ]
+  },
+  "rickandmorty": {
+   "source": "ggsci",
+   "n": 12,
+   "colors": [
+    "#FAFD7C",
+    "#82491E",
+    "#24325F",
+    "#B7E4F9",
+    "#FB6467",
+    "#526E2D",
+    "#E762D7",
+    "#E89242",
+    "#FAE48B",
+    "#A6EEE6",
+    "#917C5D",
+    "#69C8EC"
+   ]
+  },
+  "simpsons": {
+   "source": "ggsci",
+   "n": 16,
+   "colors": [
+    "#FED439",
+    "#709AE1",
+    "#8A9197",
+    "#D2AF81",
+    "#FD7446",
+    "#D5E4A2",
+    "#197EC0",
+    "#F05C3B",
+    "#46732E",
+    "#71D0F5",
+    "#370335",
+    "#075149",
+    "#C80813",
+    "#91331F",
+    "#1A9993",
+    "#FD8CC1"
+   ]
+  },
+  "startrek": {
+   "source": "ggsci",
+   "n": 7,
+   "colors": [
+    "#CC0C00",
+    "#5C88DA",
+    "#84BD00",
+    "#FFCD00",
+    "#7C878E",
+    "#00B5E2",
+    "#00AF66"
+   ]
+  },
+  "tron": {
+   "source": "ggsci",
+   "n": 7,
+   "colors": [
+    "#FF410D",
+    "#6EE2FF",
+    "#F7C530",
+    "#95CC5E",
+    "#D0DFE6",
+    "#F79D1E",
+    "#748AA6"
+   ]
+  },
+  "tw3": {
+   "source": "ggsci",
+   "n": 10,
+   "colors": [
+    "#F8F9FC",
+    "#EFF3F8",
+    "#DEE5ED",
+    "#BBC6D5",
+    "#7C8CA3",
+    "#516075",
+    "#39475B",
+    "#222E40",
+    "#10182B",
+    "#010617"
+   ]
+  },
+  "uchicago": {
+   "source": "ggsci",
+   "n": 9,
+   "colors": [
+    "#800000",
+    "#767676",
+    "#FFA319",
+    "#8A9045",
+    "#155F83",
+    "#C16622",
+    "#8F3931",
+    "#58593F",
+    "#350E20"
+   ]
+  },
+  "ucscgb": {
+   "source": "ggsci",
+   "n": 26,
+   "colors": [
+    "#FF0000",
+    "#FF9900",
+    "#FFCC00",
+    "#00FF00",
+    "#6699FF",
+    "#CC33FF",
+    "#99991E",
+    "#999999",
+    "#FF00CC",
+    "#CC0000",
+    "#FFCCCC",
+    "#FFFF00",
+    "#CCFF00",
+    "#358000",
+    "#0000CC",
+    "#99CCFF",
+    "#00FFFF",
+    "#CCFFFF",
+    "#9900CC",
+    "#CC99FF",
+    "#996600",
+    "#666600",
+    "#666666",
+    "#CCCCCC",
+    "#79CC3D",
+    "#CCCC99"
+   ]
+  },
+  "R3": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#000000",
+    "#FF0000",
+    "#00CD00",
+    "#0000FF",
+    "#00FFFF",
+    "#FF00FF",
+    "#FFFF00",
+    "#BEBEBE"
+   ]
+  },
+  "R4": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#000000",
+    "#DF536B",
+    "#61D04F",
+    "#2297E6",
+    "#28E2E5",
+    "#CD0BBC",
+    "#F5C710",
+    "#9E9E9E"
+   ]
+  },
+  "ggplot2": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#000000",
+    "#F8766D",
+    "#00BA38",
+    "#619CFF",
+    "#00BFC4",
+    "#F564E3",
+    "#B79F00",
+    "#9E9E9E"
+   ]
+  },
+  "Okabe-Ito": {
+   "source": "grDevices",
+   "n": 9,
+   "colors": [
+    "#000000",
+    "#E69F00",
+    "#56B4E9",
+    "#009E73",
+    "#F0E442",
+    "#0072B2",
+    "#D55E00",
+    "#CC79A7",
+    "#999999"
+   ]
+  },
+  "Accent": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#7FC97F",
+    "#BEAED4",
+    "#FDC086",
+    "#FFFF99",
+    "#386CB0",
+    "#F0027F",
+    "#BF5B17",
+    "#666666"
+   ]
+  },
+  "Dark 2": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#1B9E77",
+    "#D95F02",
+    "#7570B3",
+    "#E7298A",
+    "#66A61E",
+    "#E6AB02",
+    "#A6761D",
+    "#666666"
+   ]
+  },
+  "Paired": {
+   "source": "grDevices",
+   "n": 12,
+   "colors": [
+    "#A6CEE3",
+    "#1F78B4",
+    "#B2DF8A",
+    "#33A02C",
+    "#FB9A99",
+    "#E31A1C",
+    "#FDBF6F",
+    "#FF7F00",
+    "#CAB2D6",
+    "#6A3D9A",
+    "#FFFF99",
+    "#B15928"
+   ]
+  },
+  "Pastel 1": {
+   "source": "grDevices",
+   "n": 9,
+   "colors": [
+    "#FBB4AE",
+    "#B3CDE3",
+    "#CCEBC5",
+    "#DECBE4",
+    "#FED9A6",
+    "#FFFFCC",
+    "#E5D8BD",
+    "#FDDAEC",
+    "#F2F2F2"
+   ]
+  },
+  "Pastel 2": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#B3E2CD",
+    "#FDCDAC",
+    "#CBD5E8",
+    "#F4CAE4",
+    "#E6F5C9",
+    "#FFF2AE",
+    "#F1E2CC",
+    "#CCCCCC"
+   ]
+  },
+  "Set 1": {
+   "source": "grDevices",
+   "n": 9,
+   "colors": [
+    "#E41A1C",
+    "#377EB8",
+    "#4DAF4A",
+    "#984EA3",
+    "#FF7F00",
+    "#FFFF33",
+    "#A65628",
+    "#F781BF",
+    "#999999"
+   ]
+  },
+  "Set 2": {
+   "source": "grDevices",
+   "n": 8,
+   "colors": [
+    "#66C2A5",
+    "#FC8D62",
+    "#8DA0CB",
+    "#E78AC3",
+    "#A6D854",
+    "#FFD92F",
+    "#E5C494",
+    "#B3B3B3"
+   ]
+  },
+  "Set 3": {
+   "source": "grDevices",
+   "n": 12,
+   "colors": [
+    "#8DD3C7",
+    "#FFFFB3",
+    "#BEBADA",
+    "#FB8072",
+    "#80B1D3",
+    "#FDB462",
+    "#B3DE69",
+    "#FCCDE5",
+    "#D9D9D9",
+    "#BC80BD",
+    "#CCEBC5",
+    "#FFED6F"
+   ]
+  },
+  "Tableau 10": {
+   "source": "grDevices",
+   "n": 10,
+   "colors": [
+    "#4E79A7",
+    "#F28E2B",
+    "#E15759",
+    "#76B7B2",
+    "#59A14F",
+    "#EDC948",
+    "#B07AA1",
+    "#FF9DA7",
+    "#9C755F",
+    "#BAB0AC"
+   ]
+  },
+  "Classic Tableau": {
+   "source": "grDevices",
+   "n": 10,
+   "colors": [
+    "#1F77B4",
+    "#FF7F0E",
+    "#2CA02C",
+    "#D62728",
+    "#9467BD",
+    "#8C564B",
+    "#E377C2",
+    "#7F7F7F",
+    "#BCBD22",
+    "#17BECF"
+   ]
+  },
+  "Polychrome 36": {
+   "source": "grDevices",
+   "n": 36,
+   "colors": [
+    "#5A5156",
+    "#E4E1E3",
+    "#F6222E",
+    "#FE00FA",
+    "#16FF32",
+    "#3283FE",
+    "#FEAF16",
+    "#B00068",
+    "#1CFFCE",
+    "#90AD1C",
+    "#2ED9FF",
+    "#DEA0FD",
+    "#AA0DFE",
+    "#F8A19F",
+    "#325A9B",
+    "#C4451C",
+    "#1C8356",
+    "#85660D",
+    "#B10DA1",
+    "#FBE426",
+    "#1CBE4F",
+    "#FA0087",
+    "#FC1CBF",
+    "#F7E1A0",
+    "#C075A6",
+    "#782AB6",
+    "#AAF400",
+    "#BDCDFF",
+    "#822E1C",
+    "#B5EFB5",
+    "#7ED7D1",
+    "#1C7F93",
+    "#D85FF7",
+    "#683B79",
+    "#66B0FF",
+    "#3B00FB"
+   ]
+  },
+  "Alphabet": {
+   "source": "grDevices",
+   "n": 26,
+   "colors": [
+    "#AA0DFE",
+    "#3283FE",
+    "#85660D",
+    "#782AB6",
+    "#565656",
+    "#1C8356",
+    "#16FF32",
+    "#F7E1A0",
+    "#E2E2E2",
+    "#1CBE4F",
+    "#C4451C",
+    "#DEA0FD",
+    "#FE00FA",
+    "#325A9B",
+    "#FEAF16",
+    "#F8A19F",
+    "#90AD1C",
+    "#F6222E",
+    "#1CFFCE",
+    "#2ED9FF",
+    "#B10DA1",
+    "#C075A6",
+    "#FC1CBF",
+    "#B00068",
+    "#FBE426",
+    "#FA0087"
+   ]
+  },
+  "Dark2": {
+   "source": "RColorBrewer",
+   "n": 8,
+   "colors": [
+    "#1B9E77",
+    "#D95F02",
+    "#7570B3",
+    "#E7298A",
+    "#66A61E",
+    "#E6AB02",
+    "#A6761D",
+    "#666666"
+   ]
+  },
+  "Pastel1": {
+   "source": "RColorBrewer",
+   "n": 9,
+   "colors": [
+    "#FBB4AE",
+    "#B3CDE3",
+    "#CCEBC5",
+    "#DECBE4",
+    "#FED9A6",
+    "#FFFFCC",
+    "#E5D8BD",
+    "#FDDAEC",
+    "#F2F2F2"
+   ]
+  },
+  "Pastel2": {
+   "source": "RColorBrewer",
+   "n": 8,
+   "colors": [
+    "#B3E2CD",
+    "#FDCDAC",
+    "#CBD5E8",
+    "#F4CAE4",
+    "#E6F5C9",
+    "#FFF2AE",
+    "#F1E2CC",
+    "#CCCCCC"
+   ]
+  },
+  "Set1": {
+   "source": "RColorBrewer",
+   "n": 9,
+   "colors": [
+    "#E41A1C",
+    "#377EB8",
+    "#4DAF4A",
+    "#984EA3",
+    "#FF7F00",
+    "#FFFF33",
+    "#A65628",
+    "#F781BF",
+    "#999999"
+   ]
+  },
+  "Set2": {
+   "source": "RColorBrewer",
+   "n": 8,
+   "colors": [
+    "#66C2A5",
+    "#FC8D62",
+    "#8DA0CB",
+    "#E78AC3",
+    "#A6D854",
+    "#FFD92F",
+    "#E5C494",
+    "#B3B3B3"
+   ]
+  },
+  "Set3": {
+   "source": "RColorBrewer",
+   "n": 12,
+   "colors": [
+    "#8DD3C7",
+    "#FFFFB3",
+    "#BEBADA",
+    "#FB8072",
+    "#80B1D3",
+    "#FDB462",
+    "#B3DE69",
+    "#FCCDE5",
+    "#D9D9D9",
+    "#BC80BD",
+    "#CCEBC5",
+    "#FFED6F"
+   ]
+  }
+ }
+}

@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a reproducible problem in a skill or script
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Affected skill
+      options:
+        - data-analysis-assistant
+        - experiment-designer
+        - knowledge-graph-builder
+        - literature-reader
+        - md2latex
+        - paper-writing-assistant
+        - reproduction-assistant
+        - scientific-plot
+        - repository tooling
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the command, sanitized input shape, expected behavior, actual behavior, and exit code.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python version, dependency versions, and relevant hardware. Do not include secrets or private research data.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data and security
+      options:
+        - label: I removed credentials, personal data, unpublished participant data, and confidential artifacts.
+          required: true
+

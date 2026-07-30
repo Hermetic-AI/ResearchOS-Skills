@@ -1,0 +1,4 @@
+interface:
+  display_name: "ResearchOS Orchestrator"
+  short_description: "Orchestrate 28 research skills and route tasks"
+  default_prompt: "Use $researchos to route my research task to the right skill."

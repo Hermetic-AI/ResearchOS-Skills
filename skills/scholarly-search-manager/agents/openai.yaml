@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scholarly Search Manager"
+  short_description: "Plan, deduplicate, and exchange scholarly searches"
+  default_prompt: "Use $scholarly-search-manager to create an auditable search plan and deduplicate my literature records."

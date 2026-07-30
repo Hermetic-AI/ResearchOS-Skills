@@ -1,23 +1,23 @@
 {
   "nodes": [
-    {"id": "input_left", "label": "Long input /\nlarge history", "x": 0, "y": 240, "color": "#ffffff", "shape": "rectangle"},
-    {"id": "input_right", "label": "Long input /\nlarge history", "x": 0, "y": 720, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "input_left", "label": "Long input /\nlarge history", "x": 0, "y": 200, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "input_right", "label": "Long input /\nlarge history", "x": 0, "y": 580, "color": "#ffffff", "shape": "rectangle"},
 
-    {"id": "header_left", "label": "ROUTE A: Memory Engineering", "x": 320, "y": 0, "color": "#a5d8ff", "shape": "rectangle"},
-    {"id": "header_right", "label": "ROUTE B: Long-Context Training", "x": 320, "y": 480, "color": "#ffc9c9", "shape": "rectangle"},
+    {"id": "header_left", "label": "ROUTE A: Memory Engineering", "x": 240, "y": 0, "color": "#a5d8ff", "shape": "rectangle"},
+    {"id": "header_right", "label": "ROUTE B: Long-Context Training", "x": 240, "y": 400, "color": "#ffc9c9", "shape": "rectangle"},
 
-    {"id": "llm_a", "label": "Pretrained LLM\n(any off-the-shelf)", "x": 320, "y": 120, "color": "#ffffff", "shape": "rectangle"},
-    {"id": "mem", "label": "External Memory\n(vector DB / KV cache /\npaging / skills / schemas)", "x": 640, "y": 120, "color": "#b2f2bb", "shape": "rectangle"},
-    {"id": "paging", "label": "function-call paging\n[MemGPT, Packer 2023]", "x": 640, "y": 320, "color": "#d0bfff", "shape": "rectangle"},
-    {"id": "retrieve", "label": "retrieve / read /\nmanage cycle", "x": 320, "y": 320, "color": "#fcc2d7", "shape": "rectangle"},
-    {"id": "ctx_a", "label": "Working Context\n(retrieved snippets +\nsystem prompt)", "x": 960, "y": 200, "color": "#a5d8ff", "shape": "diamond"},
+    {"id": "llm_a", "label": "Pretrained LLM\n(any off-the-shelf)", "x": 240, "y": 100, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "mem", "label": "External Memory\n(vector DB / KV cache /\npaging / skills / schemas)", "x": 500, "y": 100, "color": "#b2f2bb", "shape": "rectangle"},
+    {"id": "paging", "label": "function-call paging\n[MemGPT, Packer 2023]", "x": 500, "y": 280, "color": "#d0bfff", "shape": "rectangle"},
+    {"id": "retrieve", "label": "retrieve / read /\nmanage cycle", "x": 240, "y": 280, "color": "#fcc2d7", "shape": "rectangle"},
+    {"id": "ctx_a", "label": "Working Context\n(retrieved snippets +\nsystem prompt)", "x": 660, "y": 190, "color": "#a5d8ff", "shape": "diamond"},
 
-    {"id": "data", "label": "Long-context data\n(millions of tokens)", "x": 320, "y": 600, "color": "#ffffff", "shape": "rectangle"},
-    {"id": "rl", "label": "Multi-stage RL\nDPO -> GRPO/PPO\n[LongAgent, Hu 2024]", "x": 640, "y": 600, "color": "#ffc9c9", "shape": "rectangle"},
-    {"id": "llm_b", "label": "Trained 7B LLM\n(uses 128K directly)", "x": 640, "y": 800, "color": "#ffffff", "shape": "rectangle"},
-    {"id": "ctx_b", "label": "Working Context\n(model attends to\nits own 128K)", "x": 960, "y": 700, "color": "#a5d8ff", "shape": "diamond"},
+    {"id": "data", "label": "Long-context data\n(millions of tokens)", "x": 240, "y": 490, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "rl", "label": "Multi-stage RL\nDPO -> GRPO/PPO\n[LongAgent, Hu 2024]", "x": 500, "y": 490, "color": "#ffc9c9", "shape": "rectangle"},
+    {"id": "llm_b", "label": "Trained 7B LLM\n(uses 128K directly)", "x": 500, "y": 660, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "ctx_b", "label": "Working Context\n(model attends to\nits own 128K)", "x": 660, "y": 580, "color": "#a5d8ff", "shape": "diamond"},
 
-    {"id": "tradeoff", "label": "Trade-off:\nA: flexible schema, slow paging\nB: fast inference, no flexibility", "x": 640, "y": 940, "color": "#fff3bf", "shape": "rectangle"}
+    {"id": "tradeoff", "label": "Trade-off:\nA: flexible schema, slow paging\nB: fast inference, no flexibility", "x": 400, "y": 790, "color": "#fff3bf", "shape": "rectangle"}
   ],
   "edges": [
     {"from": "input_left", "label": "feeds", "to": "llm_a"},

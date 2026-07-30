@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Plot"
+  short_description: "Create publication-ready charts and research diagrams"
+  default_prompt: "Use $scientific-plot to turn this dataset into a reproducible publication-ready figure."

@@ -1,54 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1271" height="800" viewBox="0 0 1271 800" font-family="sans-serif">
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e1e1e"/></marker></defs>
-<rect x="320.0" y="-120.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="400.0" y="-90.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Research Gap Map
-(7 candidate gaps on value x feasibility)</text>
-<rect x="-200.0" y="200.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="-120.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">FEASIBILITY (low -&gt; high)</text>
-<rect x="320.0" y="720.0" width="160.0" height="60.0" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="400.0" y="750.0" font-size="16" text-anchor="middle" dominant-baseline="middle">VALUE TO FIELD (low -&gt; high)</text>
-<rect x="800.0" y="80.0" width="160.0" height="60.0" rx="6" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="880.0" y="110.0" font-size="16" text-anchor="middle" dominant-baseline="middle">High feasibility
-High value
-(Doable, important)</text>
-<rect x="0.0" y="80.0" width="160.0" height="60.0" rx="6" fill="#fff3bf" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="80.0" y="110.0" font-size="16" text-anchor="middle" dominant-baseline="middle">High feasibility
-Low value
-(Doable, incremental)</text>
-<rect x="800.0" y="480.0" width="160.0" height="60.0" rx="6" fill="#ffc9c9" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="880.0" y="510.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Low feasibility
-High value
-(Risky, important)</text>
-<rect x="0.0" y="480.0" width="160.0" height="60.0" rx="6" fill="#e9ecef" stroke="#1e1e1e" stroke-width="1.5"/>
-<text x="80.0" y="510.0" font-size="16" text-anchor="middle" dominant-baseline="middle">Low feasibility
-Low value
-(Speculative)</text>
-<text x="800.0" y="90.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G1: Compute cost
-metric
-(eval gap, doable)</text>
-<text x="560.0" y="270.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G2: Multi-user
-agent memory
-(population, cautious)</text>
-<text x="960.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G3: Memory
-stability-plasticity
-(theory, doable)</text>
-<text x="1040.0" y="30.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G4: Engineering
-vs training
-(method, doable)</text>
-<text x="640.0" y="70.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G5: Schema-quality
-metrics
-(eval, doable)</text>
-<text x="240.0" y="30.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G6: Reflection on
-strong base models
-(negative-result, doable)</text>
-<text x="680.0" y="470.0" font-size="16" text-anchor="middle" dominant-baseline="middle">G7: Soft attention
-budget (theory,
-cautious)</text>
-<line x1="800.0" y1="110.0" x2="880.0" y2="90.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="800.0" y1="110.0" x2="1040.0" y2="230.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="960.0" y1="110.0" x2="960.0" y2="30.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="800.0" y1="110.0" x2="720.0" y2="70.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="160.0" y1="110.0" x2="160.0" y2="30.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="160.0" y1="110.0" x2="480.0" y2="270.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="800.0" y1="510.0" x2="760.0" y2="470.0" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="881" height="519" viewBox="-155.10000000000002 -80.19000000000001 881.9250000000001 519.915" font-family="sans-serif">
+<defs><marker id="arrow" viewBox="0.0 0.0 5.5 5.5" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1e1e1e"/></marker></defs>
+<rect x="101.9" y="-121.8" width="429.6" height="63.6" rx="4.4" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="-141.9" y="204.5" width="276.0" height="51.0" rx="4.4" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="136.2" y="724.5" width="304.8" height="51.0" rx="4.4" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="467.9" y="67.8" width="218.4" height="84.4" rx="4.4" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="-21.3" y="67.8" width="237.6" height="84.4" rx="4.4" fill="#fff3bf" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="426.6" y="467.8" width="208.8" height="84.4" rx="4.4" fill="#ffc9c9" stroke="#1e1e1e" stroke-width="1.5"/>
+<rect x="-5.5" y="467.8" width="180.0" height="84.4" rx="4.4" fill="#e9ecef" stroke="#1e1e1e" stroke-width="1.5"/>
+<polygon points="363.0,72.9 446.3,110.0 363.0,147.1 279.7,110.0" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="297.0,155.4 395.6,192.5 297.0,229.6 198.4,192.5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="528.0,100.4 618.9,137.5 528.0,174.6 437.1,137.5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="638.0,-31.6 713.6,5.5 638.0,42.6 562.4,5.5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="330.0,-15.1 413.3,22.0 330.0,59.1 246.7,22.0" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="132.0,-20.6 242.1,16.5 132.0,53.6 21.9,16.5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="374.0,221.4 457.3,258.5 374.0,295.6 290.7,258.5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5" stroke-linejoin="round"/>
+<line x1="467.9" y1="142.8" x2="412.8" y2="172.8" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="528.0" y1="152.2" x2="528.0" y2="182.5" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="574.4" y1="67.8" x2="600.5" y2="44.1" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="467.9" y1="88.8" x2="388.0" y2="60.5" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="90.4" y1="67.8" x2="87.7" y2="70.3" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="88.5" y1="152.2" x2="255.7" y2="310.8" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="426.6" y1="489.1" x2="431.5" y2="490.9" stroke="#1e1e1e" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="220.0" y="-100.4" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">Research Gap Map</text>
+<text x="220.0" y="-79.6" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(7 candidate gaps on value x feasibility)</text>
+<text x="-66.0" y="230.0" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">FEASIBILITY (low -&gt; high)</text>
+<text x="220.0" y="750.0" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">VALUE TO FIELD (low -&gt; high)</text>
+<text x="528.0" y="89.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">High feasibility</text>
+<text x="528.0" y="110.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">High value</text>
+<text x="528.0" y="130.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(Doable, important)</text>
+<text x="44.0" y="89.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">High feasibility</text>
+<text x="44.0" y="110.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">Low value</text>
+<text x="44.0" y="130.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(Doable, incremental)</text>
+<text x="484.0" y="489.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">Low feasibility</text>
+<text x="484.0" y="510.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">High value</text>
+<text x="484.0" y="530.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(Risky, important)</text>
+<text x="44.0" y="489.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">Low feasibility</text>
+<text x="44.0" y="510.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">Low value</text>
+<text x="44.0" y="530.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(Speculative)</text>
+<text x="473.0" y="179.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G1: Compute cost</text>
+<text x="473.0" y="200.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">metric</text>
+<text x="473.0" y="220.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(eval gap, doable)</text>
+<text x="297.0" y="329.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G2: Multi-user</text>
+<text x="297.0" y="350.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">agent memory</text>
+<text x="297.0" y="370.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(population, cautious)</text>
+<text x="528.0" y="229.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G3: Memory</text>
+<text x="528.0" y="250.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">stability-plasticity</text>
+<text x="528.0" y="270.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(theory, doable)</text>
+<text x="638.0" y="-10.8" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G4: Engineering</text>
+<text x="638.0" y="10.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">vs training</text>
+<text x="638.0" y="30.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(method, doable)</text>
+<text x="440.0" y="19.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G5: Schema-quality</text>
+<text x="440.0" y="40.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">metrics</text>
+<text x="440.0" y="60.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(eval, doable)</text>
+<text x="132.0" y="9.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G6: Reflection on</text>
+<text x="132.0" y="30.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">strong base models</text>
+<text x="132.0" y="50.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">(negative-result, doable)</text>
+<text x="374.0" y="449.2" font-size="16" text-anchor="middle" dominant-baseline="central" fill="#1e1e1e" font-weight="600">G7: Soft attention</text>
+<text x="374.0" y="470.0" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">budget (theory,</text>
+<text x="374.0" y="490.8" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#495057">cautious)</text>
 </svg>

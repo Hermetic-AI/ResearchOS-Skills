@@ -4,7 +4,7 @@
     {"id": "env", "label": "Environment /\nTool / User", "x": 800, "y": 280, "color": "#ffe066", "shape": "rectangle"},
     {"id": "obs", "label": "Observation\n(per step)", "x": 640, "y": 60, "color": "#ffffff", "shape": "rectangle"},
     {"id": "stream", "label": "Memory Stream\n(append-only list)", "x": 320, "y": 60, "color": "#b2f2bb", "shape": "rectangle"},
-    {"id": "scorer", "label": "Importance Scorer\n(LLM, score 1-10)", "x": 80, "y": 60, "color": "#ffffff", "shape": "rectangle"},
+    {"id": "scorer", "label": "Importance Scorer\n(LLM, score 1-10)", "x": 20, "y": 60, "color": "#ffffff", "shape": "rectangle"},
     {"id": "reflector", "label": "Reflector\n(higher-level abstractions)", "x": 80, "y": 280, "color": "#fcc2d7", "shape": "ellipse"},
     {"id": "retriever", "label": "Retriever\nrecency x importance x relevance", "x": 320, "y": 480, "color": "#d0bfff", "shape": "rectangle"},
     {"id": "ctx", "label": "Working Context\n(next prompt)", "x": 640, "y": 480, "color": "#a5d8ff", "shape": "diamond"}

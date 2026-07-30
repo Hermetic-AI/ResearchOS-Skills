@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Analysis Assistant"
+  short_description: "Profile, clean, model, and audit research data"
+  default_prompt: "Use $data-analysis-assistant to profile my research data, handle missingness safely, run an appropriate analysis, and return auditable artifacts."

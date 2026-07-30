@@ -47,10 +47,10 @@ conditioning ^text-edge-11
     {
       "id": "node-agent",
       "type": "rectangle",
-      "x": 480.0,
-      "y": 280.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 470.0,
+      "y": 278.2,
+      "width": 180.0,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#a5d8ff",
@@ -97,10 +97,10 @@ conditioning ^text-edge-11
     {
       "id": "text-agent",
       "type": "text",
-      "x": 440.0,
-      "y": 300.0,
-      "width": 240.0,
-      "height": 20.0,
+      "x": 488.0,
+      "y": 290.0,
+      "width": 144.0,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -135,10 +135,10 @@ conditioning ^text-edge-11
     {
       "id": "node-env",
       "type": "rectangle",
-      "x": 800.0,
-      "y": 280.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 799.6,
+      "y": 278.2,
+      "width": 160.8,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#ffe066",
@@ -181,10 +181,10 @@ conditioning ^text-edge-11
     {
       "id": "text-env",
       "type": "text",
-      "x": 760.0,
-      "y": 300.0,
-      "width": 240.0,
-      "height": 20.0,
+      "x": 817.6,
+      "y": 290.0,
+      "width": 124.8,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -219,10 +219,10 @@ conditioning ^text-edge-11
     {
       "id": "node-obs",
       "type": "rectangle",
-      "x": 640.0,
-      "y": 60.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 649.2,
+      "y": 58.2,
+      "width": 141.6,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#ffffff",
@@ -261,10 +261,10 @@ conditioning ^text-edge-11
     {
       "id": "text-obs",
       "type": "text",
-      "x": 614.4,
-      "y": 80.0,
-      "width": 211.2,
-      "height": 20.0,
+      "x": 667.2,
+      "y": 70.0,
+      "width": 105.6,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -299,10 +299,10 @@ conditioning ^text-edge-11
     {
       "id": "node-stream",
       "type": "rectangle",
-      "x": 320.0,
-      "y": 60.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 295.6,
+      "y": 58.2,
+      "width": 208.79999999999998,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#b2f2bb",
@@ -357,10 +357,10 @@ conditioning ^text-edge-11
     {
       "id": "text-stream",
       "type": "text",
-      "x": 246.4,
-      "y": 80.0,
-      "width": 307.2,
-      "height": 20.0,
+      "x": 313.6,
+      "y": 70.0,
+      "width": 172.79999999999998,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -395,10 +395,10 @@ conditioning ^text-edge-11
     {
       "id": "node-scorer",
       "type": "rectangle",
-      "x": 80.0,
-      "y": 60.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 0.4000000000000057,
+      "y": 58.2,
+      "width": 199.2,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#ffffff",
@@ -437,10 +437,10 @@ conditioning ^text-edge-11
     {
       "id": "text-scorer",
       "type": "text",
-      "x": -8.0,
-      "y": 80.0,
-      "width": 336.0,
-      "height": 20.0,
+      "x": 18.400000000000006,
+      "y": 70.0,
+      "width": 163.2,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -475,10 +475,10 @@ conditioning ^text-edge-11
     {
       "id": "node-reflector",
       "type": "ellipse",
-      "x": 80.0,
-      "y": 280.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 12.400000000000006,
+      "y": 278.2,
+      "width": 295.2,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#fcc2d7",
@@ -517,10 +517,10 @@ conditioning ^text-edge-11
     {
       "id": "text-reflector",
       "type": "text",
-      "x": -17.599999999999994,
-      "y": 300.0,
-      "width": 355.2,
-      "height": 20.0,
+      "x": 30.400000000000006,
+      "y": 290.0,
+      "width": 259.2,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -555,10 +555,10 @@ conditioning ^text-edge-11
     {
       "id": "node-retriever",
       "type": "rectangle",
-      "x": 320.0,
-      "y": 480.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 228.4,
+      "y": 478.2,
+      "width": 343.2,
+      "height": 63.6,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#d0bfff",
@@ -601,10 +601,10 @@ conditioning ^text-edge-11
     {
       "id": "text-retriever",
       "type": "text",
-      "x": 198.4,
-      "y": 500.0,
-      "width": 403.2,
-      "height": 20.0,
+      "x": 246.4,
+      "y": 490.0,
+      "width": 307.2,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -639,10 +639,10 @@ conditioning ^text-edge-11
     {
       "id": "node-ctx",
       "type": "diamond",
-      "x": 640.0,
-      "y": 480.0,
-      "width": 160.0,
-      "height": 60.0,
+      "x": 589.5,
+      "y": 459.12,
+      "width": 261.0,
+      "height": 101.76,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#a5d8ff",
@@ -681,10 +681,10 @@ conditioning ^text-edge-11
     {
       "id": "text-ctx",
       "type": "text",
-      "x": 580.8,
-      "y": 500.0,
-      "width": 278.4,
-      "height": 20.0,
+      "x": 648.0,
+      "y": 490.0,
+      "width": 144.0,
+      "height": 40.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -719,10 +719,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-0",
       "type": "arrow",
-      "x": 800.0,
-      "y": 310.0,
-      "width": 0.0,
-      "height": 220.0,
+      "x": 856.8727272727273,
+      "y": 278.2,
+      "width": 113.74545454545455,
+      "height": 156.39999999999998,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -750,8 +750,8 @@ conditioning ^text-edge-11
           0
         ],
         [
-          0.0,
-          -220.0
+          -113.74545454545455,
+          -156.39999999999998
         ]
       ],
       "lastCommittedPoint": null,
@@ -771,10 +771,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-0",
       "type": "text",
-      "x": 703.2,
-      "y": 184.0,
-      "width": 193.60000000000002,
-      "height": 20.0,
+      "x": 717.7900746622201,
+      "y": 182.7890366092944,
+      "width": 184.79999999999998,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -797,7 +797,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "observation / response",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -809,9 +809,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-1",
       "type": "arrow",
-      "x": 640.0,
+      "x": 649.2,
       "y": 90.0,
-      "width": 160.0,
+      "width": 144.80000000000007,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -840,7 +840,7 @@ conditioning ^text-edge-11
           0
         ],
         [
-          -160.0,
+          -144.80000000000007,
           0.0
         ]
       ],
@@ -861,10 +861,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-1",
       "type": "text",
-      "x": 533.6,
-      "y": 74.0,
-      "width": 52.800000000000004,
-      "height": 20.0,
+      "x": 551.5999999999999,
+      "y": 67.60000000000001,
+      "width": 50.4,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -887,7 +887,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "append",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -899,9 +899,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-2",
       "type": "arrow",
-      "x": 320.0,
+      "x": 295.6,
       "y": 90.0,
-      "width": 80.0,
+      "width": 96.00000000000003,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -930,7 +930,11 @@ conditioning ^text-edge-11
           0
         ],
         [
-          -80.0,
+          -48.0,
+          -15.36
+        ],
+        [
+          -96.00000000000003,
           0.0
         ]
       ],
@@ -951,10 +955,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-2",
       "type": "text",
-      "x": 218.39999999999998,
-      "y": 74.0,
-      "width": 123.20000000000002,
-      "height": 20.0,
+      "x": 188.8,
+      "y": 64.82,
+      "width": 117.6,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -977,7 +981,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "score each obs",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -989,9 +993,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-3",
       "type": "arrow",
-      "x": 240.0,
+      "x": 199.6,
       "y": 90.0,
-      "width": 80.0,
+      "width": 96.00000000000003,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1020,7 +1024,11 @@ conditioning ^text-edge-11
           0
         ],
         [
-          80.0,
+          48.00000000000003,
+          24.960000000000008
+        ],
+        [
+          96.00000000000003,
           0.0
         ]
       ],
@@ -1041,10 +1049,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-3",
       "type": "text",
-      "x": 227.2,
-      "y": 74.0,
-      "width": 105.60000000000001,
-      "height": 20.0,
+      "x": 197.20000000000002,
+      "y": 100.38000000000001,
+      "width": 100.8,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1067,7 +1075,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "attach score",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1079,10 +1087,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-4",
       "type": "arrow",
-      "x": 320.0,
-      "y": 90.0,
-      "width": 80.0,
-      "height": 220.0,
+      "x": 365.3090909090909,
+      "y": 121.80000000000001,
+      "width": 171.5384013920738,
+      "height": 157.24353460940097,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1110,8 +1118,12 @@ conditioning ^text-edge-11
           0
         ],
         [
-          -80.0,
-          220.0
+          -110.92816623354102,
+          51.175623081968666
+        ],
+        [
+          -171.5384013920738,
+          157.24353460940097
         ]
       ],
       "lastCommittedPoint": null,
@@ -1131,10 +1143,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-4",
       "type": "text",
-      "x": 244.8,
-      "y": 184.0,
-      "width": 70.4,
-      "height": 20.0,
+      "x": 228.1573278047184,
+      "y": 171.22260831378884,
+      "width": 67.2,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1157,7 +1169,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "periodic",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1169,10 +1181,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-5",
       "type": "arrow",
-      "x": 240.0,
-      "y": 310.0,
-      "width": 80.0,
-      "height": 220.0,
+      "x": 193.7706895170171,
+      "y": 279.043534609401,
+      "width": 171.5384013920738,
+      "height": 157.24353460940097,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1200,8 +1212,12 @@ conditioning ^text-edge-11
           0
         ],
         [
-          80.0,
-          -220.0
+          126.65251969448116,
+          -34.02178294276129
+        ],
+        [
+          171.5384013920738,
+          -157.24353460940097
         ]
       ],
       "lastCommittedPoint": null,
@@ -1221,10 +1237,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-5",
       "type": "text",
-      "x": 209.6,
-      "y": 184.0,
-      "width": 140.8,
-      "height": 20.0,
+      "x": 237.98462935185972,
+      "y": 218.5978463652158,
+      "width": 134.4,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1247,7 +1263,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "abstract entries",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1259,9 +1275,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-6",
       "type": "arrow",
-      "x": 640.0,
+      "x": 650.0,
       "y": 310.0,
-      "width": 160.0,
+      "width": 149.60000000000002,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1290,7 +1306,11 @@ conditioning ^text-edge-11
           0
         ],
         [
-          160.0,
+          74.79999999999995,
+          23.93599999999998
+        ],
+        [
+          149.60000000000002,
           0.0
         ]
       ],
@@ -1311,10 +1331,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-6",
       "type": "text",
-      "x": 671.6,
-      "y": 294.0,
-      "width": 96.80000000000001,
-      "height": 20.0,
+      "x": 678.5999999999999,
+      "y": 319.86799999999994,
+      "width": 92.39999999999999,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1337,7 +1357,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "next action",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1349,9 +1369,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-7",
       "type": "arrow",
-      "x": 800.0,
+      "x": 799.6,
       "y": 310.0,
-      "width": 160.0,
+      "width": 149.60000000000002,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1380,7 +1400,11 @@ conditioning ^text-edge-11
           0
         ],
         [
-          -160.0,
+          -74.80000000000007,
+          -38.896000000000015
+        ],
+        [
+          -149.60000000000002,
           0.0
         ]
       ],
@@ -1401,10 +1425,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-7",
       "type": "text",
-      "x": 693.6,
-      "y": 294.0,
-      "width": 52.800000000000004,
-      "height": 20.0,
+      "x": 699.5999999999999,
+      "y": 273.052,
+      "width": 50.4,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1427,7 +1451,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "result",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1439,10 +1463,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-8",
       "type": "arrow",
-      "x": 480.0,
-      "y": 310.0,
-      "width": 0.0,
-      "height": 200.0,
+      "x": 534.56,
+      "y": 341.8,
+      "width": 109.11999999999995,
+      "height": 136.39999999999998,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1470,8 +1494,8 @@ conditioning ^text-edge-11
           0
         ],
         [
-          0.0,
-          200.0
+          -109.11999999999995,
+          136.39999999999998
         ]
       ],
       "lastCommittedPoint": null,
@@ -1491,10 +1515,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-8",
       "type": "text",
-      "x": 458.0,
-      "y": 394.0,
-      "width": 44.0,
-      "height": 20.0,
+      "x": 449.1610530010178,
+      "y": 392.32884240081427,
+      "width": 42.0,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1517,7 +1541,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "query",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1529,10 +1553,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-9",
       "type": "arrow",
-      "x": 320.0,
-      "y": 90.0,
-      "width": 160.0,
-      "height": 420.0,
+      "x": 400.0,
+      "y": 121.8,
+      "width": 0.0,
+      "height": 356.4,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1560,8 +1584,8 @@ conditioning ^text-edge-11
           0
         ],
         [
-          160.0,
-          420.0
+          0.0,
+          356.4
         ]
       ],
       "lastCommittedPoint": null,
@@ -1581,10 +1605,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-9",
       "type": "text",
-      "x": 342.8,
-      "y": 284.0,
-      "width": 114.4,
-      "height": 20.0,
+      "x": 332.79999999999995,
+      "y": 290.2,
+      "width": 109.2,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1607,7 +1631,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "candidate set",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1619,9 +1643,9 @@ conditioning ^text-edge-11
     {
       "id": "arrow-10",
       "type": "arrow",
-      "x": 480.0,
+      "x": 571.6,
       "y": 510.0,
-      "width": 160.0,
+      "width": 17.899999999999977,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1650,7 +1674,7 @@ conditioning ^text-edge-11
           0
         ],
         [
-          160.0,
+          17.899999999999977,
           0.0
         ]
       ],
@@ -1671,10 +1695,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-10",
       "type": "text",
-      "x": 538.0,
-      "y": 494.0,
-      "width": 44.0,
-      "height": 20.0,
+      "x": 559.55,
+      "y": 512.8000000000001,
+      "width": 42.0,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1697,7 +1721,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "top-k",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
@@ -1709,10 +1733,10 @@ conditioning ^text-edge-11
     {
       "id": "arrow-11",
       "type": "arrow",
-      "x": 640.0,
-      "y": 510.0,
-      "width": 0.0,
-      "height": 200.0,
+      "x": 688.9734352001121,
+      "y": 471.21679400014017,
+      "width": 103.53343520011208,
+      "height": 129.41679400014016,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1740,8 +1764,8 @@ conditioning ^text-edge-11
           0
         ],
         [
-          0.0,
-          -200.0
+          -103.53343520011208,
+          -129.41679400014016
         ]
       ],
       "lastCommittedPoint": null,
@@ -1761,10 +1785,10 @@ conditioning ^text-edge-11
     {
       "id": "text-edge-11",
       "type": "text",
-      "x": 587.2,
-      "y": 394.0,
-      "width": 105.60000000000001,
-      "height": 20.0,
+      "x": 596.6456645990384,
+      "y": 388.83723940088436,
+      "width": 100.8,
+      "height": 17.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1787,7 +1811,7 @@ conditioning ^text-edge-11
       "link": null,
       "locked": false,
       "text": "conditioning",
-      "fontSize": 16,
+      "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",

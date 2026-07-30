@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Learning Research"
+  short_description: "Plan auditable machine learning research workflows"
+  default_prompt: "Use $machine-learning-research to create an auditable ML experiment plan with data splits, baselines, metrics, ablations, and reproducibility controls."

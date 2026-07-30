@@ -1,0 +1,4 @@
+interface:
+  display_name: "Survey and Psychometrics"
+  short_description: "Plan auditable surveys and psychometric validation"
+  default_prompt: "Use $survey-and-psychometrics to create a construct and psychometric validation plan."

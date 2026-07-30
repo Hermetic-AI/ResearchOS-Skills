@@ -1,0 +1,4 @@
+interface:
+  display_name: "Protocol Authoring"
+  short_description: "Create auditable research protocol planning artifacts"
+  default_prompt: "Use $protocol-authoring to create an evidence-aware research protocol outline with methods, analysis, ethics, and deviations."

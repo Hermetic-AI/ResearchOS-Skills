@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Software Quality"
+  short_description: "Plan reproducible research software quality evidence"
+  default_prompt: "Use $research-software-quality to create an auditable quality plan for research code and releases."

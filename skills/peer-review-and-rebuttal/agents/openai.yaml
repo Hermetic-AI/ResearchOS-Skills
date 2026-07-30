@@ -1,0 +1,4 @@
+interface:
+  display_name: "Peer Review and Rebuttal"
+  short_description: "Triage reviews and draft auditable response matrices"
+  default_prompt: "Use $peer-review-and-rebuttal to organize reviewer comments into an evidence-backed response matrix."

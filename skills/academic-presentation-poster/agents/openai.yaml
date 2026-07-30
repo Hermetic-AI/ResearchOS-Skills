@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Presentation and Poster"
+  short_description: "Plan evidence-backed academic presentations and posters"
+  default_prompt: "Use $academic-presentation-poster to create an evidence-traceable presentation or poster storyboard."

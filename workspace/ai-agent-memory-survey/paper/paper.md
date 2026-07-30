@@ -2,7 +2,7 @@
 
 ---
 
-**Abstract.** Large Language Model (LLM)-powered autonomous agents have moved from single-turn chat to long-horizon, multi-session, and embodied tasks. A central enabler — and bottleneck — is **memory**: the mechanism by which an agent retains, organizes, retrieves, and forgets information across the limits of its context window. The literature on AI agent memory has expanded rapidly since 2023, but the field is fragmented across incompatible mechanisms, inconsistent evaluation protocols, and competing design philosophies. This survey organizes the landscape along three axes. First, we synthesize a **taxonomy of agent memory** that integrates the cognitive-architecture framing of CoALA [6] with the operational decomposition of recent surveys [11, 14], arriving at a two-dimensional grid of (memory type) × (operation). Second, we map the design space by **mechanism family** — memory streams, hierarchical paging, verbal reflection, code-as-skill, multi-agent shared memory, and long-context training as a memory-replacement strategy — and trace the research lineage connecting these families. Third, we audit **evaluation practice** and identify systematic under-measurement: variance reporting is missing in 11 of 12 reviewed primary papers, compute cost is reported in only 3, and schema-quality metrics for dynamic-schema memories are absent. From the audit, we surface **seven research gaps** that are actionable for the field. We close with concrete open problems and an annotated reading order for newcomers. Throughout, we adopt an evidence-anchored approach: every taxonomic claim is tied to a primary paper, and every gap claim cites a matrix column whose pattern motivates the gap. The survey does not propose a new method; its contribution is a unified vocabulary, a current map of the design space, and a prioritized gap list that the next generation of agent-memory research can address.
+**Abstract.** Large Language Model (LLM)-powered autonomous agents have moved from single-turn chat to long-horizon, multi-session, and embodied tasks. A central enabler — and bottleneck — is **memory**: the mechanism by which an agent retains, organizes, retrieves, and forgets information across the limits of its context window. The literature on AI agent memory has expanded rapidly since 2023, but the field is fragmented across incompatible mechanisms, inconsistent evaluation protocols, and competing design philosophies. This survey organizes the landscape along three axes. First, we synthesize a **taxonomy of agent memory** that integrates the cognitive-architecture framing of CoALA [6] with the operational decomposition of recent surveys [11, 14], arriving at a two-dimensional grid of (memory type) × (operation). Second, we map the design space by **mechanism family** — memory streams, hierarchical paging, verbal reflection, code-as-skill, multi-agent shared memory, and long-context training as a memory-replacement strategy — and trace the research lineage connecting these eight families. Third, we audit **evaluation practice** and identify systematic under-measurement: variance is not reliably reported in 12 of 12 reviewed primary papers (only 3 partial), compute cost is reported in only 1 of 12, and schema-quality metrics for dynamic-schema memories are absent. From the audit, we surface **seven research gaps** that are actionable for the field. We close with concrete open problems and an annotated reading order for newcomers. Throughout, we adopt an evidence-anchored approach: every taxonomic claim is tied to a primary paper, and every gap claim cites a matrix column whose pattern motivates the gap. The survey does not propose a new method; its contribution is a unified vocabulary, a current map of the design space, and a prioritized gap list that the next generation of agent-memory research can address.
 
 **Index Terms** — LLM agent, memory mechanism, retrieval-augmented generation, long-context, cognitive architecture, survey.
 
@@ -25,7 +25,7 @@ The most recent surveys on this topic [11, 14] and the most cited conceptual fra
 **Contributions.** This survey makes the following contributions:
 
 1. **A two-dimensional taxonomy** of agent memory (type × operation), integrating the cognitive-architecture perspective of [6] with the operational decomposition of [11, 14].
-2. **A design-family map** of the 12 primary mechanisms in the literature, organized into 7 mechanism families with an evidence-anchored lineage connecting them.
+2. **A design-family map** of the 12 primary mechanisms in the literature, organized into 8 mechanism families with an evidence-anchored lineage connecting them.
 3. **An evaluation audit** that systematically quantifies under-measurement: variance reporting, compute cost, and schema-quality metrics.
 4. **A gap list of 7 candidate research gaps** classified by type (method, data, population, theory, evaluation, negative-result) with a feasibility verdict and a recommended first step for each.
 5. **A knowledge graph artifact** of the 14-paper library (graph.json, graph.dot), in which every relation is anchored to a verbatim quote in the source paper.
@@ -92,10 +92,12 @@ Following [11, 14]:
 | | Write | Read | Manage | Evaluate |
 |---|---|---|---|---|
 | **Working** | context assembly | prompt formatting | sliding window | length-budget, attention-position |
+|---|---|---|---|---|
 | **Declarative** | every-turn [4, 13], importance-scored [1] | embedding [1, 4, 9], BM25, hybrid | decay [4, 8], merge [4, 9] | recall F1 [2, 4, 9, 13] |
 | **Procedural** | code-gen on success [5] | embedding over skill descriptions [5] | consolidation (not implemented [5]) | skill reuse rate, milestone reach [5] |
 | **Conditional** | condition-tagged writes (rare) | condition-checked reads (rare) | condition updates (rare) | conditional-recall accuracy (gap) |
-| **External** | JSON / vector / KV writes | vector search / page-in | index updates, GC | throughput, latency |
+
+*External storage* (vector DB, KV cache, file system) is orthogonal to the type axis: all four memory types above can be persisted externally, so we treat it as a storage implementation rather than a fifth type. Its operations — JSON/vector/KV writes, vector search/page-in, index updates/GC, throughput/latency — apply across types.
 
 The four cells of **conditional memory × {write, read, manage, evaluate}** are sparsely populated. We return to this in §VII as a candidate gap.
 
@@ -103,7 +105,7 @@ The four cells of **conditional memory × {write, read, manage, evaluate}** are 
 
 ## IV. Memory Mechanisms by Design Family
 
-We organize the 12 primary papers into 7 mechanism families. Each family has a *load-bearing design choice* — the design that, if removed, would degrade the method to a baseline.
+We organize the 12 primary papers into 8 mechanism families. Each family has a *load-bearing design choice* — the design that, if removed, would degrade the method to a baseline.
 
 ### A. Memory stream with retrieval (foundational)
 
@@ -197,22 +199,22 @@ A survey of evaluation practice is overdue. Across the 12 primary papers, we obs
 
 **Table I. Evaluation Coverage Matrix (12 primary papers)**
 
-| Paper | Variance (multi-seed) | Compute cost | Schema-quality metric | Headline comparator reported |
-|---|:---:|:---:|:---:|:---:|
-| Park [1] | ✗ | ✗ | n/a | qualitative |
-| Packer [2] | partial | ✗ | n/a | ✓ |
-| Shinn [3] | ✗ | ✗ | n/a | ✓ |
-| Zhong [4] | ✗ | ✗ | n/a | ✓ |
-| Wang [5] | ✗ | partial | n/a | ✓ |
-| Sumers [6] | n/a (framework) | n/a | n/a | n/a |
-| Qian [7] | ✗ | ✗ | n/a | ✓ |
-| Maharana [8] | ✗ | ✗ | n/a | ✓ |
-| Xu [9] | ✗ | ✗ | n/a | ✓ |
-| Hu [10] | partial | ✗ | n/a | ✓ |
-| Liu [12] | partial | n/a | n/a | ✓ (controlled) |
-| Modarressi [13] | ✗ | ✗ | n/a | ✓ |
+| Paper | Family | Variance (multi-seed) | Compute cost | Schema-quality metric | Headline comparator |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Park [1] | A (stream) | ✗ | ✗ | n/a | ✗ |
+| Packer [2] | B (hier.) | partial | ✗ | n/a | ✓ |
+| Shinn [3] | C (reflect) | ✗ | ✗ | n/a | ✓ |
+| Zhong [4] | A (stream) | ✗ | ✗ | n/a | ✓ |
+| Wang [5] | D (skill) | ✗ | partial | n/a | ✓ |
+| Sumers [6] | — (framework) | n/a | n/a | n/a | n/a |
+| Qian [7] | E (multi-agent) | ✗ | ✗ | n/a | ✓ |
+| Maharana [8] | G (theory) | ✗ | ✗ | n/a | ✓ |
+| Xu [9] | H (dyn-schema) | ✗ | ✗ | n/a | ✓ |
+| Hu [10] | F (LCT) | partial | ✗ | n/a | ✓ |
+| Liu [12] | — (diagnosis) | partial | n/a | n/a | ✓ (controlled) |
+| Modarressi [13] | A (stream) | ✗ | ✗ | n/a | ✓ |
 
-Counts: variance reported in **3/12** (partial at best), compute cost in **1/12** ([5] only), schema-quality metric in **0/12** (because no system was designed to be evaluated on schema quality before [9]).
+Counts: variance reported in **3/12** (partial at best), compute cost in **1/12** ([5] only), schema-quality metric in **0/12** (because no system was designed to be evaluated on schema quality before [9]). Family labels refer to the mechanism families in §IV.
 
 ### A. Variance reporting is the norm, not the exception
 
@@ -252,16 +254,20 @@ The most fundamental trade-off is between *engineering memory on top of an off-t
 | Time-to-deploy | hours | weeks–months |
 | Per-call cost | retrieval + paging tokens | training amortized; inference is one pass |
 | Schema flexibility | high (LLM generates schema) | low (model is fixed post-training) |
-| Forgetting control | explicit (Ebbinghaus) | implicit (depends on training data) |
-| Cross-domain transfer | strong (same LLM) | weak (re-train or fine-tune) |
+| Forgetting mechanism | explicit (Ebbinghaus decay [4, 8], selective merge [4]) | implicit (no explicit forgetting; bounded by window) |
+| Cross-domain transfer | strong (same LLM, swap memory store) | weak (re-train or fine-tune) |
+| Memory quality evaluation | recall F1, schema coherence, coverage, stability | end-task accuracy only |
+| Deployment maturity | production-ready (chatbots, multi-agent) | research-stage (7B-scale demos) |
 
 [10] argues that the training route dominates at sufficient scale. The empirical evidence at 7B-with-RL vs 7B-with-RAG is not yet strong enough to settle the question; we treat this as a top-priority open problem (Gap 4 in §VII).
 
 Fig. 3 visualizes the two routes side by side.
 
-![Two routes to handling long context: memory engineering vs long-context training](../figures/svg/fig3_two_routes.svg)
+![Route A: Memory engineering — an off-the-shelf LLM paired with external memory](../figures/svg/fig3a_route_a.svg)
 
-**Fig. 3. Two routes to handling long context.** *Route A* (top) is *memory engineering*: any off-the-shelf LLM is paired with an external memory (vector DB, KV cache, paging, skills, or schemas) and assembles a working context at query time. *Route B* (bottom) is *long-context training*: a model is fine-tuned via multi-stage RL (DPO → GRPO/PPO) on long-context data, and at inference time it attends to its own 128K window directly. The two routes share an output (a working context) but differ in *where* memory lives.
+![Route B: Long-context training — a model fine-tuned to use 128K context directly](../figures/svg/fig3b_route_b.svg)
+
+**Fig. 3. Two routes to handling long context.** *(a) Route A: memory engineering.* Any off-the-shelf LLM is paired with an external memory (vector DB, KV cache, paging, skills, or schemas) and assembles a working context at query time through a retrieve/read/manage cycle. *(b) Route B: long-context training.* A model is fine-tuned via multi-stage RL (DPO → GRPO/PPO) on long-context data, and at inference time it attends to its own 128K window directly. The two routes share an output (a working context) but differ in *where* memory lives and *how* it is managed.
 
 ### B. Fixed schema vs. dynamic schema
 
@@ -280,7 +286,11 @@ Fig. 3 visualizes the two routes side by side.
 
 ## VII. Research Gaps and Open Problems
 
-From the matrix, the comparison table, and the evaluation audit, we extract seven candidate gaps. Each is classified by the gap-type taxonomy of the literature [11, 14] and given a feasibility verdict.
+From the matrix, the comparison table, and the evaluation audit, we extract seven candidate gaps. Each is classified by the gap-type taxonomy of the literature [11, 14] and given a feasibility verdict. Fig. 5 visualizes the gap taxonomy and analysis workflow.
+
+![Gap taxonomy and analysis workflow: 7 gap-type classes feeding into a feasibility verdict, then prioritized into doable / cautious / not-advised](../figures/svg/fig5_gap_taxonomy.svg)
+
+**Fig. 5. Gap taxonomy and analysis workflow.** Starting from the 12-paper comparison matrix, column-wide patterns are scanned across 7 gap-type classes (method, data, population, setting-transfer, theory, evaluation, negative-result). Each candidate gap is assessed on a 4-axis feasibility verdict (data availability, method maturity, workload, collision risk) and prioritized into *doable* (G1, G3, G4, G5, G6), *cautious* (G2, G7), or *drop*.
 
 ### Gap 1 — Compute cost is under-measured (Evaluation gap)
 **Statement:** The field's headline metrics are quality (F1, accuracy, pass@1) but **only 1 of 12 primary papers reports compute cost** ([5]). As memory mechanisms scale, cost-Quality Pareto frontiers will become first-order concerns; the data to draw them is missing.

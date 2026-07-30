@@ -5,16 +5,16 @@
     {"id": "ax_y", "label": "FEASIBILITY (low -> high)", "x": -200, "y": 200, "color": "#ffffff", "shape": "rectangle"},
     {"id": "ax_x", "label": "VALUE TO FIELD (low -> high)", "x": 320, "y": 720, "color": "#ffffff", "shape": "rectangle"},
 
-    {"id": "q1", "label": "High feasibility\nHigh value\n(Doable, important)", "x": 800, "y": 80, "color": "#b2f2bb", "shape": "rectangle"},
+    {"id": "q1", "label": "High feasibility\nHigh value\n(Doable, important)", "x": 880, "y": 80, "color": "#b2f2bb", "shape": "rectangle"},
     {"id": "q2", "label": "High feasibility\nLow value\n(Doable, incremental)", "x": 0, "y": 80, "color": "#fff3bf", "shape": "rectangle"},
     {"id": "q3", "label": "Low feasibility\nHigh value\n(Risky, important)", "x": 800, "y": 480, "color": "#ffc9c9", "shape": "rectangle"},
     {"id": "q4", "label": "Low feasibility\nLow value\n(Speculative)", "x": 0, "y": 480, "color": "#e9ecef", "shape": "rectangle"},
 
-    {"id": "g1", "label": "G1: Compute cost\nmetric\n(eval gap, doable)", "x": 720, "y": 60, "color": "#ffffff", "shape": "diamond"},
-    {"id": "g2", "label": "G2: Multi-user\nagent memory\n(population, cautious)", "x": 480, "y": 240, "color": "#ffffff", "shape": "diamond"},
-    {"id": "g3", "label": "G3: Memory\nstability-plasticity\n(theory, doable)", "x": 880, "y": 200, "color": "#ffffff", "shape": "diamond"},
-    {"id": "g4", "label": "G4: Engineering\nvs training\n(method, doable)", "x": 960, "y": 0, "color": "#ffffff", "shape": "diamond"},
-    {"id": "g5", "label": "G5: Schema-quality\nmetrics\n(eval, doable)", "x": 560, "y": 40, "color": "#ffffff", "shape": "diamond"},
+    {"id": "g1", "label": "G1: Compute cost\nmetric\n(eval gap, doable)", "x": 580, "y": 170, "color": "#ffffff", "shape": "diamond"},
+    {"id": "g2", "label": "G2: Multi-user\nagent memory\n(population, cautious)", "x": 460, "y": 320, "color": "#ffffff", "shape": "diamond"},
+    {"id": "g3", "label": "G3: Memory\nstability-plasticity\n(theory, doable)", "x": 880, "y": 220, "color": "#ffffff", "shape": "diamond"},
+    {"id": "g4", "label": "G4: Engineering\nvs training\n(method, doable)", "x": 1080, "y": -20, "color": "#ffffff", "shape": "diamond"},
+    {"id": "g5", "label": "G5: Schema-quality\nmetrics\n(eval, doable)", "x": 520, "y": 10, "color": "#ffffff", "shape": "diamond"},
     {"id": "g6", "label": "G6: Reflection on\nstrong base models\n(negative-result, doable)", "x": 160, "y": 0, "color": "#ffffff", "shape": "diamond"},
     {"id": "g7", "label": "G7: Soft attention\nbudget (theory,\ncautious)", "x": 600, "y": 440, "color": "#ffffff", "shape": "diamond"}
   ],

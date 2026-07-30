@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reproduction Assistant"
+  short_description: "Reproduce paper code and diagnose result mismatches"
+  default_prompt: "Use $reproduction-assistant to inspect this paper repository and prepare a safe reproduction plan."

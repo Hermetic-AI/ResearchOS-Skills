@@ -1,0 +1,4 @@
+interface:
+  display_name: "Causal Inference Assistant"
+  short_description: "Plan causal estimands, DAGs, assumptions, and sensitivity checks"
+  default_prompt: "Use $causal-inference-assistant to define a causal estimand, DAG assumptions, and an auditable analysis plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Proposal and Grant"
+  short_description: "Create evidence-backed proposal and grant planning artifacts"
+  default_prompt: "Use $research-proposal-and-grant to create an auditable proposal charter with aims, milestones, budget assumptions, and risks."
