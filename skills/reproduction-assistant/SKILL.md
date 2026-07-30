@@ -1,6 +1,6 @@
 ---
 name: reproduction-assistant
-description: Reproduce paper code and experiments by probing repository entry points and dependencies, preparing an auditable environment plan, capturing runs, comparing reproduced and reported metrics with declared tolerances, and diagnosing version, dependency, parameter, or data failures from evidence. Use for 复现论文代码, 跑论文仓库, 配复现环境, 复现失败诊断, 结果对不上, reproduce this paper repository, or compare reproduced results. Not for general paper reading, new experiment design, statistical analysis, knowledge graphs, or manuscript writing.
+description: Reproduce paper code and experiments by probing repository entry points and dependencies, preparing an auditable environment plan, capturing runs, comparing reproduced and reported metrics with declared tolerances, and diagnosing version, dependency, parameter, or data failures from evidence. Use for reproducing paper code, running a paper repository, setting up a reproduction environment, diagnosing reproduction failures, mismatched results, reproducing this paper repository, or comparing reproduced results. Not for general paper reading, new experiment design, statistical analysis, knowledge graphs, or manuscript writing.
 ---
 
 # Reproduction Assistant

@@ -1,6 +1,6 @@
 ---
 name: literature-reader
-description: Extract and read papers; handle PDF/OCR, tables, captions, supplements, and large-corpus checkpointed processing; verify DOI/arXiv/PMID, retractions, duplicates, and versions; exchange Zotero/CSL JSON, BibTeX, RIS, EndNote XML, and ResearchOS libraries; create evidence-anchored notes, comparisons, and gap analyses. Use for 读论文, PDF/OCR提取, 大批量文献增量处理, 标识符/撤稿检查, 文献去重, Zotero/BibTeX/RIS/EndNote转换, 文献对比, 找研究空白, extract, audit, batch, or convert papers. Not for manuscript prose/layout checking, cross-note graphs, visual PDF editing, or experiments.
+description: Extract and read papers; handle PDF/OCR, tables, captions, supplements, and large-corpus checkpointed processing; verify DOI/arXiv/PMID, retractions, duplicates, and versions; exchange Zotero/CSL JSON, BibTeX, RIS, EndNote XML, and ResearchOS libraries; create evidence-anchored notes, comparisons, and gap analyses. Use for reading papers, PDF/OCR extraction, batch incremental literature processing, identifier/retraction checks, deduplicating papers, Zotero/BibTeX/RIS/EndNote conversion, comparing papers, finding research gaps, extracting, auditing, batch processing, or converting papers. Not for manuscript prose/layout checking, cross-note graphs, visual PDF editing, or experiments.
 ---
 
 # Literature Reader (文献阅读与管理)

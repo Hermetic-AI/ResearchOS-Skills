@@ -1,6 +1,6 @@
 ---
 name: knowledge-graph-builder
-description: Build evidence-anchored concept graphs from Markdown research notes and schema-validated ResearchOS paper-note JSON; preserve claim-level page/section/quote provenance; use typed nodes, controlled relations, approval-gated inference, lineage tracing, and Graphviz/tabular export. Use for 构建知识图谱, 把阅读笔记连成图, paper-note入图, claim证据图, 梳理研究脉络, map concepts or claims across papers, or trace a lineage. Not for deep-reading one paper (literature-reader), manuscript/citation editing, experiment design, statistics, or running paper code.
+description: Build evidence-anchored concept graphs from Markdown research notes and schema-validated ResearchOS paper-note JSON; preserve claim-level page/section/quote provenance; use typed nodes, controlled relations, approval-gated inference, lineage tracing, and Graphviz/tabular export. Use for building a knowledge graph, connecting reading notes into a graph, importing paper-notes, mapping claim evidence, tracing research threads, mapping concepts or claims across papers, or tracing a lineage. Not for deep-reading one paper (literature-reader), manuscript/citation editing, experiment design, statistics, or running paper code.
 ---
 
 # Knowledge Graph Builder

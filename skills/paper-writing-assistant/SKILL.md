@@ -1,6 +1,6 @@
 ---
 name: paper-writing-assistant
-description: Assist thesis and paper writing by drafting evidence-aware figure or table analysis paragraphs, auditing in-text citations against reference lists and GB/T 7714/IEEE/APA/ACM or institution rules, and checking Word or statically verifiable LaTeX formatting against a confirmed requirement checklist. Use for 看图写论文段落, 图表分析, 检查论文引用, 参考文献格式, 学校论文格式, 排版核对, citation audit, or thesis formatting. Not for Markdown-to-LaTeX conversion (md2latex), figure generation (scientific-plot), statistical analysis, literature reading, or experiment design.
+description: Assist thesis and paper writing by drafting evidence-aware figure or table analysis paragraphs, auditing in-text citations against reference lists and GB/T 7714/IEEE/APA/ACM or institution rules, and checking Word or statically verifiable LaTeX formatting against a confirmed requirement checklist. Use for drafting figure/table analysis paragraphs from images, auditing in-text citations, reference formatting, thesis formatting compliance, typesetting checks, citation audits, or thesis formatting. Not for Markdown-to-LaTeX conversion (md2latex), figure generation (scientific-plot), statistical analysis, literature reading, or experiment design.
 ---
 
 # 论文写作辅助（Paper Writing Assistant）

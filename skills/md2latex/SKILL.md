@@ -1,6 +1,6 @@
 ---
 name: md2latex
-description: Convert research Markdown into clean LaTeX with headings, lists, GFM booktabs tables, figure floats, listings, math, links, Pandoc-style citation keys, raw LaTeX, article/ctexart/IEEEtran templates, custom template markers, CJK detection, and image-extension rewriting. Use for md转latex, markdown转tex, IEEEtran排版, 转ctex, 生成可编译tex, convert Markdown to LaTeX, or prepare a Markdown draft for a venue template. Not for writing or polishing manuscript prose and citation style (paper-writing-assistant), generating figures (scientific-plot), or promising PDF compilation when no LaTeX toolchain is available.
+description: Convert research Markdown into clean LaTeX with headings, lists, GFM booktabs tables, figure floats, listings, math, links, Pandoc-style citation keys, raw LaTeX, article/ctexart/IEEEtran templates, custom template markers, CJK detection, and image-extension rewriting. Use for converting md to latex, converting markdown to tex, IEEEtran formatting, converting to ctex, producing compilable tex, converting Markdown to LaTeX, or preparing a Markdown draft for a venue template. Not for writing or polishing manuscript prose and citation style (paper-writing-assistant), generating figures (scientific-plot), or promising PDF compilation when no LaTeX toolchain is available.
 ---
 
 # md2latex (Markdown → LaTeX)

@@ -1,6 +1,6 @@
 ---
 name: scientific-plot
-description: Create publication-ready research figures from CSV, including grouped bars, regression scatterplots, line and paired-point plots, boxplots, violin plots, heatmaps, forest plots, Kaplan-Meier curves, journal themes, named palettes, significance brackets, multi-panels, and SVG/PDF/300-DPI export; also generate Excalidraw/SVG schematics and check Mermaid, Graphviz, or PlantUML sources. Use for 科研绘图, 论文插图, 统计图, 显著性星标, 误差棒, 箱线图, 小提琴图, 热图, 森林图, 生存曲线, 300dpi, 流程图, 架构图, Nature-style figure, or draw a diagram. Not for choosing formal statistical tests or cleaning data (data-analysis-assistant), or writing captions and manuscript prose (paper-writing-assistant).
+description: Create publication-ready research figures from CSV, including grouped bars, regression scatterplots, line and paired-point plots, boxplots, violin plots, heatmaps, forest plots, Kaplan-Meier curves, journal themes, named palettes, significance brackets, multi-panels, and SVG/PDF/300-DPI export; also generate Excalidraw/SVG schematics and check Mermaid, Graphviz, or PlantUML sources. Use for research figures, paper illustrations, statistical charts, significance stars, error bars, boxplots, violin plots, heatmaps, forest plots, survival curves, 300dpi export, flowcharts, architecture diagrams, Nature-style figures, or drawing a diagram. Not for choosing formal statistical tests or cleaning data (data-analysis-assistant), or writing captions and manuscript prose (paper-writing-assistant).
 ---
 
 # Scientific Plot (科研绘图)

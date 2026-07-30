@@ -1,6 +1,6 @@
 ---
 name: data-analysis-assistant
-description: Analyze collected research data through profiling, cleaning, statistical tests, regression/GLM/ANCOVA, GEE/mixed models, Cox survival and competing risks, SARIMAX time series, panel fixed effects, assumptions, effect sizes, intervals, multiplicity, and structured reporting. Use for 分析实验数据, 数据画像, 数据清洗, 回归, 广义线性模型, ANCOVA, 重复测量, 混合效应模型, Cox, 生存分析, 竞争风险, 时间序列, 面板数据, 显著性检验, p值, 效应量, 置信区间, 多重比较校正, or analyze my dataset. Not for pre-data experiment design, literature reading, figures, manuscript prose, knowledge graphs, or reproducing published code.
+description: Analyze collected research data through profiling, cleaning, statistical tests, regression/GLM/ANCOVA, GEE/mixed models, Cox survival and competing risks, SARIMAX time series, panel fixed effects, assumptions, effect sizes, intervals, multiplicity, and structured reporting. Use for analyzing experimental data, data profiling, data cleaning, regression, GLM, ANCOVA, repeated measures, mixed-effects models, Cox models, survival analysis, competing risks, time series, panel data, significance testing, p-values, effect sizes, confidence intervals, multiple-comparison correction, or analyze my dataset. Not for pre-data experiment design, literature reading, figures, manuscript prose, knowledge graphs, or reproducing published code.
 ---
 
 # Data Analysis Assistant (数据处理分析)
