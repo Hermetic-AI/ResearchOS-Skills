@@ -47,7 +47,7 @@ Emits only the converted body — for `\input{body}` inside an existing project
 - **IEEE conference**: `--template IEEEtran --figure-pos htbp --table-pos htbp`,
   migrate numeric `[N]` citations to `[@key]` + `IEEEtran.bst`, export figures as PDF
   (`--figure-ext pdf`).
-- **中文论文/报告**: `--template ctexart`, compile `xelatex main.tex` twice (refs/toc).
+- **Chinese paper/report**: `--template ctexart`, compile `xelatex main.tex` twice (refs/toc).
   pdfLaTeX will fail on CJK — always say this.
 - **Overleaf**: upload `.tex`; if CJK, Menu → Compiler → **XeLaTeX**.
 - **Figures**: LaTeX cannot embed SVG. Export PDF (vector, preferred) or 300-DPI PNG

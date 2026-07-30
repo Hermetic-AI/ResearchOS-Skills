@@ -4,26 +4,39 @@
 
 ---
 
-一套面向 AI 编程代理（Claude Code、OpenCode、Codex、Gemini CLI、Cursor）的 29 个独立、零依赖科研技能。覆盖完整科研生命周期：文献阅读、实验设计、数据分析、论文写作、代码复现、科研绘图等。
+<div align="center">
 
-## 项目结构
+<img src="assets/architecture.png" alt="ResearchOS-Skills 架构图" width="800"/>
 
-```
-├── skills/               ← 29 个独立技能（每个可独立运行）
-│   ├── literature-reader/
-│   │   ├── SKILL.md            # 路由 + 工作流
-│   │   ├── agents/openai.yaml  # 客户端可发现性
-│   │   ├── scripts/            # 零依赖 Python CLI（stdlib）
-│   │   └── references/         # 按需加载的领域知识
-│   └── ... (另外 28 个)
-├── tests/                ← 项目级测试套件（pytest）
-├── schemas/              ← 版本化跨技能 JSON 协议
-├── tools/                ← 技能校验器、产物校验器、安装器
-└── docs/                 ← 开发路线图（88/88 已完成）
+**面向 AI 编程代理的 29 个独立科研技能**
 
-```
+*覆盖完整科研生命周期：文献 → 设计 → 分析 → 写作 → 复现 → 答辩*
 
-**零跨技能依赖。** 复制任意一个 skill 目录即可独立运行。
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-29-green.svg)](skills/)
+[![Tests](https://img.shields.io/badge/Tests-21%20通过-brightgreen.svg)](skills/md2latex/tests/)
+
+</div>
+
+---
+
+## 📄 产出展示
+
+<div align="center">
+
+### AI Agent Memory: A Survey of Mechanisms, Trade-offs, and Open Problems
+
+**8 页 IEEE 格式综述** — 分类体系、机制族、评估审计、7 个研究空白
+
+[![Memory Survey 封面](assets/papers/memory_survey_p1.png)](workspace/ai-agent-memory-survey/paper/paper.pdf)
+
+[📄 阅读 PDF](workspace/ai-agent-memory-survey/paper/paper.pdf) · [📝 源 Markdown](workspace/ai-agent-memory-survey/paper/paper.md)
+
+*由 `literature-reader` + `scientific-plot` + `md2latex` 生成*
+
+</div>
+
+---
 
 ## 安装
 
@@ -41,16 +54,6 @@ npx skills add Hermetic-AI/ResearchOS-Skills
 npx skills add Hermetic-AI/ResearchOS-Skills --skill "literature-reader"
 ```
 
-### 手动安装
-
-```bash
-# Claude Code（用户级，所有项目可用）
-cp -r skills/literature-reader ~/.claude/skills/
-
-# Claude Code（项目级）
-cp -r skills/literature-reader .claude/skills/
-```
-
 ### 安装后
 
 重启代理。技能以斜杠命令形式出现：
@@ -63,10 +66,12 @@ cp -r skills/literature-reader .claude/skills/
 | `/paper-writing-assistant` | 论文写作/检查，引用，DOCX/LaTeX 格式 |
 | `/reproduction-assistant` | 复现论文代码，结果对比 |
 | `/scientific-plot` | 投稿级图表，统计图 |
-| `/md2latex` | Markdown→LaTeX，含定理、交叉引用、CSL→BibTeX |
+| `/md2latex` | Markdown→LaTeX，含定理、交叉引用、编译校验 |
 | `/experiment-designer` | 实验设计，DOE，功效分析，预注册 |
 | `/knowledge-graph-builder` | 从笔记构建概念图谱 |
 | ... | （共 29 个） |
+
+---
 
 ## 核心技能
 
@@ -79,7 +84,9 @@ cp -r skills/literature-reader .claude/skills/
 | `paper-writing-assistant` | 写作 | 图表分析段落，引用审计（GB/T 7714/IEEE/APA/ACM），DOCX/LaTeX 格式检查，DOCX 域语义 |
 | `reproduction-assistant` | 复现 | 仓库探测，依赖解析，分布级结果对比，失败诊断，隔离执行 |
 | `scientific-plot` | 可视化 | 投稿级图表（6 模板，期刊主题，显著性星标），Excalidraw/SVG，Mermaid/Graphviz/PlantUML |
-| `md2latex` | 转换 | Markdown→LaTeX：脚注、定理、定义列表、交叉引用、图片属性、CSL→BibTeX、长表 |
+| `md2latex` | 转换 | Markdown→LaTeX：脚注、定理、定义列表、交叉引用、图片属性、CSL→BibTeX、长表、编译校验 |
+
+---
 
 ## 扩展技能
 
@@ -123,12 +130,37 @@ cp -r skills/literature-reader .claude/skills/
 | `chemistry-research` | 实验计划：试剂，条件，分析证据，危害/废弃物决策 |
 | `social-science-research` | 研究计划：理论，抽样，测量，伦理，反身性，报告 |
 
+---
+
+## 项目结构
+
+```
+├── skills/               ← 29 个独立技能（每个可独立运行）
+│   ├── literature-reader/
+│   │   ├── SKILL.md            # 路由 + 工作流
+│   │   ├── agents/openai.yaml  # 客户端可发现性
+│   │   ├── scripts/            # 零依赖 Python CLI（stdlib）
+│   │   └── references/         # 按需加载的领域知识
+│   └── ... (另外 28 个)
+├── tests/                ← 项目级测试套件（pytest）
+├── schemas/              ← 版本化跨技能 JSON 协议
+├── tools/                ← 技能校验器、产物校验器、安装器
+├── assets/               ← 架构图、论文截图
+└── docs/                 ← 开发路线图（88/88 已完成）
+```
+
+**零跨技能依赖。** 复制任意一个 skill 目录即可独立运行。
+
+---
+
 ## 约定
 
 - **每个技能独立。** 无跨技能导入；复制一个即可运行。
 - **零依赖（stdlib）优先。** 第三方依赖用一行 `pip install` 声明。
 - **CLI 约定：** `--help`、`--version`（匹配 `pyproject.toml`），诊断信息输出到 stderr，`--force` 覆盖输出，永不覆盖源数据。
 - **用户报告：** 默认中文；产物内容跟随产物语言。
+
+---
 
 ## 开发
 
@@ -156,16 +188,13 @@ python -m pip install -e ".[models]"     # pandas + Statsmodels
 python tools/validate_artifact.py result.json --type stat-results
 ```
 
-### 运行单个技能的测试
-
-```bash
-python -m pytest tests/test_bibliography_audit.py  # literature-reader
-python -m pytest tests/test_csl_to_bibtex.py       # md2latex
-```
+---
 
 ## 路线图
 
 实现清单与完成标准见 [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md)。88 项全部完成。
+
+---
 
 ## 许可证与治理
 

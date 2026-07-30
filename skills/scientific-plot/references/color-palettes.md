@@ -1,4 +1,4 @@
-# Color Palettes for Publication Figures (论文配色指南)
+# Color Palettes for Publication Figures (Guide to Paper Color Schemes)
 
 Discrete palettes live in `scripts/palettes.json` (227 schemes, converted from the MIT-licensed
 [lcpmgh/colors](https://github.com/lcpmgh/colors) collection — ggsci, grDevices, RColorBrewer, and

@@ -1,6 +1,6 @@
 # Reporting Statistical Results (APA 7th + Journal Practice)
 
-Read this file **when results are finalized and need to be written up** (user report, results section, abstract numbers). Do not load it during profiling or test selection. For wording templates in Chinese see `references/test-selection.md`; this file governs *format and completeness*.
+Read this file **when results are finalized and need to be written up** (user report, results section, abstract numbers). Do not load it during profiling or test selection. For wording templates see `references/test-selection.md`; this file governs *format and completeness*.
 
 ## 1. The completeness checklist — every inferential claim needs all of
 
@@ -37,7 +37,7 @@ Decide **per family of related tests** (one family = one research question's set
 | **Bonferroni** (α/m) | FWER, any dependence | Small m (≤ ~5–10), confirmatory claims, pre-registered tests | Most conservative; with m > 20 power collapses |
 | **Holm** (step-down) | FWER, any dependence | Same situations as Bonferroni — **always ≥ Bonferroni in power, so prefer it as the default FWER method** | Slightly more computation; per-comparison adjusted p varies |
 | **BH (Benjamini-Hochberg FDR)** | Expected false-discovery proportion | Large m (omics, many metrics, voxel/pixel tests), exploratory screens where some false positives are tolerable | Does NOT control familywise error; findings need replication |
-| None (label exploratory) | — | Hypothesis-generating analyses | Mandatory wording: 「未校正，结果为探索性」 |
+| None (label exploratory) | — | Hypothesis-generating analyses | Mandatory wording: "uncorrected, results are exploratory" |
 
 Rules of thumb:
 - One pre-registered primary outcome → no correction needed; say so.

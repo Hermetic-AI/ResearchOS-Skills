@@ -82,7 +82,7 @@ def analyze(path):
     ref_idx = None
     for i, t in enumerate(texts):
         if REF_HEAD_RE.match(t.strip()) and len(t.strip()) <= 8:
-            ref_idx = i  # take the last match (body text may mention "参考文献")
+            ref_idx = i  # take the last match (body text may mention the reference heading)
     refs = []
     if ref_idx is not None:
         for t in texts[ref_idx + 1:]:

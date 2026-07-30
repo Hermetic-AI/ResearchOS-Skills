@@ -253,7 +253,7 @@ def log_to_markdown(log, input_path, out_path, n_before, n_after):
                      f"| {e['reason']} |")
     lines += ["", "## Citable summary", ""]
     lines += [f"- {e['summary']}" for e in log]
-    lines += ["", "在论文方法部分可引用本日志：初始 n → 各步剔除/修正及理由 → 最终 n。"]
+    lines += ["", "This log is citable in the paper Methods section: initial n → per-step removals/corrections with reasons → final n."]
     return "\n".join(lines)
 
 

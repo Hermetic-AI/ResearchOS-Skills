@@ -4,25 +4,38 @@
 
 ---
 
-A collection of 29 independent, zero-dependency research skills for AI coding agents (Claude Code, OpenCode, Codex, Gemini CLI, Cursor). Covers the full research lifecycle: literature reading, experiment design, data analysis, paper writing, reproduction, scientific plotting, and more.
+<div align="center">
 
-## Project structure
+<img src="assets/architecture.png" alt="ResearchOS-Skills Architecture" width="800"/>
 
-```
-├── skills/               ← 29 self-contained skills (each runs independently)
-│   ├── literature-reader/
-│   │   ├── SKILL.md            # routing + workflow
-│   │   ├── agents/openai.yaml  # client discoverability
-│   │   ├── scripts/            # zero-dependency Python CLIs (stdlib)
-│   │   └── references/         # on-demand domain knowledge
-│   └── ... (28 more)
-├── tests/                ← project-level test suite (pytest)
-├── schemas/              ← versioned cross-skill JSON contracts
-├── tools/                ← skill validator, artifact validator, installer
-└── docs/                 ← development roadmap (88/88 complete)
-```
+**29 Independent Research Skills for AI Coding Agents**
 
-**No cross-skill dependencies.** Copy any single skill directory and it works standalone.
+*Covers the full research lifecycle: literature → design → analysis → writing → reproduction → defense*
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-29-green.svg)](skills/)
+[![Tests](https://img.shields.io/badge/Tests-21%20passed-brightgreen.svg)](skills/md2latex/tests/)
+
+</div>
+
+---
+
+## 📄 Output Showcase
+
+<div align="center">
+
+### AI Agent Memory: A Survey of Mechanisms, Trade-offs, and Open Problems
+
+**8-page IEEE-format survey** — taxonomy of agent memory, mechanism families, evaluation audit, 7 research gaps
+
+[![Memory Survey Cover](assets/papers/memory_survey_p1.png)](workspace/ai-agent-memory-survey/paper/paper.pdf)
+
+
+*Generated via `literature-reader` + `scientific-plot` + `md2latex`*
+
+</div>
+
+---
 
 ## Installation
 
@@ -40,16 +53,6 @@ Works with: **Claude Code** · **OpenCode** · **Codex** · **Gemini CLI** · **
 npx skills add Hermetic-AI/ResearchOS-Skills --skill "literature-reader"
 ```
 
-### Manual install
-
-```bash
-# Claude Code (user-level, all projects)
-cp -r skills/literature-reader ~/.claude/skills/
-
-# Claude Code (project-level)
-cp -r skills/literature-reader .claude/skills/
-```
-
 ### After installation
 
 Restart your agent. Skills appear as slash commands:
@@ -62,10 +65,12 @@ Restart your agent. Skills appear as slash commands:
 | `/paper-writing-assistant` | Write/check papers, citations, DOCX/LaTeX format |
 | `/reproduction-assistant` | Reproduce paper code, compare results |
 | `/scientific-plot` | Publication figures, statistical charts |
-| `/md2latex` | Markdown→LaTeX with theorems, cross-refs, CSL→BibTeX |
+| `/md2latex` | Markdown→LaTeX with theorems, cross-refs, compile-check |
 | `/experiment-designer` | Experiment design, DOE, power, preregistration |
 | `/knowledge-graph-builder` | Build concept graphs from notes |
 | ... | (29 total) |
+
+---
 
 ## Core Skills
 
@@ -78,7 +83,9 @@ Restart your agent. Skills appear as slash commands:
 | `paper-writing-assistant` | Writing | Figure/table analysis paragraphs, citation audit (GB/T 7714/IEEE/APA/ACM), DOCX/LaTeX format check, DOCX field semantics |
 | `reproduction-assistant` | Reproduction | Repo probing, dependency parsing, distribution-level result comparison, failure diagnosis, isolation execution |
 | `scientific-plot` | Visualization | Publication charts (6 templates, journal themes, significance stars), Excalidraw/SVG, Mermaid/Graphviz/PlantUML |
-| `md2latex` | Conversion | Markdown→LaTeX: footnotes, theorems, definition lists, cross-references, image attributes, CSL→BibTeX, longtable |
+| `md2latex` | Conversion | Markdown→LaTeX: footnotes, theorems, definition lists, cross-references, image attributes, CSL→BibTeX, longtable, compile-check |
+
+---
 
 ## Extension Skills
 
@@ -122,12 +129,37 @@ Restart your agent. Skills appear as slash commands:
 | `chemistry-research` | Experiment plans: reagents, conditions, analytical evidence, hazard/waste decisions |
 | `social-science-research` | Study plans: theory, sampling, measurement, ethics, reflexivity, reporting |
 
+---
+
+## Project structure
+
+```
+├── skills/               ← 29 self-contained skills (each runs independently)
+│   ├── literature-reader/
+│   │   ├── SKILL.md            # routing + workflow
+│   │   ├── agents/openai.yaml  # client discoverability
+│   │   ├── scripts/            # zero-dependency Python CLIs (stdlib)
+│   │   └── references/         # on-demand domain knowledge
+│   └── ... (28 more)
+├── tests/                ← project-level test suite (pytest)
+├── schemas/              ← versioned cross-skill JSON contracts
+├── tools/                ← skill validator, artifact validator, installer
+├── assets/               ← architecture diagrams, paper screenshots
+└── docs/                 ← development roadmap (88/88 complete)
+```
+
+**No cross-skill dependencies.** Copy any single skill directory and it works standalone.
+
+---
+
 ## Conventions
 
 - **Each skill is independent.** No cross-skill imports; copy one out and it runs.
 - **Zero dependencies (stdlib) preferred.** Third-party needs declared with a one-line `pip install`.
 - **CLI contract:** `--help`, `--version` (matches `pyproject.toml`), stderr for diagnostics, `--force` to overwrite output, never overwrites source data.
 - **Reports to user:** Chinese by default; artifacts follow the artifact's language.
+
+---
 
 ## Development
 
@@ -155,16 +187,13 @@ Cross-skill JSON contracts: `schemas/researchos-artifacts.schema.json`. Validate
 python tools/validate_artifact.py result.json --type stat-results
 ```
 
-### Running a single skill's tests
-
-```bash
-python -m pytest tests/test_bibliography_audit.py  # literature-reader
-python -m pytest tests/test_csl_to_bibtex.py       # md2latex
-```
+---
 
 ## Roadmap
 
 The implementation backlog and completion criteria are in [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md). All 88 items are complete.
+
+---
 
 ## License & Governance
 

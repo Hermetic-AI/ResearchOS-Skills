@@ -891,7 +891,7 @@ def main():
     print(json.dumps(report, ensure_ascii=False, indent=1))
     if cjk and not BUILTIN_TEMPLATES[args.template].get("cjk") and not args.fragment:
         if args.template_file:
-            print("note: CJK characters detected — 请确认模板自带 CJK 支持，并用 XeLaTeX 编译",
+            print("note: CJK characters detected — confirm the template includes CJK support and compile with XeLaTeX",
                   file=sys.stderr)
         else:
             print("note: CJK characters detected — compile with XeLaTeX (xeCJK added), "

@@ -119,4 +119,4 @@ Group findings by category, each item:
   Retried: <n> times (if applicable)
 ```
 
-The user-facing summary is in Chinese; unclassifiable items go under `info` with "证据不足，未强行分类".
+The user-facing summary is in English; unclassifiable items go under `info` with "insufficient evidence, not forcibly classified".

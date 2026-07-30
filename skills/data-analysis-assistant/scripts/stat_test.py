@@ -2,7 +2,7 @@
 
 Purpose:
     Run a named statistical test on a CSV file, compute the effect size, and
-    emit a structured result (statistic, p-value, effect size) plus a Chinese
+    emit a structured result (statistic, p-value, effect size) plus an English
     conclusion template following the reporting rules in
     references/test-selection.md (non-significant != no difference;
     multiple-comparison reminder). The script is fully deterministic.
@@ -46,7 +46,7 @@ Output format:
     JSON (--format json, default) or Markdown (--format md):
       {test, statistic, p_value, alpha, significant, effect_size: {name, value,
       magnitude}, confidence_interval: {parameter, level, low, high} (when
-      available), groups/columns context, conclusion (Chinese template),
+      available), groups/columns context, conclusion (English template),
       reminders: [multiple-comparison / power disclaimers]}
     For --test adjust: {test, method, alpha, n_tests, results: [{label, p_value,
       p_adjusted, significant}], conclusion, reminders}
@@ -181,22 +181,22 @@ def fmt_p(p):
 
 
 def verdict(p, alpha):
-    return "显著" if p < alpha else "不显著"
+    return "significant" if p < alpha else "not significant"
 
 
 def build_result(test, statistic, p_value, alpha, effect, context, extra_reminders=()):
     sig = p_value < alpha
-    es = f"，效应量 {effect['name']} = {effect['value']:.3f}（{effect['magnitude']}）" if effect else ""
+    es = f", effect size {effect['name']} = {effect['value']:.3f} ({effect['magnitude']})" if effect else ""
     if sig:
-        conclusion = (f"{test}：差异/关联具有统计学意义（统计量 = {statistic:.4g}，"
-                      f"{fmt_p(p_value)}{es}，α = {alpha}）。")
+        conclusion = (f"{test}: difference/association is statistically significant (statistic = {statistic:.4g}, "
+                      f"{fmt_p(p_value)}{es}, alpha = {alpha}).")
     else:
-        conclusion = (f"{test}：未发现统计学显著差异/关联（统计量 = {statistic:.4g}，"
-                      f"{fmt_p(p_value)}{es}，α = {alpha}）。")
+        conclusion = (f"{test}: no statistically significant difference/association found (statistic = {statistic:.4g}, "
+                      f"{fmt_p(p_value)}{es}, alpha = {alpha}).")
     reminders = list(extra_reminders)
     if not sig:
-        reminders.append("注意：不显著 ≠ 无差异——可能是样本量不足（统计功效不够）或效应本身较小，请勿表述为“两组无差异”。")
-    reminders.append("若对同一数据做了多次检验（多指标/两两比较/亚组分析），必须进行多重比较校正（Bonferroni 或 Benjamini-Hochberg FDR）；未校正的结果应视为探索性结论。可用 stat_test.py --test adjust --method holm --pvalues \"p1,p2,...\" 计算校正后 p 值。")
+        reminders.append("Note: not significant ≠ no difference — it may be due to insufficient sample size (low statistical power) or a genuinely small effect; please do not phrase it as \"the two groups are equivalent\".")
+    reminders.append("If multiple tests were run on the same data (multiple metrics / pairwise comparisons / subgroup analyses), multiple-comparison correction (Bonferroni or Benjamini-Hochberg FDR) is required; uncorrected results should be treated as exploratory. Use stat_test.py --test adjust --method holm --pvalues \"p1,p2,...\" to compute adjusted p-values.")
     return {
         "test": test,
         "statistic": round(float(statistic), 6),
@@ -238,7 +238,7 @@ def run_ttest(header, data, args):
            "means": {g1: round(float(a.mean()), 6), g2: round(float(b.mean()), 6)}}
     r = build_result(name, res.statistic, res.pvalue, args.alpha, effect, ctx)
     if args.paired:
-        r["reminders"].insert(0, "配对检验假定两组行序按受试者一一对应（第 i 行属同一受试者）；若顺序未对齐结果无效，请先核对数据。")
+        r["reminders"].insert(0, "Paired test assumes the two groups are row-aligned by subject (row i belongs to the same subject); if the order is not aligned the result is invalid — please verify the data first.")
     return attach_ci(r, res.confidence_interval(args.ci),
                      "mean difference" if not args.paired else "mean of paired differences",
                      args.ci)
@@ -256,7 +256,7 @@ def run_mannwhitney(header, data, args):
            "medians": {g1: round(float(np.median(a)), 6), g2: round(float(np.median(b)), 6)}}
     r = build_result("Mann-Whitney U (mannwhitneyu)", res.statistic, res.pvalue,
                      args.alpha, effect, ctx)
-    r["reminders"].insert(0, "该检验为非参数检验：通常因数据不满足正态性而选用，报告中请说明原因（如 Shapiro-Wilk 结果）。")
+    r["reminders"].insert(0, "This is a non-parametric test: typically chosen because the data do not meet normality; please state the reason in the report (e.g. Shapiro-Wilk result).")
     return r
 
 
@@ -274,7 +274,7 @@ def run_anova(header, data, args):
            "groups": {g: int(len(v)) for g, v in groups.items()}}
     r = build_result("one-way ANOVA (f_oneway)", res.statistic, res.pvalue,
                      args.alpha, effect, ctx)
-    r["reminders"].insert(0, "ANOVA 显著后需做事后检验（如 Tukey HSD）定位差异组，并对两两比较做校正。")
+    r["reminders"].insert(0, "When ANOVA is significant, post-hoc tests (e.g. Tukey HSD) are needed to locate the differing groups, with correction for pairwise comparisons.")
     return r
 
 
@@ -290,7 +290,7 @@ def run_kruskal(header, data, args):
            "groups": {g: int(len(v)) for g, v in groups.items()}}
     r = build_result("Kruskal-Wallis (kruskal)", res.statistic, res.pvalue,
                      args.alpha, effect, ctx)
-    r["reminders"].insert(0, "该检验为非参数检验：通常因数据不满足正态性而选用；显著后两两比较（Mann-Whitney U）必须校正。")
+    r["reminders"].insert(0, "This is a non-parametric test: typically chosen because the data do not meet normality; pairwise comparisons (Mann-Whitney U) after a significant result must be corrected.")
     return r
 
 
@@ -319,7 +319,7 @@ def run_chi2(header, data, args):
     small = (res.expected_freq < 5).mean()
     reminders = []
     if small > 0.2 or (res.expected_freq < 1).any():
-        reminders.append(f"警告：{small:.0%} 的格子期望频数 < 5（或有 < 1），卡方近似不可靠，建议改用 Fisher 精确检验（2x2 表）。")
+        reminders.append(f"Warning: {small:.0%} of cells have expected count < 5 (or some < 1); the chi-square approximation is unreliable; consider using Fisher's exact test (for 2x2 tables).")
     r = build_result("chi-square test of independence (chi2_contingency)",
                      res.statistic, res.pvalue, args.alpha, effect, ctx, reminders)
     return r
@@ -350,7 +350,7 @@ def run_correlation(header, data, args, method):
     ctx = {"x": args.x, "y": args.y, "n": int(len(x))}
     name = "Pearson correlation (pearsonr)" if method == "pearson" else "Spearman correlation (spearmanr)"
     r = build_result(name, res.statistic, res.pvalue, args.alpha, effect, ctx)
-    r["reminders"].append("相关不等于因果：显著相关不能推出因果关系。")
+    r["reminders"].append("Correlation does not imply causation: a significant correlation does not establish a causal relationship.")
     if method == "pearson":
         attach_ci(r, res.confidence_interval(args.ci), "Pearson r", args.ci)
     return r
@@ -379,10 +379,13 @@ def run_shapiro(header, data, args):
         "alpha": args.alpha,
         "all_groups_normal": bool(all_normal),
         "groups": out,
-        "conclusion": ("各组均满足正态性假设（p > α），可选用参数检验。"
+        "conclusion": ("All groups meet the normality assumption (p > alpha); "
+                       "parametric tests are appropriate."
                        if all_normal else
-                       "至少一组不满足正态性假设（p ≤ α），建议改用非参数检验（两组：Mann-Whitney；多组：Kruskal-Wallis；相关：Spearman）。"),
-        "reminders": ["样本量 < 30 时 Shapiro-Wilk 功效低，建议结合直方图/Q-Q 图判断。"],
+                       "At least one group violates the normality assumption (p <= alpha); "
+                       "consider non-parametric alternatives (two groups: Mann-Whitney; "
+                       "multiple groups: Kruskal-Wallis; correlation: Spearman)."),
+        "reminders": ["Shapiro-Wilk has low power for sample sizes < 30; consider supplementing with histogram / Q-Q plot assessment."],
     }
 
 
@@ -398,9 +401,11 @@ def run_levene(header, data, args):
         "alpha": args.alpha,
         "equal_variances": bool(equal),
         "groups": {g: int(len(v)) for g, v in groups.items()},
-        "conclusion": ("方差齐性成立（p > α），两组比较可用 Student's t 检验。"
+        "conclusion": ("Homogeneity of variances holds (p > alpha); "
+                       "Student's t-test is appropriate for two-group comparison."
                        if equal else
-                       "方差齐性不成立（p ≤ α），两组比较请用 Welch t 检验（--welch）。"),
+                       "Homogeneity of variances does not hold (p <= alpha); "
+                       "use Welch's t-test (--welch) for two-group comparison."),
         "reminders": [],
     }
 
@@ -520,11 +525,11 @@ def run_adjust(args):
         "n_tests": len(pvals),
         "n_significant_after_correction": n_sig,
         "results": results,
-        "conclusion": (f"经 {METHOD_NAMES[args.method]} 校正后（α = {args.alpha}），"
-                       f"{len(pvals)} 个检验中有 {n_sig} 个保持显著。校正后的 p 值见 results。"),
+        "conclusion": (f"After {METHOD_NAMES[args.method]} correction (alpha = {args.alpha}), "
+                       f"{n_sig} of {len(pvals)} tests remain significant. Adjusted p-values are in results."),
         "reminders": [
-            "Bonferroni/Holm 控制族错误率（FWER），适用于少量验证性检验；BH-FDR 控制错误发现率，适用于大量探索性检验。",
-            "报告中须写明校正方法与校正后 p 值，如 “Holm-corrected p = .04”。",
+            "Bonferroni/Holm control the family-wise error rate (FWER), suitable for a small number of confirmatory tests; BH-FDR controls the false discovery rate, suitable for a large number of exploratory tests.",
+            "The report must state the correction method and adjusted p-value, e.g. \"Holm-corrected p = .04\".",
         ],
     }
 
@@ -546,9 +551,9 @@ def to_markdown(r):
         for row in r["results"]:
             lines.append(f"| {row['label']} | {row['p_value']:.4g} "
                          f"| {row['p_adjusted']:.4g} | {row['significant']} |")
-    lines += ["", "## 结论", "", r["conclusion"]]
+    lines += ["", "## Conclusion", "", r["conclusion"]]
     if r.get("reminders"):
-        lines += ["", "## 注意事项", ""]
+        lines += ["", "## Notes", ""]
         lines += [f"- {m}" for m in r["reminders"]]
     return "\n".join(lines)
 

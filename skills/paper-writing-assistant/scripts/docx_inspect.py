@@ -24,9 +24,9 @@ import zipfile
 import xml.etree.ElementTree as ET
 from collections import Counter
 
-# Caption pattern: 图/表/附图/附表/Fig./Figure/Table must be immediately followed by a number
-# (1, 1.1, 1-1) to count as a caption — avoids misclassifying body text like
-# "图注意力机制" or "表示…" as captions.
+# Caption pattern: a Chinese or English figure/table keyword must be immediately
+# followed by a number (1, 1.1, 1-1) to count as a caption — avoids misclassifying
+# body text that merely starts with a figure/table keyword as a caption.
 CAPTION_RE = re.compile(r"^\s*(图|表|附图|附表|Fig\.?|Figure|Table|Tab\.?)\s?\d+([.\-]\d+)*",
                         re.IGNORECASE)
 
@@ -354,9 +354,10 @@ def inspect(path):
                 text = "".join(t.text or "" for t in qa(p, ".//w:t"))
                 style = (pinfo.get("style") or "").lower()
 
-                # Caption detection: style name contains caption/题注, or text starts with
-                # "图/表/Fig/Table + number"; and the whole paragraph is short (captions are
-                # usually brief), to avoid misclassifying long body paragraphs starting with "图".
+                # Caption detection: style name contains "caption" (or its Chinese equivalent), or text starts with
+                # a figure/table keyword + number; and the whole paragraph is short (captions are
+                # usually brief), to avoid misclassifying long body paragraphs that start with a
+                # figure/table keyword as captions.
                 is_caption = (("caption" in style or "题注" in (pinfo.get("style") or ""))
                               or (CAPTION_RE.match(text) and len(text.strip()) <= 60))
                 if is_caption and text.strip():

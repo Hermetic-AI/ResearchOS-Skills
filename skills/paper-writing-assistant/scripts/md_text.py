@@ -16,7 +16,7 @@ Key design (aligned with docx_text.py):
      After obtaining the reference count R, 1..R are treated as valid citation numbers;
      numbers > R are listed separately as "suspected noise / dangling citations".
   3. Markdown reference entries are identified by leading numbering ([1] / 1. / 1) etc.);
-  headings match "参考文献" / "References" / "Bibliography".
+  headings match the reference section heading (Chinese equivalent / "References" / "Bibliography").
 """
 import sys
 import os
@@ -119,7 +119,7 @@ def overview(r):
          f"- Suspected noise / dangling citations (number > {r['ref_count']}): {r['cited_noise'] or 'none'}",
          f"- Never-cited entries in reference list (orphans): {r['uncited'] or 'none'}"]
     if r["ref_index"] is None:
-        L.append("\n⚠️ Reference list heading not located (参考文献/References/Bibliography); "
+        L.append("\n⚠️ Reference list heading not located; "
                  "dimension 1 checking unavailable; for dimensions 2/3/4, manually specify "
                  "the reference list range first.")
     return "\n".join(L)

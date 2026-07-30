@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" font-family: 'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c1222"/>
+      <stop offset="100%" style="stop-color:#1a1f36"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="ext" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#059669"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="560" fill="url(#bg)" rx="16"/>
+
+  <!-- Decorative grid -->
+  <g opacity="0.05">
+    <line x1="0" y1="100" x2="960" y2="100" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="960" y2="200" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="960" y2="300" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="960" y2="400" stroke="#fff" stroke-width="0.5"/>
+    <line x1="160" y1="0" x2="160" y2="560" stroke="#fff" stroke-width="0.5"/>
+    <line x1="320" y1="0" x2="320" y2="560" stroke="#fff" stroke-width="0.5"/>
+    <line x1="480" y1="0" x2="480" y2="560" stroke="#fff" stroke-width="0.5"/>
+    <line x1="640" y1="0" x2="640" y2="560" stroke="#fff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="560" stroke="#fff" stroke-width="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="480" y="42" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700" letter-spacing="0.5">ResearchOS-Skills</text>
+  <text x="480" y="66" text-anchor="middle" fill="#64748b" font-size="13">29 Independent Research Skills &middot; Zero Cross-Skill Dependencies</text>
+
+  <!-- Central hub -->
+  <rect x="370" y="88" width="220" height="52" rx="26" fill="url(#core)" filter="url(#glow)"/>
+  <text x="480" y="120" text-anchor="middle" fill="white" font-size="16" font-weight="600">/researchos</text>
+
+  <!-- Connection lines from hub to core skills -->
+  <g stroke="#6366f1" stroke-width="1.2" opacity="0.5" fill="none">
+    <line x1="480" y1="140" x2="120" y2="175"/>
+    <line x1="480" y1="140" x2="280" y2="175"/>
+    <line x1="480" y1="140" x2="440" y2="175"/>
+    <line x1="480" y1="140" x2="600" y2="175"/>
+    <line x1="480" y1="140" x2="780" y2="175"/>
+  </g>
+
+  <!-- Core Skills Row -->
+  <rect x="35" y="175" width="170" height="72" rx="10" fill="#152238" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="202" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">📚 literature-reader</text>
+  <text x="120" y="222" text-anchor="middle" fill="#64748b" font-size="9">PDF/OCR extraction</text>
+  <text x="120" y="237" text-anchor="middle" fill="#64748b" font-size="9">DOI audit &amp; evidence notes</text>
+
+  <rect x="215" y="175" width="170" height="72" rx="10" fill="#152238" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="300" y="202" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">🧪 experiment-designer</text>
+  <text x="300" y="222" text-anchor="middle" fill="#64748b" font-size="9">DOE &amp; factorial designs</text>
+  <text x="300" y="237" text-anchor="middle" fill="#64748b" font-size="9">power analysis &amp; prereg</text>
+
+  <rect x="395" y="175" width="170" height="72" rx="10" fill="#152238" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="202" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">📊 data-analysis</text>
+  <text x="480" y="222" text-anchor="middle" fill="#64748b" font-size="9">regression &amp; GLM</text>
+  <text x="480" y="237" text-anchor="middle" fill="#64748b" font-size="9">survival &amp; time series</text>
+
+  <rect x="575" y="175" width="170" height="72" rx="10" fill="#152238" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="660" y="202" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">✍️ paper-writing</text>
+  <text x="660" y="222" text-anchor="middle" fill="#64748b" font-size="9">citation audit (IEEE/GB/APA)</text>
+  <text x="660" y="237" text-anchor="middle" fill="#64748b" font-size="9">DOCX/LaTeX format check</text>
+
+  <rect x="755" y="175" width="170" height="72" rx="10" fill="#152238" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="840" y="202" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">📈 scientific-plot</text>
+  <text x="840" y="222" text-anchor="middle" fill="#64748b" font-size="9">publication-ready charts</text>
+  <text x="840" y="237" text-anchor="middle" fill="#64748b" font-size="9">6 templates &amp; journal themes</text>
+
+  <!-- Extension Skills Row -->
+  <g stroke="#059669" stroke-width="1" opacity="0.4" fill="none">
+    <line x1="480" y1="140" x2="100" y2="275"/>
+    <line x1="480" y1="140" x2="240" y2="275"/>
+    <line x1="480" y1="140" x2="380" y2="275"/>
+    <line x1="480" y1="140" x2="520" y2="275"/>
+    <line x1="480" y1="140" x2="660" y2="275"/>
+    <line x1="480" y1="140" x2="810" y2="275"/>
+  </g>
+
+  <rect x="35" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="100" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">🔍 causal-inference</text>
+  <text x="100" y="318" text-anchor="middle" fill="#4b5563" font-size="8">DAG &middot; PSM &middot; DiD</text>
+
+  <rect x="175" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="240" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">📋 systematic-review</text>
+  <text x="240" y="318" text-anchor="middle" fill="#4b5563" font-size="8">PRISMA &middot; meta-analysis</text>
+
+  <rect x="315" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="380" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">📐 survey-psych</text>
+  <text x="380" y="318" text-anchor="middle" fill="#4b5563" font-size="8">EFA &middot; Cronbach &middot; Rasch</text>
+
+  <rect x="455" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="520" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">🔄 reproduction</text>
+  <text x="520" y="318" text-anchor="middle" fill="#4b5563" font-size="8">repo probe &middot; compare</text>
+
+  <rect x="595" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="660" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">🏗️ knowledge-graph</text>
+  <text x="660" y="318" text-anchor="middle" fill="#4b5563" font-size="8">concept graphs &middot; RDF</text>
+
+  <rect x="755" y="275" width="130" height="56" rx="8" fill="#0d2818" stroke="#059669" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="820" y="298" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">📝 md2latex</text>
+  <text x="820" y="318" text-anchor="middle" fill="#4b5563" font-size="8">MD&rarr;LaTeX &middot; theorems</text>
+
+  <!-- Domain Skills Row -->
+  <rect x="50" y="360" width="155" height="48" rx="8" fill="#1a1510" stroke="#d97706" stroke-width="1" filter="url(#shadow)"/>
+  <text x="127" y="382" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">🤖 ML Research</text>
+  <text x="127" y="400" text-anchor="middle" fill="#6b7280" font-size="8">splits &middot; baselines &middot; ablation</text>
+
+  <rect x="215" y="360" width="155" height="48" rx="8" fill="#1a1510" stroke="#d97706" stroke-width="1" filter="url(#shadow)"/>
+  <text x="292" y="382" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">🧬 Biomedical</text>
+  <text x="292" y="400" text-anchor="middle" fill="#6b7280" font-size="8">endpoints &middot; safety &middot; registry</text>
+
+  <rect x="380" y="360" width="155" height="48" rx="8" fill="#1a1510" stroke="#d97706" stroke-width="1" filter="url(#shadow)"/>
+  <text x="457" y="382" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">⚗️ Chemistry</text>
+  <text x="457" y="400" text-anchor="middle" fill="#6b7280" font-size="8">reagents &middot; analytics &middot; hazard</text>
+
+  <rect x="545" y="360" width="155" height="48" rx="8" fill="#1a1510" stroke="#d97706" stroke-width="1" filter="url(#shadow)"/>
+  <text x="622" y="382" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">🔩 Materials</text>
+  <text x="622" y="400" text-anchor="middle" fill="#6b7280" font-size="8">formulation &middot; process &middot; char.</text>
+
+  <rect x="710" y="360" width="180" height="48" rx="8" fill="#1a1510" stroke="#d97706" stroke-width="1" filter="url(#shadow)"/>
+  <text x="800" y="382" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">🏛️ Social Science</text>
+  <text x="800" y="400" text-anchor="middle" fill="#6b7280" font-size="8">sampling &middot; measurement &middot; ethics</text>
+
+  <!-- Footer -->
+  <line x1="40" y1="435" x2="920" y2="435" stroke="#334155" stroke-width="1"/>
+  <text x="480" y="465" text-anchor="middle" fill="#475569" font-size="11" font-weight="500">Each skill is self-contained &middot; Zero cross-skill dependencies &middot; Apache-2.0</text>
+  <text x="480" y="490" text-anchor="middle" fill="#334155" font-size="10">Claude Code &middot; OpenCode &middot; Codex &middot; Gemini CLI &middot; Cursor</text>
+
+  <!-- Legend -->
+  <rect x="50" y="510" width="12" height="12" rx="2" fill="#6366f1"/>
+  <text x="68" y="521" fill="#94a3b8" font-size="9">Core Skills</text>
+  <rect x="160" y="510" width="12" height="12" rx="2" fill="#059669"/>
+  <text x="178" y="521" fill="#94a3b8" font-size="9">Extension Skills</text>
+  <rect x="290" y="510" width="12" height="12" rx="2" fill="#d97706"/>
+  <text x="308" y="521" fill="#94a3b8" font-size="9">Domain-specific</text>
+</svg>
