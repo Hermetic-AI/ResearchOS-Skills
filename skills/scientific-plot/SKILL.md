@@ -3,9 +3,9 @@ name: scientific-plot
 description: Create publication-ready research figures from CSV, including grouped bars, regression scatterplots, line and paired-point plots, boxplots, violin plots, heatmaps, forest plots, Kaplan-Meier curves, journal themes, named palettes, significance brackets, multi-panels, and SVG/PDF/300-DPI export; also generate Excalidraw/SVG schematics and check Mermaid, Graphviz, or PlantUML sources. Use for research figures, paper illustrations, statistical charts, significance stars, error bars, boxplots, violin plots, heatmaps, forest plots, survival curves, 300dpi export, flowcharts, architecture diagrams, Nature-style figures, or drawing a diagram. Not for choosing formal statistical tests or cleaning data (data-analysis-assistant), or writing captions and manuscript prose (paper-writing-assistant).
 ---
 
-# Scientific Plot (科研绘图)
+# Scientific Plot
 
-For researchers who need figures: publication-grade statistical charts (Prism/Origin/Excel replacements), hand-drawn-style schematics (Excalidraw/SVG), and code-as-diagram sources (mermaid/graphviz/plantuml). Reports to the user are in Chinese by default; figure labels and artifacts follow the artifact's language (journal figures are usually English).
+For researchers who need figures: publication-grade statistical charts (Prism/Origin/Excel replacements), hand-drawn-style schematics (Excalidraw/SVG), and code-as-diagram sources (mermaid/graphviz/plantuml). Reports to the user are in English by default; figure labels and artifacts follow the artifact's language (journal figures are usually English).
 
 **Global conventions**
 - **Draw, don't compute**: this skill renders figures. If the user has no test results yet and asks *which* test to run, hand off to data-analysis-assistant; use `--compare-groups` here only for quick in-figure star brackets.
@@ -53,7 +53,7 @@ Use `python3 scripts/palette_audit.py --colors "#0072B2,#E69F00,#009E73"` to scr
 
    Template design details (when violin beats boxplot, field requirements) — **read `references/chart-templates.md` only when unsure which template fits or a render looks wrong**.
 2. **Pick a journal theme**: `nature` (7 pt body / 8 pt title, 89 mm single / 183 mm double column), `science` (7–9 pt, no grid, outward ticks), `ieee` (grayscale, dash/hatch series, print-safe), `prism` (default colors, slides/demos). Full parameter tables and the pre-submission checklist — **read `references/journal-themes.md` only when preparing a submission figure or the user names a journal**.
-3. **Pick series colors (optional)**: `--palette NAME` overrides the theme's default colors with any of 227 named discrete schemes (`npg`, `aaas`, `nejm`, `lancet`, `jama`, `Okabe-Ito`, curated `zhihu-*` top-journal combos, …); `--list-palettes` browses them. Palette and theme are orthogonal (colors vs typography). Selection guidance, colorblind-safety rules, and `--cmap` advice for heatmaps — **read `references/color-palettes.md` when the user asks about 配色 or you are unsure which palette fits**.
+3. **Pick series colors (optional)**: `--palette NAME` overrides the theme's default colors with any of 227 named discrete schemes (`npg`, `aaas`, `nejm`, `lancet`, `jama`, `Okabe-Ito`, curated `zhihu-*` top-journal combos, …); `--list-palettes` browses them. Palette and theme are orthogonal (colors vs typography). Selection guidance, colorblind-safety rules, and `--cmap` advice for heatmaps — **read `references/color-palettes.md` when the user asks about color schemes or you are unsure which palette fits**.
 4. **Render**:
    `python3 scripts/plot_chart.py data.csv --template grouped_bar --x condition --y score --group treatment --error sem --theme nature --column single --out fig1`
    Writes `fig1.svg`, `fig1.pdf`, `fig1.png` (300 DPI), `fig1.stats.json`, and a schema-versioned `fig1.manifest.json`. For TIFF/EPS submission requirements, use `--formats svg,pdf,tiff,eps` (TIFF is 300 DPI). Existing outputs require explicit `--force`. For formal brackets, use `--statistics-source stat-results.json --star-map "A>B=primary;A>C=secondary"`; the plotter resolves stable result IDs, prefers adjusted p-values, and cannot combine this path with exploratory `--compare-groups`.
@@ -88,7 +88,7 @@ No renderer lives in this environment, so scripts only *check and save* source: 
 - `references/chart-templates.md` — six template deep-dives: data shape, required columns, design decisions. Read when picking or debugging a template.
 - `references/journal-themes.md` — full theme parameter tables (font sizes, line widths, palettes, spine/tick rules, mm↔inch) and the pre-submission checklist. Read for submission figures.
 - `references/significance.md` — star rules, test selection, Holm multiple-comparison reminder, bracket layout algorithm. Read when star brackets are requested.
-- `references/color-palettes.md` — palette selection guide: category-count and colorblind-safety rules, journal-matched schemes (npg/aaas/nejm/lancet/jama), recommended workhorses, `--cmap` advice for continuous data. Read when the user asks about 配色 or a palette choice is unclear.
+- `references/color-palettes.md` — palette selection guide: category-count and colorblind-safety rules, journal-matched schemes (npg/aaas/nejm/lancet/jama), recommended workhorses, `--cmap` advice for continuous data. Read when the user asks about color schemes or a palette choice is unclear.
 - `references/diagram-formats.md` — .excalidraw.md structure, mermaid/DOT/plantuml patterns and syntax pitfalls. Read for tier-2/3 work.
 - `references/artifact-contracts.md` — formal `stat-results` input and reproducible `figure-manifest` output. Read for cross-skill or submission workflows.
 - `examples/tier1/` — worked examples for the six templates (example CSVs + rendered PNGs, plus three palette effect images `p_npg/p_nejm/p_zhihu.png`); usable as visual baselines.

@@ -35,21 +35,21 @@ Walk the matrix column by column and look for:
 
 ### Step 2 — Enumerate gap candidates
 For each signal from Step 1, write one candidate in the form:
-"在 X 条件下，用 Y 方法解决 Z 问题，目前无人做 / 只有 W 做过但有缺陷 Q".
-A candidate without an "依据" pointer to ≥ 2 matrix rows is speculation — keep it
-but label it `[弱依据]`.
+"Under condition X, using method Y to solve problem Z — currently nobody has done it / only W has done it but with flaw Q."
+A candidate without an "evidence" pointer to ≥ 2 matrix rows is speculation — keep it
+but label it `[weak evidence]`.
 
 ### Step 3 — Gap-type classification
 
 | Type | Definition | Example | Typical risk |
 |---|---|---|---|
-| **方法空白** Method | known problem, but an applicable method family never tried | diffusion models never used for this PDE | may have been tried and failed silently |
-| **数据空白** Data | method exists, but no dataset/benchmark for the real setting | models trained on clean data, no noisy-domain benchmark | data collection cost dominates |
-| **人群空白** Population | evidence comes from one narrow population; others never studied | findings from WEIRD undergrad samples; models trained on adult data, deployed on children | "new population" alone may be judged incremental |
-| **情境迁移空白** Setting-transfer | validated in one context, untested where conditions differ | works on English, untested on low-resource languages; lab results, no field trial | "just transfer" may be trivial and unpublishable — must predict *why* transfer should break or hold |
-| **理论空白** Theory | empirical success/failure without explanation | method works, no convergence or mechanism analysis | hard to scope for a master's thesis |
-| **评估空白** Evaluation | shared metric/protocol is flawed or gamed | SOTA driven by test-set leakage; accuracy on imbalanced data | community may reject the critique |
-| **负结果空白** Negative-result | a plausible approach was likely tried and failed, but nothing is published — the failure is invisible | everyone uses method family A for X; nobody reports whether the obvious family B fails | you may be re-walking into the same wall; find indirect evidence first |
+| **Method gap** Method | known problem, but an applicable method family never tried | diffusion models never used for this PDE | may have been tried and failed silently |
+| **Data gap** Data | method exists, but no dataset/benchmark for the real setting | models trained on clean data, no noisy-domain benchmark | data collection cost dominates |
+| **Population gap** Population | evidence comes from one narrow population; others never studied | findings from WEIRD undergrad samples; models trained on adult data, deployed on children | "new population" alone may be judged incremental |
+| **Setting-transfer gap** Setting-transfer | validated in one context, untested where conditions differ | works on English, untested on low-resource languages; lab results, no field trial | "just transfer" may be trivial and unpublishable — must predict *why* transfer should break or hold |
+| **Theory gap** Theory | empirical success/failure without explanation | method works, no convergence or mechanism analysis | hard to scope for a master's thesis |
+| **Evaluation gap** Evaluation | shared metric/protocol is flawed or gamed | SOTA driven by test-set leakage; accuracy on imbalanced data | community may reject the critique |
+| **Negative-result gap** Negative-result | a plausible approach was likely tried and failed, but nothing is published — the failure is invisible | everyone uses method family A for X; nobody reports whether the obvious family B fails | you may be re-walking into the same wall; find indirect evidence first |
 
 Population and setting-transfer gaps look similar but fail differently: a
 population gap asks "does the effect exist in group Y at all", a transfer gap
@@ -63,26 +63,26 @@ Before writing up a candidate, collect the type-specific evidence:
 
 | Type | Required evidence that the gap is real |
 |---|---|
-| 方法空白 | The method family appears **nowhere** in the matrix rows, AND a search of the last 2 years' preprints finds no attempt (silently-failed risk). State the method's applicability premise in one line — why it *should* work here. |
-| 数据空白 | ≥ 2 matrix rows work around the missing data (proxies, synthetic substitutes, clean-data-only training) — the workaround is the evidence. A gap nobody works around is usually a gap nobody needs. |
-| 人群空白 | Matrix's population column is ≥ 80% monoculture, AND the excluded population is named explicitly with a reason to expect difference (physiology, culture, age), not just "hasn't been done". |
-| 情境迁移空白 | The boundary condition is identified (what exactly changes between contexts: distribution shift, resource constraints, regulation), AND ≥ 1 row documents a failed or degraded transfer in an analogous case. |
-| 理论空白 | The empirical effect is replicated across ≥ 2 independent rows (an unreplicated effect needs replication, not theory), AND existing theory rows fail to cover it. |
-| 评估空白 | The flaw is demonstrable: you can point to the leakage path, the gaming behavior, or a concrete case where the metric ranks methods wrongly. Suspicion without a mechanism is a complaint, not a gap. |
-| 负结果空白 | Indirect evidence only: the approach is conspicuously absent despite being obvious; related papers cite "preliminary experiments did not improve" without details; practitioners' forums/report mention failures. Label `[间接证据]` and plan a cheap probe experiment as the first step. |
+| Method gap | The method family appears **nowhere** in the matrix rows, AND a search of the last 2 years' preprints finds no attempt (silently-failed risk). State the method's applicability premise in one line — why it *should* work here. |
+| Data gap | ≥ 2 matrix rows work around the missing data (proxies, synthetic substitutes, clean-data-only training) — the workaround is the evidence. A gap nobody works around is usually a gap nobody needs. |
+| Population gap | Matrix's population column is ≥ 80% monoculture, AND the excluded population is named explicitly with a reason to expect difference (physiology, culture, age), not just "hasn't been done". |
+| Setting-transfer gap | The boundary condition is identified (what exactly changes between contexts: distribution shift, resource constraints, regulation), AND ≥ 1 row documents a failed or degraded transfer in an analogous case. |
+| Theory gap | The empirical effect is replicated across ≥ 2 independent rows (an unreplicated effect needs replication, not theory), AND existing theory rows fail to cover it. |
+| Evaluation gap | The flaw is demonstrable: you can point to the leakage path, the gaming behavior, or a concrete case where the metric ranks methods wrongly. Suspicion without a mechanism is a complaint, not a gap. |
+| Negative-result gap | Indirect evidence only: the approach is conspicuously absent despite being obvious; related papers cite "preliminary experiments did not improve" without details; practitioners' forums/report mention failures. Label `[indirect evidence]` and plan a cheap probe experiment as the first step. |
 
 ### Step 3c — Gap statement sentence templates
 
 A usable gap statement names: condition + missing thing + why it matters +
 evidence. Templates (fill the slots, cut what does not apply):
 
-- **方法空白**: "针对 <问题Z>，现有工作均基于 <方法族A>（矩阵行 <…>），尚无研究尝试 <方法族B>；考虑到 <B的适配前提>，这一空白值得探索。"
-- **数据空白**: "现有 <方法/模型> 均在 <理想条件数据> 上验证（行 <…>），缺乏 <真实场景> 的公开基准，导致 <具体后果：无法评估/结果被高估>。"
-- **人群空白**: "已有证据几乎全部来自 <人群P>（矩阵人群列 <…>）；由于 <预期差异的理由>，结论能否推广到 <人群Q> 尚属未知。"
-- **情境迁移空白**: "<方法/效应> 已在 <情境A> 中确立（行 <…>），但 <情境B> 改变了 <边界条件>；类比案例 <行X> 显示迁移后性能下降，因此直接迁移的可靠性存疑。"
-- **理论空白**: "<现象> 已被多项独立工作复现（行 <…>），但其 <机制/收敛性/边界> 缺乏理论解释，限制了 <外推/改进>。"
-- **评估空白**: "该领域普遍采用 <协议/指标>（行 <…>），但存在 <具体缺陷机制>，使得 <被误导的结论>；需要 <修正的协议> 重新评估。"
-- **负结果空白**: "尽管 <方法族B> 是 <问题Z> 的自然候选，文献中无任何尝试报告（含失败报告）；间接证据 <…> 提示其可能失败，但失败原因未知。"
+- **Method gap**: "For <problem Z>, existing work is all based on <method family A> (matrix rows <…>); no study has yet tried <method family B>. Given <B's applicability premise>, this gap is worth exploring."
+- **Data gap**: "Existing <methods/models> are all validated on <ideal-condition data> (rows <…>); there is no public benchmark for <real-world setting>, leading to <specific consequence: unable to evaluate / results overestimated>."
+- **Population gap": "Existing evidence comes almost entirely from <population P> (matrix population column <…>); because of <reason to expect difference>, it remains unknown whether the conclusions generalize to <population Q>."
+- **Setting-transfer gap": "<Method/effect> has been established in <setting A> (rows <…>), but <setting B> changes <boundary condition>; the analogous case <row X> shows degraded performance after transfer, so the reliability of direct transfer is doubtful."
+- **Theory gap": "<Phenomenon> has been replicated by multiple independent studies (rows <…>), but its <mechanism/convergence/boundary> lacks theoretical explanation, limiting <extrapolation/improvement>."
+- **Evaluation gap": "The field commonly adopts <protocol/metric> (rows <…>), but a <specific flaw mechanism> exists, leading to <misled conclusion>; a <corrected protocol> is needed for re-evaluation."
+- **Negative-result gap": "Although <method family B> is a natural candidate for <problem Z>, the literature reports no attempt (including failure reports); indirect evidence <…> suggests it may fail, but the reason for failure is unknown."
 
 Every statement ends with the evidence pointer; a gap statement without a
 matrix-row reference is an opinion.
@@ -91,37 +91,37 @@ matrix-row reference is an opinion.
 
 Score each candidate on four axes, then give one verdict:
 
-1. **数据可得性**: does the needed data/benchmark exist or can it be built within
+1. **Data availability**: does the needed data/benchmark exist or can it be built within
    the user's timeline? Non-negotiable.
-2. **方法成熟度**: are the required building blocks published + implemented
+2. **Method maturity**: are the required building blocks published + implemented
    (usable code), or would the user be building infrastructure from scratch?
-3. **工作量 vs 学位要求**: a master's thesis ≈ 1 well-scoped contribution;
+3. **Effort vs degree requirements**: a master's thesis ≈ 1 well-scoped contribution;
    a PhD chapter ≈ 2–3. Reject candidates needing a new field.
-4. **撞车风险**: is an active group obviously working on this (recent preprints,
+4. **Competition risk**: is an active group obviously working on this (recent preprints,
    workshop tracks)? Crowded ≠ impossible, but the differentiation must be named.
 
 Verdicts:
-- **可做** — all four axes pass; name the first concrete step.
-- **谨慎** — one axis weak; state the mitigation (narrow scope, find collaborator,
+- **Feasible** — all four axes pass; name the first concrete step.
+- **Cautious** — one axis weak; state the mitigation (narrow scope, find collaborator,
   reproduce first).
-- **不建议** — two+ axes fail; say why plainly. A candid 不建议 is a valuable
+- **Not recommended** — two+ axes fail; say why plainly. A candid "not recommended" is a valuable
   deliverable, not a failure of the analysis.
 
 ### Output format (Chinese report)
 
 ```
-## 研究空白分析报告（基于 N 篇文献对比矩阵）
+## Research Gap Analysis Report (based on N-paper comparison matrix)
 
-### 候选空白 1：<一句话描述>
-- 依据：矩阵行 <A, B, C> — <哪一列的信号>
-- 类型：方法空白 / 数据空白 / 人群空白 / 情境迁移空白 / 理论空白 / 评估空白 / 负结果空白
-- 可行性：可做（or 谨慎 / 不建议）
-  - 数据可得性：…
-  - 方法成熟度：…
-  - 工作量匹配：…
-  - 撞车风险：…
-- 与现有文献的区分点：<一句话>
-- 建议第一步：<一个可在两周内完成的具体动作>
+### Candidate gap 1: <one-sentence description>
+- Evidence: matrix rows <A, B, C> — <which column's signal>
+- Type: Method gap / Data gap / Population gap / Setting-transfer gap / Theory gap / Evaluation gap / Negative-result gap
+- Feasibility: Feasible (or Cautious / Not recommended)
+  - Data availability: …
+  - Method maturity: …
+  - Effort match: …
+  - Competition risk: …
+- Differentiation from existing literature: <one sentence>
+- Suggested first step: <one concrete action completable within two weeks>
 
-（按 可行性 × 价值 排序；弱依据候选单列在最后）
+(Sorted by feasibility × value; weak-evidence candidates listed last)
 ```

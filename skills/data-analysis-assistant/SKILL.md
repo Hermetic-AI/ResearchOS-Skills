@@ -3,11 +3,11 @@ name: data-analysis-assistant
 description: Analyze collected research data through profiling, cleaning, statistical tests, regression/GLM/ANCOVA, GEE/mixed models, Cox survival and competing risks, SARIMAX time series, panel fixed effects, assumptions, effect sizes, intervals, multiplicity, and structured reporting. Use for analyzing experimental data, data profiling, data cleaning, regression, GLM, ANCOVA, repeated measures, mixed-effects models, Cox models, survival analysis, competing risks, time series, panel data, significance testing, p-values, effect sizes, confidence intervals, multiple-comparison correction, or analyze my dataset. Not for pre-data experiment design, literature reading, figures, manuscript prose, knowledge graphs, or reproducing published code.
 ---
 
-# Data Analysis Assistant (数据处理分析)
+# Data Analysis Assistant
 
-For researchers (grad students) working with experimental data. Reports to the user are in Chinese by default; content written into artifacts follows the artifact's language.
+For researchers (grad students) working with experimental data. Reports to the user are in English by default; content written into artifacts follows the artifact's language.
 
-> **NOT for 综述/文献阅读/论文写作** — 该 skill 仅用于已收集实验数据的统计分析与清洗。文献阅读用 literature-reader，论文写作用 paper-writing-assistant。
+> **NOT for literature reviews / paper reading / manuscript writing** — this skill is only for statistical analysis and cleaning of already-collected experimental data. Use literature-reader for paper reading and paper-writing-assistant for manuscript writing.
 
 **Global conventions**
 - **Report first, modify later**: produce findings and suggestions; never overwrite the user's raw data files. Cleaning runs through `scripts/clean_csv.py` with an explicit rules file, always writing a new `*_clean.csv` plus a cleaning log.
@@ -48,7 +48,7 @@ Use when the user has data (CSV) and asks about data quality, cleaning, outliers
 3. **Choose the test**: read `references/test-selection.md` — **only when the analysis reaches test selection**. Confirm the research question, group/value columns, independent vs paired samples with the user. Apply the decision tree (normality via Shapiro, variance homogeneity via Levene).
 4. **Run the test**: requires scipy + numpy — install once with `pip install scipy numpy`. Then e.g.
    `python3 scripts/stat_test.py <clean.csv> --test ttest --value score --group group_col --artifact-out stat-results.json --result-id primary`
-   Output is JSON (`--format json` default) or Markdown (`--format md`) with statistic, exact p, effect size, 95% CI (ttest/pearson; `--ci` changes the level), and a fill-in Chinese conclusion template.
+   Output is JSON (`--format json` default) or Markdown (`--format md`) with statistic, exact p, effect size, 95% CI (ttest/pearson; `--ci` changes the level), and a fill-in English conclusion template.
 5. **Correct for multiple comparisons** whenever more than one test ran on the same dataset:
    `python3 scripts/stat_test.py --test adjust --method holm --pvalues "0.01,0.04,0.20" --labels "m1,m2,m3"`
    Method choice (Bonferroni vs Holm vs BH-FDR) per the table in `references/reporting.md`.
@@ -60,7 +60,7 @@ Use when the user has data (CSV) and asks about data quality, cleaning, outliers
 11. **Impute only with an explicit missing-data rationale**: read `references/data-cleaning.md` and `references/resampling-robust-and-bayesian.md`, choose numeric predictors deliberately, then run `scripts/mice_impute.py`. It protects raw and derived outputs and produces one completed CSV plus `imputation-manifest`; do not mistake it for pooled MI inference.
 12. **Add the effect-size interval where the base test lacks one**: use `scripts/effect_size_ci.py` for Cohen's d, rank-biserial r, eta squared, Cramer's V, Pearson r, or Spearman rho. Read `references/resampling-robust-and-bayesian.md` first and preserve the scientific resampling unit.
 13. **Normalize non-CSV data before analysis**: use `scripts/tabular_io.py inspect` to write a `data-dictionary`, then `convert` only when a legacy CSV-only script needs a derived CSV. Preserve the source, never overwrite a derived output, and verify units/codes against the study protocol.
-14. **Report in Chinese**: read `references/reporting.md` — **only when writing up results**. It enforces the APA-7 completeness checklist (statistic + df, exact p, effect size with CI, descriptives, correction statement), exact-vs-threshold p rules, and the text/table/figure division of labor. Combine profile context + test results into a short report; if the result feeds a paper section, hand the numbers to the user or the paper-writing-assistant skill — this skill does not write paper prose.
+14. **Report in English**: read `references/reporting.md` — **only when writing up results**. It enforces the APA-7 completeness checklist (statistic + df, exact p, effect size with CI, descriptives, correction statement), exact-vs-threshold p rules, and the text/table/figure division of labor. Combine profile context + test results into a short report; if the result feeds a paper section, hand the numbers to the user or the paper-writing-assistant skill — this skill does not write paper prose.
 
 ## File index
 

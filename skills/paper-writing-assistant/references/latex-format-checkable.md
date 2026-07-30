@@ -1,36 +1,36 @@
-# LaTeX 格式检查：可静态核实 vs 需编译才能验
+# LaTeX Format Check: Verifiable Statically vs. Requiring Compilation
 
-功能三对 LaTeX 论文**只查源码能确定的项**。下表定死每类要求落到哪个命令/宏包，
-以及哪些要求源码里根本判断不了、必须编译成 PDF 再量。**不要对"需编译"项假装给出结论。**
+This feature checks only the items that **can be determined from the source code** of a LaTeX paper. The table below pins down which command/package each type of requirement maps to,
+and which requirements cannot be judged from the source at all and must be measured after compiling to PDF. **Do not pretend to give conclusions for "requires compilation" items.**
 
-## ✅ 源码可静态核实（在 .tex / 导言区里找证据）
+## ✅ Verifiable Statically from Source (find evidence in .tex / preamble)
 
-| 要求类别 | 查什么命令/宏包 | 说明 |
+| Requirement Category | What to Check | Notes |
 |---|---|---|
-| 基础字号(10/11/12pt) | `\documentclass[12pt]{...}` 选项 | 正文基准字号在类选项里 |
-| 纸张 | `\documentclass[a4paper]` 或 `geometry` 的 `a4paper` | |
-| 页边距 | `\usepackage[top=..,bottom=..,left=..,right=..]{geometry}` 或 `\geometry{}` | 有明确数值即可核 |
-| 行距 | `\usepackage{setspace}` + `\onehalfspacing`/`\doublespacing`/`\setstretch{1.5}`；或 `\linespread{1.5}`；或 `\renewcommand{\baselinestretch}{1.5}` | |
-| 中文字体 | `ctex`/`xeCJK` 的 `\setCJKmainfont{SimSun}`、`\setCJKmainfont[..]{}`；`\documentclass[fontset=..]` | 宋体/黑体等靠这些设定 |
-| 西文字体 | `\setmainfont{}`、`\usepackage{times/newtxtext/...}` | |
-| 标题层级与编号 | `\section/\subsection`、`\titleformat`(titlesec)、`secnumdepth` | 标题字号/加粗/居中若用 titlesec 定义即可核 |
-| 页码格式/位置 | `fancyhdr` 配置、`\pagenumbering{}`、`\thepage` | |
-| 图表题注 | `caption` 宏包选项、`\caption{}`、`\captionsetup{}` | 题注字号/标签名可核 |
-| 参考文献风格 | `\bibliographystyle{gbt7714-numerical/IEEEtran/...}`、`biblatex` 的 `style=` | 与功能二联动 |
-| 目录/摘要/关键词结构 | `\tableofcontents`、`abstract` 环境、`\keywords{}` | 存在性可核 |
+| Base font size (10/11/12pt) | `\documentclass[12pt]{...}` option | The base body font size is in the class option |
+| Paper size | `\documentclass[a4paper]` or `geometry`'s `a4paper` | |
+| Page margins | `\usepackage[top=..,bottom=..,left=..,right=..]{geometry}` or `\geometry{}` | Verifiable if explicit values are present |
+| Line spacing | `\usepackage{setspace}` + `\onehalfspacing`/`\doublespacing`/`\setstretch{1.5}`; or `\linespread{1.5}`; or `\renewcommand{\baselinestretch}{1.5}` | |
+| Chinese font | `ctex`/`xeCJK`'s `\setCJKmainfont{SimSun}`, `\setCJKmainfont[..]{}`; `\documentclass[fontset=..]` | SimSun/Hei etc. are set through these |
+| Western font | `\setmainfont{}`, `\usepackage{times/newtxtext/...}` | |
+| Section heading levels and numbering | `\section/\subsection`, `\titleformat`(titlesec), `secnumdepth` | Heading size/bold/centering defined via titlesec is verifiable |
+| Page number format/position | `fancyhdr` config, `\pagenumbering{}`, `\thepage` | |
+| Figure/table captions | `caption` package options, `\caption{}`, `\captionsetup{}` | Caption size/label name verifiable |
+| Bibliography style | `\bibliographystyle{gbt7714-numerical/IEEEtran/...}`, `biblatex`'s `style=` | Linked with feature two |
+| TOC/abstract/keywords structure | `\tableofcontents`, `abstract` environment, `\keywords{}` | Existence verifiable |
 
-## ⚠️ 需编译成 PDF 才能验（源码给不出结论——如实告知，别猜）
+## ⚠️ Requires Compiling to PDF to Verify (source cannot give a conclusion — state honestly, do not guess)
 
-- 正文**实际渲染**的字号/行距（被多个宏包、局部命令、类默认叠加后的最终值）。
-- 每页**实际**版心尺寸、页面是否溢出边界（overfull/underfull box）。
-- 标题、图表在页面上的**真实位置**、是否跨页、图表浮动到哪一页。
-- 总页数、每章起始页、目录页码是否对齐。
-- 中文字体是否真的嵌入、缺字/回退字体问题。
-- 孤行寡行（widow/orphan）、断字。
+- The **actual rendered** body font size/line spacing (final value after multiple packages, local commands, and class defaults are layered).
+- The **actual** text area size per page, whether the page overflows its boundaries (overfull/underfull box).
+- The **true position** of headings, figures, and tables on the page, whether they cross pages, which page floats land on.
+- Total page count, each chapter's starting page, whether TOC page numbers align.
+- Whether Chinese fonts are actually embedded, missing glyphs / fallback font issues.
+- Widows/orphans, hyphenation.
 
-> 报告里对这些项统一写：**"该项需编译 PDF 后测量，源码无法静态判定；若需核实请提供编译后的 PDF 或在本地 `xelatex` 编译后告知实测值。"**
+> In the report, uniformly write for these items: **"This item requires measuring after compiling to PDF; the source cannot determine it statically. If verification is needed, please provide the compiled PDF or run a local `xelatex` compilation and report the measured values."**
 
-## 检查方法提示
-- 先读主 `.tex` 和被 `\input/\include` 的导言区文件、以及自定义 `.cls/.sty`（若随论文附带）。
-- `\documentclass` 的类（如学校模板 `xxthesis.cls`）常已封装大量格式，命中要求要去 `.cls` 里找定义，找不到则归入"由模板类决定，需查模板文档或编译核实"。
-- 抓证据要给出**文件名+命令原文**，方便学生定位修改。
+## Checking Method Tips
+- First read the main `.tex` and the preamble files pulled in by `\input/\include`, as well as any custom `.cls/.sty` (if bundled with the paper).
+- The class of `\documentclass` (e.g. a university template `xxthesis.cls`) often encapsulates a large amount of formatting; if a requirement is met, look for the definition in the `.cls`. If not found, classify it as "determined by the template class; consult the template documentation or verify by compiling."
+- When capturing evidence, provide **file name + original command text** so the student can locate and modify it.

@@ -13,13 +13,13 @@ empty regions visible at a glance. Everything here serves that one job.
 
 | Dimension | What goes in the cell | Notes |
 |---|---|---|
-| 研究问题 Question | one sentence | the *technical* gap addressed, not just the topic |
-| 方法 Method | method class + key design | e.g. "GNN + sparse attention" |
-| 数据集·对象 Data | dataset names, size, domain | shared datasets → cluster signal |
-| 核心结论 Main claim | one sentence, with number | always quote with comparator |
-| 证据类型 Evidence | simulation / empirical / theoretical / benchmark / review | mark `(仅摘要)` if abstract-only |
-| 局限性 Limitation | most important caveat, one line | your judgment, not only the authors' |
-| 相关度 Relevance | 高/中/低 + one phrase | relative to the user's project |
+| Question | one sentence | the *technical* gap addressed, not just the topic |
+| Method | method class + key design | e.g. "GNN + sparse attention" |
+| Data | dataset names, size, domain | shared datasets → cluster signal |
+| Main claim | one sentence, with number | always quote with comparator |
+| Evidence | simulation / empirical / theoretical / benchmark / review | mark `(abstract-only)` if abstract-only |
+| Limitation | most important caveat, one line | your judgment, not only the authors' |
+| Relevance | high / medium / low + one phrase | relative to the user's project |
 
 ## 2. Discipline-specific dimension library
 
@@ -27,47 +27,47 @@ Pick the core set + 2–4 from the matching column. More than ~10 columns makes
 the matrix unreadable — cut before adding.
 
 ### ML / CS
-- **计算成本 Compute**: training/inference cost, hardware, parameters/FLOPs —
+- **Compute**: training/inference cost, hardware, parameters/FLOPs —
   papers hiding cost differences often win on budget, not method.
-- **开源情况 Artifacts**: code / weights / data released? license?
-- **基线强度 Baseline strength**: tuned contemporary baselines vs quoted old
+- **Artifacts**: code / weights / data released? license?
+- **Baseline strength**: tuned contemporary baselines vs quoted old
   numbers — the cheapest way results are inflated.
-- **评测协议 Protocol**: benchmark + split + metric; watch for
+- **Protocol**: benchmark + split + metric; watch for
   benchmark-specific tuning.
 
 ### Biomedical / experimental sciences
-- **样本量·功效 n / power**: cohort size, sites (single vs multi-center),
+- **n / power**: cohort size, sites (single vs multi-center),
   power analysis present?
-- **实验条件 Setting**: in vitro / in vivo / clinical phase; model organism;
+- **Setting**: in vitro / in vivo / clinical phase; model organism;
   apparatus.
-- **对照设计 Controls**: placebo / active control / standard-of-care;
+- **Controls**: placebo / active control / standard-of-care;
   blinding and randomization where applicable.
-- **终点指标 Endpoints**: primary endpoint and whether it is clinical or a
+- **Endpoints**: primary endpoint and whether it is clinical or a
   surrogate/proxy.
 
 ### Social sciences
-- **样本·人群 Population**: who, how sampled, WEIRD-sample warning, response
+- **Population**: who, how sampled, WEIRD-sample warning, response
   rate.
-- **识别策略 Identification**: RCT / IV / DID / RDD / correlational — the
+- **Identification**: RCT / IV / DID / RDD / correlational — the
   causal-claim ceiling is set here.
-- **测量 Measurement**: instrument, reliability/validity evidence, proxy vs
+- **Measurement**: instrument, reliability/validity evidence, proxy vs
   construct gap.
-- **稳健性 Robustness**: alternative specifications, sensitivity analyses.
+- **Robustness**: alternative specifications, sensitivity analyses.
 
 ### Engineering / applied
-- **工况 Conditions**: operating range, load, environment, scale (lab vs
+- **Conditions**: operating range, load, environment, scale (lab vs
   pilot vs field).
-- **性能指标 Performance**: the standard quantity in the field + units; a
+- **Performance**: the standard quantity in the field + units; a
   matrix without units is unusable.
-- **约束 Constraints**: cost, energy, weight, latency, safety standards met.
-- **验证方式 Validation**: simulation-only vs hardware prototype vs field
+- **Constraints**: cost, energy, weight, latency, safety standards met.
+- **Validation**: simulation-only vs hardware prototype vs field
   trial — the biggest confidence gap in the column.
 
 ### Humanities (adjust core set)
-- Replace Data with **材料/语料 Corpus**: sources, archives, editions.
-- Replace Method with **进路 Approach**: close reading / discourse analysis /
+- Replace Data with **Corpus**: sources, archives, editions.
+- Replace Method with **Approach**: close reading / discourse analysis /
   quantitative / comparative.
-- Add **解释框架 Framework**: the theoretical lens; conflicting lenses on the
+- Add **Framework**: the theoretical lens; conflicting lenses on the
   same corpus are the humanities' conflict cluster.
 
 ---
@@ -79,16 +79,16 @@ papers:
 
 | Matrix column | Note field source |
 |---|---|
-| 研究问题 | note §1, last sentence (technical gap) |
-| 方法 | note §2, the "关键设计" line |
-| 数据集·对象 | note §4 Data bullet |
-| 核心结论 | note §4 Key results (number + comparator only) |
-| 证据类型 | derived: §4 contents + `(仅摘要)` if no full read |
-| 局限性 | note §5 "My assessment" first item |
-| 相关度 | note header one-liner vs the user's project |
+| Question | note §1, last sentence (technical gap) |
+| Method | note §2, the "key design" line |
+| Data | note §4 Data bullet |
+| Main claim | note §4 Key results (number + comparator only) |
+| Evidence | derived: §4 contents + `(abstract-only)` if no full read |
+| Limitation | note §5 "My assessment" first item |
+| Relevance | note header one-liner vs the user's project |
 
 Papers without notes: fill from abstract + figures only, and mark the
-evidence cell `(仅摘要)`. Never upgrade an abstract-only cell to look like a
+evidence cell `(abstract-only)`. Never upgrade an abstract-only cell to look like a
 deep-read cell — sparsity is honest information.
 
 Cell discipline:
@@ -100,20 +100,20 @@ Cell discipline:
 
 ---
 
-## 4. Reading the finished matrix (横向观察 block)
+## 4. Reading the finished matrix (cross-row observation block)
 
-After the table, always write a short Chinese synthesis covering:
+After the table, always write a short synthesis covering:
 - **Clusters**: which papers share method class or dataset — they answer one
   question redundantly; cite the best, skim the rest.
 - **Conflicts**: see rules below.
 - **Load-bearing citations**: for each claim the user will reuse, which single
   row is the strongest support.
-- **Column-wide patterns**: e.g. "所有论文都在同一数据集上评测" — these feed
+- **Column-wide patterns**: e.g. "all papers evaluate on the same dataset" — these feed
   directly into gap analysis.
 
 ### Conflict-handling rules
-- Never average conflicting claims. Mark both cells `⚠️冲突` and diagnose in
-  the 横向观察 block.
+- Never average conflicting claims. Mark both cells `⚠️conflict` and diagnose in
+  the cross-row observation block.
 - Diagnose before judging — check in order:
   1. **Different data/split**: same dataset name, different split or version?
   2. **Different metric/protocol**: same metric name, different computation?

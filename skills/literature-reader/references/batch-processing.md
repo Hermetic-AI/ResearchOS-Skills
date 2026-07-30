@@ -1,20 +1,20 @@
-# 大规模文献集分批、恢复与增量更新
+# Batching, Recovery, and Incremental Updates for Large Literature Sets
 
-## 目录
+## Table of Contents
 
-- [目录隔离](#目录隔离)
-- [首次运行与分批](#首次运行与分批)
-- [恢复与增量更新](#恢复与增量更新)
-- [状态和失败处理](#状态和失败处理)
-- [交付检查](#交付检查)
+- [Directory Isolation](#directory-isolation)
+- [First Run and Batching](#first-run-and-batching)
+- [Recovery and Incremental Updates](#recovery-and-incremental-updates)
+- [Status and Failure Handling](#status-and-failure-handling)
+- [Delivery Checks](#delivery-checks)
 
-## 目录隔离
+## Directory Isolation
 
-原始语料目录只读，派生产物目录必须位于语料树之外。先创建两个明确目录，例如 `corpus/` 与 `derived/`；工具拒绝把输出放回 `corpus/`，不删除源文件，也不自动删除已经失去来源的旧产物。
+The raw corpus directory is read-only; the derived-output directory must live outside the corpus tree. Create two clearly defined directories first, e.g. `corpus/` and `derived/`; the tools refuse to write output back into `corpus/`, do not delete source files, and do not automatically delete old outputs whose source has disappeared.
 
-默认发现 `.pdf`、`.txt`、`.bib`、`.ris`、`.xml` 和 `.json`。Markdown 只有在显式 `--include '*.md'` 时处理，因为普通研究笔记不一定是参考文献列表。隐藏文件、越出根目录的链接和排除规则命中的文件会跳过。
+By default, `.pdf`, `.txt`, `.bib`, `.ris`, `.xml`, and `.json` are discovered. Markdown is only processed with an explicit `--include '*.md'`, because ordinary research notes are not necessarily reference lists. Hidden files, symlinks that escape the root directory, and files matching exclusion rules are skipped.
 
-## 首次运行与分批
+## First Run and Batching
 
 ```bash
 python3 scripts/batch_literature.py corpus \
@@ -22,43 +22,43 @@ python3 scripts/batch_literature.py corpus \
   --limit 100
 ```
 
-`--limit` 只处理指定数量的 pending/changed 文件，每个文件完成后原子更新 `derived/batch-state.json`。默认处理器：
+`--limit` processes only the specified number of pending/changed files, atomically updating `derived/batch-state.json` after each file completes. Default processors:
 
-- PDF → `pdf-extraction`；OCR 默认 `never`，只有显式 `--pdf-ocr auto|always` 才启用。
-- `.txt` → 参考文献元数据提取 JSON。
-- BibTeX/RIS/EndNote XML/JSON → 规范化 `bibliography-library` 和转换 manifest。
+- PDF → `pdf-extraction`; OCR defaults to `never` and is enabled only with an explicit `--pdf-ocr auto|always`.
+- `.txt` → reference metadata extraction JSON.
+- BibTeX/RIS/EndNote XML/JSON → normalized `bibliography-library` and conversion manifest.
 
-用可重复 `--include`/`--exclude` 缩小范围，例如 `--include 'topic-a/*.pdf' --exclude '**/archive/*'`。默认单文件上限 50 MiB；`--max-file-mib` 可调整。超限文件记录为 `skipped-large`，不读取全文哈希、不处理。
+Use repeatable `--include`/`--exclude` to narrow the scope, e.g. `--include 'topic-a/*.pdf' --exclude '**/archive/*'`. The default per-file ceiling is 50 MiB; `--max-file-mib` adjusts it. Oversized files are recorded as `skipped-large`, without reading the full-text hash or processing.
 
-## 恢复与增量更新
+## Recovery and Incremental Updates
 
-已有 checkpoint 时必须显式 `--force`，表示允许更新状态和已经发生内容变化的派生产物：
+When a checkpoint already exists, an explicit `--force` is required, signaling permission to update the state and any derived outputs whose content has changed:
 
 ```bash
 python3 scripts/batch_literature.py corpus --out-dir derived --limit 100 --force
 ```
 
-每个相对路径保存 SHA-256、大小、处理类型、稳定输出名和状态。相同哈希且产物仍在的项目变为 `unchanged`；新增或内容变化的项目重新处理；已删除源项目变为 `removed`，但旧产物保留，等待人工归档。不要把时间戳当增量依据。
+Each relative path stores its SHA-256, size, processing type, stable output name, and status. Projects with an identical hash and whose output still exists become `unchanged`; newly added or content-changed projects are re-processed; projects whose source has been deleted become `removed`, but old outputs are retained for manual archiving. Do not use timestamps as the basis for incrementality.
 
-路径稳定名由规范化 stem 和相对路径哈希组成，因此同名文件不会碰撞。内容改变仍写回同一派生路径，便于下游引用；只有带 `--force` 的恢复运行才能覆盖它。
+The stable name is composed of the normalized stem and a hash of the relative path, so identically named files do not collide. Content changes still write back to the same derived path, making downstream references convenient; only a recovery run with `--force` can overwrite it.
 
-## 状态和失败处理
+## Status and Failure Handling
 
-- `success`：本次成功处理。
-- `unchanged`：哈希相同且产物存在，未重跑。
-- `pending`：受 `--limit` 限制，留待下一批。
-- `failed`：子处理器非零退出；checkpoint 保留截断后的 stdout/stderr。
-- `skipped-large`：超过文件上限。
-- `removed`：源文件消失，派生产物未删除。
+- `success`: processed successfully this run.
+- `unchanged`: identical hash and output exists; not re-run.
+- `pending`: constrained by `--limit`; left for the next batch.
+- `failed`: sub-processor exited non-zero; the checkpoint retains truncated stdout/stderr.
+- `skipped-large`: exceeded the file size ceiling.
+- `removed`: source file disappeared; derived output not deleted.
 
-相同哈希的失败项默认不反复执行；确认依赖或配置已修复后添加 `--retry-failed --force`。源内容改变会自动再次处理。任何 `failed` 使批处理返回非零；仅有 pending、removed 或 skipped-large 不冒充全部完成，应检查 summary。
+Failed items with the same hash are not re-run by default; add `--retry-failed --force` after confirming that dependencies or configuration have been fixed. Source content changes automatically trigger re-processing. Any `failed` item causes the batch to return non-zero; pending, removed, or skipped-large alone do not masquerade as full completion — check the summary.
 
-新建 checkpoint 时若稳定目标文件已经存在，工具默认失败而不覆盖。检查来源后，以 `--force` 重新运行才允许替换。checkpoint 的 source/output root 与新命令不一致时拒绝恢复，防止串库。
+When creating a new checkpoint, if the stable target file already exists, the tool fails by default instead of overwriting. After inspecting the source, re-run with `--force` to permit replacement. If the checkpoint's source/output root differs from the new command, recovery is refused to prevent cross-contamination between libraries.
 
-## 交付检查
+## Delivery Checks
 
 ```bash
 python tools/validate_artifact.py derived/batch-state.json --type literature-batch
 ```
 
-交付前要求：`pending == 0`、`failed == 0`；逐项说明 `skipped-large` 和 `removed`；抽查每种处理器至少一个输出；对 PDF 保留 OCR warnings；对文献库再运行 bibliography audit。checkpoint 是运行账本，不是最终综述，也不证明每篇文献已经精读。
+Pre-delivery requirements: `pending == 0` and `failed == 0`; explain each `skipped-large` and `removed` item individually; spot-check at least one output from each processor type; for PDFs, retain OCR warnings; for bibliography libraries, re-run the bibliography audit. The checkpoint is a run ledger, not a final review, and does not prove that every paper has been read in depth.

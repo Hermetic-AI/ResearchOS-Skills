@@ -8,7 +8,7 @@ description: Build evidence-anchored concept graphs from Markdown research notes
 Turn a directory of Markdown literature notes into a typed, evidence-anchored concept graph, then use the graph to trace research lineages and produce visualizations.
 
 **Global conventions**
-- **User-facing reports are in Chinese by default**; content written into artifacts (note files, frontmatter) follows the artifact's own language.
+- **User-facing reports are in English by default**; content written into artifacts (note files, frontmatter) follows the artifact's own language.
 - **Evidence first**: every semantic relation must carry an evidence anchor (source file + line/quote). Never assert a relation from model common sense alone.
 - **Deterministic vs. AI-proposed relations stay separate**: wikilinks, `@citekey`, and explicit frontmatter `graph:` declarations are deterministic and go straight into the graph; relations you infer from reading notes are proposals and must be approved by the user before being written into frontmatter.
 - **Normalized note ingestion**: when `paper-note` JSON artifacts are available, read `references/artifact-contracts.md`, validate them, and retain their evidence anchors during graph import.
@@ -31,7 +31,7 @@ Do NOT use for: reading one paper in depth (`literature-reader`), writing or che
    python3 scripts/build_graph.py <notes_dir> -o graph.json --dot graph.dot --warnings warnings.md
    ```
    It parses `[[wikilink]]` (with `|alias` / `#heading` forms, skipping code blocks), `@citekey`, `\cite{...}`, explicit frontmatter `graph:` relations, and every `artifact_type: paper-note` JSON. Valid paper notes become one paper node plus claim nodes; every source/page/section/line/quote/extraction-method/verification anchor becomes a preserved `supports` edge. Invalid paper notes are quarantined as graph errors, while unrelated JSON is ignored. It then emits nodes/edges JSON, DOT, and warnings. Useful flags: `--stats`, `--csv PREFIX`, and `--query graph.json --seed <node> --depth N --relations r1,r2`.
-3. Read the warnings first: every explicit frontmatter relation without an `evidence` field is listed there. Report counts (nodes by type, edges by relation, unresolved links, evidence violations) to the user in Chinese.
+3. Read the warnings first: every explicit frontmatter relation without an `evidence` field is listed there. Report counts (nodes by type, edges by relation, unresolved links, evidence violations) to the user in English.
    For a release/readiness screen, run `python3 scripts/audit_evidence_anchors.py --graph graph.json --out evidence-audit.json`; it reports missing page/section, DOI, and verification fields without altering claims.
 
 ### Stage 2 — Normalize and type the concepts
@@ -44,12 +44,12 @@ Do NOT use for: reading one paper in depth (`literature-reader`), writing or che
 ### Stage 3 — Propose semantic relations (optional, approval-gated)
 
 7. Where the deterministic graph is thin (nodes with no typed relations), read the relevant notes and propose relations (`improves-on`, `outperforms`, `evaluates-on`, `uses-dataset`, ...). **Each proposal must quote the evidence** (file + line + verbatim snippet).
-8. Present proposals as a table (关系 / 起点 / 终点 / 证据引文 / 置信理由) and let the user approve/reject. Write approved ones back either by editing the note's frontmatter `graph:` list directly, or — for larger batches — by saving proposals to a JSON file (format in `scripts/merge_proposals.py` docstring) with `status: approved/rejected` and running `python3 scripts/merge_proposals.py proposals.json --vault <notes_dir>` (or `--overlay overlay.json` to keep them out of frontmatter). Then re-run `build_graph.py` so the graph reflects the fact source.
+8. Present proposals as a table (relation / source / target / evidence citation / confidence rationale) and let the user approve/reject. Write approved ones back either by editing the note's frontmatter `graph:` list directly, or — for larger batches — by saving proposals to a JSON file (format in `scripts/merge_proposals.py` docstring) with `status: approved/rejected` and running `python3 scripts/merge_proposals.py proposals.json --vault <notes_dir>` (or `--overlay overlay.json` to keep them out of frontmatter). Then re-run `build_graph.py` so the graph reflects the fact source.
 
 ### Stage 4 — Lineage tracing and narration
 
-9. For "梳理研究脉络/演进关系" requests, read `references/graph-rag.md` **at this point**: seed-concept recall → budgeted layer-by-layer expansion → pruning → lineage narrative where every claim cites its evidence anchor. It also covers comparative mode (divergence points of two research lines), year-ordered temporal narration, and community/cluster reasoning — read the relevant section per question type. Use `--query` to pull the seed subgraph mechanically before narrating.
-10. Deliver the narrative in Chinese with evidence citations; explicitly say when the graph evidence is insufficient instead of filling gaps with general knowledge.
+9. For research-lineage / evolution-relationship requests, read `references/graph-rag.md` **at this point**: seed-concept recall → budgeted layer-by-layer expansion → pruning → lineage narrative where every claim cites its evidence anchor. It also covers comparative mode (divergence points of two research lines), year-ordered temporal narration, and community/cluster reasoning — read the relevant section per question type. Use `--query` to pull the seed subgraph mechanically before narrating.
+10. Deliver the narrative in English with evidence citations; explicitly say when the graph evidence is insufficient instead of filling gaps with general knowledge.
 
 ### Stage 5 — Visualization
 

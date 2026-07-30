@@ -1,16 +1,16 @@
-# Claim 级证据锚点
+# Claim-Level Evidence Anchors
 
-## 目录
+## Table of Contents
 
-- [最小合同](#最小合同)
-- [建立锚点](#建立锚点)
-- [PDF 提取匹配](#pdf-提取匹配)
-- [OCR 与视觉证据](#ocr-与视觉证据)
-- [审计与交付](#审计与交付)
+- [Minimum Contract](#minimum-contract)
+- [Establishing Anchors](#establishing-anchors)
+- [PDF Extraction Matching](#pdf-extraction-matching)
+- [OCR and Visual Evidence](#ocr-and-visual-evidence)
+- [Audit and Delivery](#audit-and-delivery)
 
-## 最小合同
+## Minimum Contract
 
-`paper-note` 中每条核心 claim 必须有稳定 ID 和至少一个 evidence anchor。核心 claim 包括研究问题界定、关键方法、主要发现、实际贡献、重要局限和研究者解释；背景性常识无需为了凑数机械加引文。
+Every core claim in a `paper-note` must have a stable ID and at least one evidence anchor. Core claims include research question definition, key methods, primary findings, practical contributions, important limitations, and author interpretations; background common knowledge does not need mechanical citations added just to pad the count.
 
 ```json
 {
@@ -29,24 +29,24 @@
 }
 ```
 
-- `claim_type`：`research-question`、`method`、`finding`、`contribution`、`limitation`、`interpretation`。
-- `support_level`：`direct` 表示原文直接支持；`partial` 表示只支持一部分；`context-only` 表示原文仅提供背景，不能当作结论证据。
-- `page` 使用 PDF 物理页序号；若印刷页码不同，在 `section` 或人类笔记中同时写明。
-- `quote` 是定位用短摘录，默认不超过 25 个词；500 字符 schema 上限只是安全护栏，不是版权许可。
-- `extraction_method`：`native-text`、`ocr`、`human-transcription` 或 `visual`。
-- `verification`：`exact-match`、`human-verified` 或 `unverified`。
+- `claim_type`: `research-question`, `method`, `finding`, `contribution`, `limitation`, `interpretation`.
+- `support_level`: `direct` means the source directly supports the claim; `partial` means it supports only part of it; `context-only` means the source provides background only and cannot serve as evidence for the conclusion.
+- `page` uses the PDF physical page index; if the printed page number differs, state this together in the `section` or in human notes.
+- `quote` is a short locating excerpt, defaulting to no more than 25 words; the 500-character schema ceiling is a safety guardrail, not a copyright license.
+- `extraction_method`: `native-text`, `ocr`, `human-transcription`, or `visual`.
+- `verification`: `exact-match`, `human-verified`, or `unverified`.
 
-## 建立锚点
+## Establishing Anchors
 
-1. 先写原子 claim：一句只表达一个可核查主张，不把方法、结果和因果解释塞在一起。
-2. 找最接近原始证据的位置。结果优先结果表/正文，方法优先方法章节，局限优先作者限制段；不要只引用摘要转述。
-3. 复制最短且能唯一定位的原文，记录 PDF 页和章节。引用表格或图时，同时记录编号，在人类笔记中注明“视觉核对”。
-4. 明确支持强度。证据只显示相关性时，不得把 claim 写成因果；作者自称“novel”只支持“作者声称创新”，不自动支持“实际创新”。
-5. 多个来源共同支持时分别建 anchor；一条模糊长引文不能代替多条精确证据。
+1. Write atomic claims first: each sentence expresses only one verifiable assertion; do not pack methods, results, and causal explanations together.
+2. Find the location closest to the original evidence. Prioritize result tables/main text for results, methods sections for methods, and author limitation paragraphs for limitations; do not cite only abstract paraphrases.
+3. Copy the shortest source text that uniquely locates the claim, and record the PDF page and section. When citing a table or figure, record its number as well and note "visual verification" in the human notes.
+4. Be explicit about support strength. When evidence shows only correlation, do not write the claim as causal; an author calling their work "novel" supports only "the author claims novelty," not automatically "actual novelty."
+5. When multiple sources jointly support a claim, create a separate anchor for each; one vague, long citation cannot substitute for multiple precise pieces of evidence.
 
-## PDF 提取匹配
+## PDF Extraction Matching
 
-有 `pdf-extraction` 时运行：
+When a `pdf-extraction` is available, run:
 
 ```bash
 python3 scripts/audit_claim_evidence.py note.json \
@@ -54,23 +54,23 @@ python3 scripts/audit_claim_evidence.py note.json \
   --out note.evidence-audit.json
 ```
 
-审计器按物理页查找规范化后的短摘录，核对该页的 `native-text`/`ocr` 方法，并报告页码缺失、来源不一致、方法不一致和原文未命中。它只证明摘录在提取文本中出现，不证明 claim 的推理正确；支持强度仍需研究者判断。
+The auditor looks up the normalized short excerpt by physical page, checks that page's `native-text`/`ocr` method, and reports missing page numbers, source inconsistencies, method mismatches, and source-text misses. It only proves that the excerpt appears in the extracted text; it does not prove that the claim's reasoning is correct; support strength still requires the researcher's judgment.
 
-只有章节、没有整数 PDF 页码的锚点可以保留，但不能自动逐页匹配。重新排版的出版社 HTML、accepted manuscript 和正式 PDF 页码可能不同，必须在 `source` 中区分版本。
+Anchors that have only a section with no integer PDF page number may be retained but cannot be automatically matched page by page. Page numbers may differ across publisher HTML, accepted manuscripts, and the final PDF; the version must be distinguished in `source`.
 
-## OCR 与视觉证据
+## OCR and Visual Evidence
 
-OCR 摘录在回看页面图像前使用 `verification: unverified`。主要结论、数值、公式、表格单元格和图中读数必须人工核对后改为 `human-verified`。使用 `--strict-ocr` 可让直接 claim 仅由未核 OCR 支持时审计失败。
+OCR excerpts use `verification: unverified` until the page image is revisited. Primary conclusions, numerical values, formulas, table cell contents, and in-figure readings must be changed to `human-verified` after manual checking. Using `--strict-ocr` can make the audit fail when a direct claim is supported only by unverified OCR.
 
-`visual` 用于图形趋势、示意图或无法可靠转写的公式；短摘录写图/表编号和可见标签，真正判断写在 claim 中。不得把肉眼估算数值伪装成精确表格数据。
+`visual` is used for graphical trends, schematics, or formulas that cannot be reliably transcribed; the short excerpt writes the figure/table number and visible labels, while the actual judgment is written in the claim. Do not disguise eyeball-estimated values as precise table data.
 
-## 审计与交付
+## Audit and Delivery
 
-先验证两个 artifact，再交付 Markdown：
+Validate both artifacts before delivering the Markdown:
 
 ```bash
 python tools/validate_artifact.py note.json --type paper-note
 python tools/validate_artifact.py note.evidence-audit.json --type evidence-audit
 ```
 
-`status: fail` 表示结构或页内匹配错误；`warning` 表示仍需人工动作；`pass` 只表示当前机器检查通过。保留 note、PDF extraction、evidence audit 三者的 checksum。任何改写核心 claim、替换论文版本或重新 OCR 后都要重跑审计。
+`status: fail` indicates structural or in-page matching errors; `warning` indicates that a human action is still required; `pass` only means the current machine check passed. Preserve the checksums of the note, the PDF extraction, and the evidence audit. Re-run the audit after any rewrite of a core claim, replacement of a paper version, or re-OCR.

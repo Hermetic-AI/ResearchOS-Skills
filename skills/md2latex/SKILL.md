@@ -5,7 +5,7 @@ description: Convert research Markdown into clean LaTeX with headings, lists, GF
 
 # md2latex (Markdown → LaTeX)
 
-Converts a Markdown draft into clean, compilable LaTeX. Zero-dependency (Python stdlib only). Reports to the user in Chinese by default; generated .tex follows the source document's language.
+Converts a Markdown draft into clean, compilable LaTeX. Zero-dependency (Python stdlib only). Reports to the user in English by default; generated .tex follows the source document's language.
 
 **Global conventions**
 - **Convert, don't compile**: this skill produces `.tex`. If a LaTeX distribution exists locally (`xelatex`/`latexmk`), you may offer to compile; otherwise state the required compiler and stop. CJK documents need **XeLaTeX** (or `--template ctexart`); never tell the user to compile Chinese docs with pdfLaTeX.
@@ -37,4 +37,4 @@ Converts a Markdown draft into clean, compilable LaTeX. Zero-dependency (Python 
 - `scripts/markdown_project_audit.py` — read-only multi-file Markdown inventory: local link/resource existence and explicit conversion plan. ``--rewrite-plan`` proposes cross-file path rewrites for image/include links; ``--out-dir`` sets the output ``.tex`` directory used to compute those rewrites. No conversion or file rewrite is performed.
 - `scripts/latex_compile_check.py` — pre-compilation checker for `.tex` files. Scans for `xeCJK`+pdfLaTeX conflicts, CJK characters without package support, missing `graphicx`, SVG figures (locates PDF/PNG fallbacks), missing image files, undefined refs, cite-without-bibliography. `--fix --force` auto-fixes (adds packages, rewrites SVG → PDF fallback). `--compiler pdflatex|xelatex` checks against a specific compiler. `--json` emits a structured report. Works on both md2latex output and LLM-generated `.tex`. Zero-dependency.
 - `references/syntax-mapping.md` — full Markdown→LaTeX mapping table, design debt to the three reference projects (zijunwa/md2tex, VMIJUNV/md-to-latex, fastpen/markdown2latex), and known limitations.
-- `references/templates.md` — built-in template details, custom template-file markers, per-venue checklist (arXiv/IEEE/中文/Overleaf), compiler guidance.
+- `references/templates.md` — built-in template details, custom template-file markers, per-venue checklist (arXiv/IEEE/Chinese/Overleaf), compiler guidance.

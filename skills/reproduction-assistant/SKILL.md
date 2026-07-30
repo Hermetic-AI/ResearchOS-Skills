@@ -15,7 +15,7 @@ Helps reproduce a paper's code and experiments end to end: understand the repo, 
 - **Every number carries a source**: paper-reported values cite the paper section/table; reproduced values cite the artifact file path that produced them.
 - **Patches go to `patches/` only**: when diagnosing, write suggested fixes as diff files into a `patches/` directory and explain them — never silently modify the cloned repo.
 - **Retry budget**: at most 2 retries per pipeline step; after that, stop retrying and go to diagnosis.
-- **Reports to the user are in Chinese by default**; content written into artifacts (patches, env files, comparison cards committed alongside the repo) follows the artifact's language.
+- **Reports to the user are in English by default**; content written into artifacts (patches, env files, comparison cards committed alongside the repo) follows the artifact's language.
 - **Machine-readable handoff**: after comparison, read `references/artifact-contracts.md` and emit a validated `reproduction-card` in addition to the human-readable report.
 
 ## Inputs
@@ -40,9 +40,9 @@ Run a six-step pipeline. The discipline for each step (retry budget, logging, pa
 6. **compare**: **read `references/comparison-protocol.md` first** to set a defensible tolerance and seed/run-count policy, then extract reproduced values from run artifacts and run `python3 scripts/compare_results.py` to produce a comparison card (markdown/JSON) with `match` / `mismatch` / `missing_repro` / `missing_paper` verdicts (relative error ≤ tolerance ⇒ match; default tolerance 1%). Repro values may be per-run lists → the card reports mean ± std and judges on the mean.
    After review, create a checksum inventory and, only when explicitly requested, a ZIP archive: `python3 scripts/reproduction_package.py run-001 --level reduced-scale --out run-001-package.json --archive run-001.zip`. Sensitive filename patterns and caches are excluded, but the user must review every file and its distribution permission.
 
-**On any failure or mismatch**: read `references/diagnostics.md`, classify the failure into **version / dependency / parameter / data** using its signal→category mapping (incl. hard failures: segfault, OOM, NCCL timeout, dataset checksum, tokenizer drift, API deprecation — each with minimal confirmation steps), collect the required evidence per category, and produce a Chinese diagnosis report with suggested fixes (as files under `patches/` when the fix is a concrete code/config change).
+**On any failure or mismatch**: read `references/diagnostics.md`, classify the failure into **version / dependency / parameter / data** using its signal→category mapping (incl. hard failures: segfault, OOM, NCCL timeout, dataset checksum, tokenizer drift, API deprecation — each with minimal confirmation steps), collect the required evidence per category, and produce an English diagnosis report with suggested fixes (as files under `patches/` when the fix is a concrete code/config change).
 
-**Reduced-scale runs**: if the full experiment is infeasible (no GPU, dataset too large), a reduced run is allowed only when explicitly labeled "非原配置，数值不可与论文直接对标" — compare such values with verdict `mismatch` expected, and say so.
+**Reduced-scale runs**: if the full experiment is infeasible (no GPU, dataset too large), a reduced run is allowed only when explicitly labeled as "not the original configuration; values are not directly comparable to the paper" — compare such values with verdict `mismatch` expected, and say so.
 
 ## Scripts (all zero-dependency, stdlib only)
 

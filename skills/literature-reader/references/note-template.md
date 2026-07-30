@@ -3,7 +3,7 @@
 Used by **Function 1** of the `literature-reader` skill. Fill one note per paper.
 Language: follow the user's library language (English notes for English libraries,
 Chinese notes for Chinese thesis libraries). Fields that cannot be determined from
-the text must be `[未提及]` / `[not stated]` — never guessed.
+the text must be `[not stated]` — never guessed.
 
 Length discipline: the whole note should fit on ~1.5 pages. If a section wants to
 grow past its cap, the excess belongs in the user's own manuscript notes, not here.
@@ -16,45 +16,45 @@ grow past its cap, the excess belongs in the user's own manuscript notes, not he
 # <Paper Title>
 
 - **Citation**: <Authors (Year). Venue.> — e.g. `Vaswani et al. (2017). NeurIPS.`
-- **DOI / arXiv**: <doi or arXiv id, or [未提及]>
-- **Read date**: <YYYY-MM-DD> | **Depth**: 速读 / 精读 / 批判性阅读
-- **One-liner (一句话)**: <one sentence: who solves what problem with what method>
+- **DOI / arXiv**: <doi or arXiv id, or [not stated]>
+- **Read date**: <YYYY-MM-DD> | **Depth**: skim / deep read / critical read
+- **One-liner**: <one sentence: who solves what problem with what method>
 
-## 1. Research question (研究问题)
+## 1. Research question
 <What problem, why it matters, what was blocking prior work. 2–4 sentences.
 Quote the paper's own problem statement if crisp; otherwise restate in your words.>
 
-## 2. Method (方法)
+## 2. Method
 <Core technical approach: model/algorithm/procedure class + the ONE design choice
 that makes it work. Include key equations or architecture only if the user would
 need them to reimplement. 3–6 sentences or a short bullet list.>
 
-## 3. Contributions (创新点)
+## 3. Contributions
 <Distinguish claimed vs actual. Format:
 - **Claimed**: what the authors list.
 - **Actual (my judgment)**: which claimed contributions are genuinely new vs
   repackaged/engineering, and any unclaimed contribution you noticed.>
 
-## 4. Experimental setup (实验设置)
+## 4. Experimental setup
 - **Data**: <datasets, size, domain, splits>
 - **Baselines**: <compared against what>
 - **Metrics**: <evaluation metrics>
-- **Key results**: <headline numbers — flag "请人工核对" if read from figures>
+- **Key results**: <headline numbers — flag "verify manually" if read from figures>
 - **Ablations / analyses**: <which ablation matters most, in one line>
 
-## 5. Limitations (局限性)
+## 5. Limitations
 - **Stated by authors**: <their own limitation paragraph, compressed>
 - **My assessment**: <what they did NOT say: threats to validity, weak baselines,
   dataset leakage risk, missing ablations, generality concerns>
 
-## 6. Reusable resources (可复用资源)
-- **Code**: <repo URL / official / third-party / none — [未提及] if not found>
+## 6. Reusable resources
+- **Code**: <repo URL / official / third-party / none — [not stated] if not found>
 - **Data / models released**: <what artifacts, licenses if stated>
 - **Reusable ideas for my work**: <what YOU can borrow: a module, an evaluation
   protocol, a dataset, a framing. This is the most personal section — write it
   for the user's project, not generically.>
 
-## 7. Connections (关联)
+## 7. Connections
 <2–3 bullets: how this paper relates to other notes in the library — extends X,
 contradicts Y, shares dataset with Z. Leave empty if the library is still small.>
 
@@ -62,10 +62,10 @@ contradicts Y, shares dataset with Z. Leave empty if the library is still small.
 <Follow-ups: papers to chase from its references, experiments to verify,
 things to check when the code is released.>
 
-## Evidence register (核心证据锚点)
+## Evidence register (core evidence anchors)
 <For every core research-question/method/finding/contribution/limitation/interpretation
 claim, add a stable claim ID and a short anchor. Human-readable form:
-- `[finding-primary | PDF p.7 | §Results | native-text | exact-match]` “short source quote”
+- `[finding-primary | PDF p.7 | §Results | native-text | exact-match]` "short source quote"
 Keep the schema-valid claim objects in the companion `paper-note` JSON.>
 ```
 
@@ -76,9 +76,9 @@ Keep the schema-valid claim objects in the companion `paper-note` JSON.>
 ### Header / One-liner
 - Citation string comes from `scripts/extract_metadata.py` output when the input
   was a pasted reference; verify venue/year against the PDF front page.
-- **Depth** is honesty bookkeeping: a 速读 note (abstract + figures + conclusion)
+- **Depth** is honesty bookkeeping: a skim note (abstract + figures + conclusion)
   must not contain claims only verifiable by full reading.
-- The one-liner must name *problem + method*, not just topic. Bad: "一篇关于图神经网络的论文". Good: "用稀疏注意力把 GNN 扩展到十亿边图".
+- The one-liner must name *problem + method*, not just topic. Bad: "a paper about graph neural networks". Good: "uses sparse attention to scale GNNs to billion-edge graphs".
 
 ### §1 Research question
 - Separate the *motivating problem* (real-world) from the *technical gap* (why prior
@@ -88,18 +88,18 @@ Keep the schema-valid claim objects in the companion `paper-note` JSON.>
 ### §2 Method
 - Cap at 6 sentences / 8 bullets. The test: could the user, a month later, explain
   the method to their advisor from this section alone?
-- Name the single load-bearing design choice explicitly ("关键设计：…").
+- Name the single load-bearing design choice explicitly ("key design: …").
 
 ### §3 Contributions
 - The **Actual** line is the point of the note. Common patterns to call out:
-  - "novel framework" that is a known method + new dataset → 工程组合, not a method contribution
+  - "novel framework" that is a known method + new dataset → engineering combination, not a method contribution
   - contribution claimed against weak/absent baselines → discount it
   - unclaimed but real: a useful negative result, a clean ablation, a released artifact
 
 ### §4 Experimental setup
 - Key results: quote at most 3 numbers, always with the baseline number next to
   them ("72.1 vs 70.3 baseline"). A result without its comparator is useless.
-- Numbers read from figures (not tables) get the `请人工核对` flag.
+- Numbers read from figures (not tables) get the `verify manually` flag.
 
 ### §5 Limitations
 - **My assessment** should contain at least one item not in the authors' own list.

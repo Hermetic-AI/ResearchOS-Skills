@@ -1,63 +1,64 @@
-# PDF、OCR 与复杂版面提取
+# PDF, OCR, and Complex Layout Extraction
 
-## 目录
+## Table of Contents
 
-- [能力边界](#能力边界)
-- [分层提取流程](#分层提取流程)
-- [双栏、表格和图注](#双栏表格和图注)
-- [OCR 与质量门禁](#ocr-与质量门禁)
-- [补充材料](#补充材料)
-- [证据锚点](#证据锚点)
+- [Capability Boundaries](#capability-boundaries)
+- [Layered Extraction Flow](#layered-extraction-flow)
+- [Two-Column Layouts, Tables, and Captions](#two-column-layouts-tables-and-captions)
+- [OCR and Quality Gates](#ocr-and-quality-gates)
+- [Supplementary Materials](#supplementary-materials)
+- [Evidence Anchors](#evidence-anchors)
 
-## 能力边界
+## Capability Boundaries
 
-把 PDF 看作容器，不把“成功打开文件”等同于“正确读出论文”。原生文字、OCR 文字、表格猜测和人工视觉判断必须分开标记。脚本不联网、不绕过加密、不推断缺失内容，也不保证复杂公式、跨页表格或阅读顺序百分之百正确。
+Treat the PDF as a container; do not equate "successfully opening a file" with "correctly reading out the paper." Native text, OCR text, table inference, and human visual judgment must be tagged separately. Scripts do not access the network, bypass encryption, infer missing content, or guarantee that complex formulas, cross-page tables, or reading order are one hundred percent correct.
 
-安装可选依赖：
+Install optional dependencies:
 
 ```bash
 python -m pip install -e ".[pdf]"
+"
 ```
 
-OCR 还需要本机安装 Poppler 的 `pdftoppm` 与 Tesseract，并安装对应语言包；这些可执行程序不随仓库分发。
+OCR additionally requires a local installation of Poppler's `pdftoppm` and Tesseract, plus the corresponding language packs; these executables are not distributed with the repository.
 
-## 分层提取流程
+## Layered Extraction Flow
 
-1. 先做原生文字提取，保留每一页的页码、方法和字符数：
+1. Perform native text extraction first, preserving the page number, method, and character count for each page:
 
    ```bash
    python3 scripts/extract_pdf.py paper.pdf --out paper.extraction.json --markdown-out paper.extraction.md
    ```
 
-2. 对长论文先限制页码，例如 `--pages 1-3,12-14`。摘要、引言、结果、讨论、结论与图表页优先；不要因默认全量处理而浪费 OCR 时间。
-3. 默认 `--layout auto`。已知双栏时使用 `--layout two-column`；发现阅读顺序错乱时，以页面截图人工核对，不在错误文本上继续总结。
-4. 先验证 JSON：
+2. For long papers, limit the page range first, e.g. `--pages 1-3,12-14`. Prioritize the abstract, introduction, results, methods, discussion, conclusion, and figure/table pages; do not waste OCR time on full-volume processing by default.
+3. Default to `--layout auto`. Use `--layout two-column` when a two-column layout is known; when reading order errors are found, verify manually against page screenshots — do not continue summarizing on top of incorrect text.
+4. Validate the JSON first:
 
    ```bash
    python tools/validate_artifact.py paper.extraction.json --type pdf-extraction
    ```
 
-5. 再把带页码的文本送入阅读笔记；不得丢掉 `extraction_method`、`warnings` 或来源 checksum。
+5. Then feed the page-numbered text into the reading notes; do not discard `extraction_method`, `warnings`, or the source checksum.
 
-## 双栏、表格和图注
+## Two-Column Layouts, Tables, and Captions
 
-- 双栏重排是启发式。检查摘要末尾、跨栏标题、页眉页脚、公式和左右栏衔接处。
-- `tables` 是版面识别结果，不是作者发布的数据文件。合并单元格、跨页表格、脚注和上标常需人工复核。
-- `captions` 只捕获以 Figure/Fig./Table/图/表编号开头的文本行。缺失图注不代表论文没有图。
-- 定量结论若来自图像、图注或 OCR，必须标注“请人工核对”，除非已经和原页视觉比对。
+- Two-column re-flow is heuristic. Check the end of the abstract, spanning headings, headers/footers, formulas, and the seams between the left and right columns.
+- `tables` are layout-recognition results, not author-published data files. Merged cells, cross-page tables, footnotes, and superscripts often require manual review.
+- `captions` only capture text lines starting with Figure/Fig./Table numbering (including Chinese figure/table labels). A missing caption does not mean the paper lacks figures.
+- Quantitative conclusions drawn from images, captions, or OCR must be tagged "please verify manually" unless they have already been visually compared against the original page.
 
-## OCR 与质量门禁
+## OCR and Quality Gates
 
-- `--ocr auto` 只对原生文字少于 `--min-native-chars` 的页面尝试 OCR。
-- `--ocr always` 要求 OCR 后端完整可用，失败即返回非零；`auto` 缺少后端时保留原生结果并写入警告。
-- 用 `--ocr-lang eng+chi_sim` 指定已安装的多语言模型。语言模型缺失应视为失败，不要改用错误语言后继续。
-- 抽查至少：首页、一个正文页、一个双栏页、一个表格页、一个公式密集页。检查字符丢失、连字符断词、栏顺序和页码对应。
-- 扫描质量过低、手写批注遮挡或公式密集时，停止自动归纳并请求更清晰原件或人工转录。
+- `--ocr auto` attempts OCR only on pages where native text is fewer than `--min-native-chars`.
+- `--ocr always` requires the OCR backend to be fully available and returns non-zero on failure; `auto` retains the native result and writes a warning when the backend is missing.
+- Use `--ocr-lang eng+chi_sim` to specify installed multilingual models. A missing language model should be treated as a failure; do not switch to an incorrect language and continue.
+- Spot-check at least: the title page, one body page, one two-column page, one table page, and one formula-dense page. Check for missing characters, hyphenation artifacts, column order, and page-number correspondence.
+- When scan quality is too low, handwritten annotations obscure content, or formulas are dense, stop automatic summarization and request a clearer original or human transcription.
 
-## 补充材料
+## Supplementary Materials
 
-`supplementary_mentions` 只记录正文中对 supplement/appendix/补充材料的提及，不表示附件已取得。将每个补充 PDF 作为独立输入运行同一脚本，并在阅读笔记中记录主文与附件的文件名、checksum 和对应关系。网页附件必须由用户或合法数据源提供；不要猜测附件 URL，也不要绕过访问控制。
+`supplementary_mentions` only records mentions of supplement/appendix/supplementary materials in the main text; it does not indicate that attachments have been obtained. Run the same script on each supplementary PDF as an independent input, and record the filenames, checksums, and correspondence between the main text and attachments in the reading notes. Web attachments must be provided by the user or a legitimate data source; do not guess attachment URLs or bypass access controls.
 
-## 证据锚点
+## Evidence Anchors
 
-任何核心主张至少保留：来源文件 checksum、PDF 页码、章节（若能确认）、短证据摘录和提取方法。页码使用 PDF 的物理页序号；若印刷页码不同，同时写成“PDF p.7 / printed p.123”。OCR 引文必须显式标记，且在正式引用前回看原页。
+Every core claim must retain at minimum: the source file checksum, PDF page number, section (if confirmable), a short evidence excerpt, and the extraction method. Page numbers use the PDF's physical page index; if the printed page number differs, write both as "PDF p.7 / printed p.123". OCR citations must be explicitly tagged, and the original page must be revisited before formal citation.
